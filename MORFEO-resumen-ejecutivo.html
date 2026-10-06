@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MORFEO · Plan de personalización · Resumen ejecutivo — Luce para Logitravel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A3760;
+    --navy-dark: #12284a;
+    --orange: #FBB040;
+    --orange-soft: #FFF3E6;
+    --lilac: #C6BBE4;
+    --ink: #14213a;
+    --ink-2: #4a556b;
+    --ink-3: #7c8599;
+    --line: #e4e3dd;
+    --paper: #fcfbf8;
+    --card: #ffffff;
+    --ok: #1e8e5a;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.55;
+  }
+  h1, h2, h3, h4 { font-family: "Raleway", Arial, sans-serif; margin: 0; color: var(--navy); }
+  p { margin: 0 0 10px; }
+  strong { font-weight: 700; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 36px 24px 72px; }
+
+  /* ---- Cabecera ---- */
+  header.hero {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 18px;
+    padding: 34px 40px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::after {
+    content: "";
+    position: absolute; right: -60px; top: -60px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: var(--orange); opacity: 0.16;
+  }
+  .brand-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+  .wordmark {
+    font-family: "Raleway", Arial, sans-serif; font-weight: 800; font-size: 20px;
+    letter-spacing: 4px; color: #fff;
+  }
+  .wordmark span { color: var(--orange); }
+  .brand-row .meta { font-size: 12px; color: var(--lilac); text-align: right; line-height: 1.4; }
+  .eyebrow { font-family: "Raleway", Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; color: var(--lilac); margin-bottom: 8px; }
+  header.hero h1 { color: #fff; font-size: 30px; line-height: 1.2; max-width: 680px; letter-spacing: -0.3px; }
+  header.hero p.sub { color: #e6ebf5; max-width: 660px; margin-top: 12px; font-size: 15.5px; }
+  .hero-rule { height: 4px; background: linear-gradient(90deg, var(--orange) 0 60%, var(--lilac) 60% 100%); border-radius: 0 0 18px 18px; margin: 0 20px; }
+
+  /* ---- Secciones ---- */
+  section { margin-top: 38px; }
+  .kicker {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "Raleway", Arial, sans-serif; font-size: 11.5px; font-weight: 800;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--navy); margin-bottom: 8px;
+  }
+  .kicker::before { content: ""; width: 22px; height: 4px; background: var(--orange); border-radius: 2px; }
+  section h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  section > p.lead { color: var(--ink-2); max-width: 760px; margin-bottom: 18px; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px 22px; box-shadow: 0 1px 2px rgba(20,33,58,0.04);
+  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 760px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  /* ---- Cómo trabajamos ---- */
+  .steps { display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items: stretch; }
+  .step { padding: 18px 20px; }
+  .step .n {
+    display: inline-block; font-family: "Raleway", Arial, sans-serif; font-weight: 800; font-size: 12px;
+    background: var(--orange); color: var(--navy); padding: 3px 10px; border-radius: 999px; margin-bottom: 8px; letter-spacing: 1px;
+  }
+  .step h3 { font-size: 16px; margin-bottom: 6px; }
+  .step p { font-size: 14px; color: var(--ink-2); margin: 0; }
+  .arrow { align-self: center; font-size: 26px; color: var(--orange); font-weight: 900; }
+  @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } .arrow { text-align: center; transform: rotate(90deg); } }
+
+  .metrics { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+  .metric { flex: 1 1 220px; border: 1px dashed var(--line); border-radius: 10px; padding: 12px 14px; background: var(--orange-soft); }
+  .metric .tag { font-family: "Raleway", Arial, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 1.5px; color: var(--navy); }
+  .metric p { font-size: 13.5px; color: var(--ink-2); margin: 4px 0 0; }
+
+  /* ---- Lo que sabemos ---- */
+  ul.facts { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; }
+  @media (max-width: 760px) { ul.facts { grid-template-columns: 1fr; } }
+  ul.facts li { padding-left: 18px; position: relative; font-size: 14.5px; color: var(--ink-2); }
+  ul.facts li::before { content: ""; position: absolute; left: 0; top: 9px; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+  ul.facts li strong { color: var(--ink); }
+
+  /* ---- Segmentos ---- */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .chip { font-size: 13px; font-weight: 700; color: var(--navy); background: #eef1f7; border: 1px solid #dfe4ee; padding: 5px 11px; border-radius: 999px; }
+  .chip.hi { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  /* ---- Fases ---- */
+  .phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 860px) { .phases { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .phases { grid-template-columns: 1fr; } }
+  .phase { padding: 18px 18px 16px; border-top: 5px solid var(--orange); display: flex; flex-direction: column; }
+  .phase.p0 { border-top-color: var(--lilac); }
+  .phase.p1 { border-top-color: var(--orange); }
+  .phase.p2 { border-top-color: var(--navy); }
+  .phase.p3 { border-top-color: var(--ink-3); }
+  .phase .num { font-family: "Raleway", Arial, sans-serif; font-weight: 800; font-size: 11.5px; letter-spacing: 2px; color: var(--ink-3); text-transform: uppercase; }
+  .phase h3 { font-size: 16.5px; margin: 4px 0 8px; line-height: 1.25; }
+  .phase p { font-size: 13.5px; color: var(--ink-2); margin: 0 0 8px; }
+  .phase .who { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-3); }
+  .phase .who b { color: var(--navy); }
+  .now { display: inline-block; font-size: 10.5px; font-weight: 900; letter-spacing: 1.5px; color: var(--navy); background: var(--orange); padding: 2px 8px; border-radius: 999px; margin-left: 6px; vertical-align: middle; }
+
+  /* ---- Tests ---- */
+  .tests { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .tests { grid-template-columns: 1fr; } }
+  .test { padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
+  .test .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .test .line { font-size: 11.5px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-3); }
+  .test h3 { font-size: 16px; line-height: 1.3; }
+  .test p { font-size: 14px; color: var(--ink-2); margin: 0; }
+  .test .how { font-size: 13px; color: var(--ink-2); background: var(--orange-soft); border-radius: 8px; padding: 9px 12px; margin-top: 2px; }
+  .test .how b { color: var(--navy); }
+  .pill-dev { font-size: 11px; font-weight: 900; letter-spacing: 1px; color: var(--ok); border: 1.5px solid var(--ok); padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+
+  /* ---- Pedimos / no hacemos ---- */
+  .two-col h3 { font-size: 16px; margin-bottom: 10px; }
+  .two-col ul { margin: 0; padding-left: 18px; }
+  .two-col li { font-size: 14.5px; color: var(--ink-2); margin-bottom: 7px; }
+  .two-col li strong { color: var(--ink); }
+  .ask { border-left: 5px solid var(--orange); }
+  .nope { border-left: 5px solid var(--ink-3); }
+
+  /* ---- Pie ---- */
+  footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12px; color: var(--ink-3); }
+  footer .wordmark { color: var(--navy); font-size: 14px; letter-spacing: 3px; }
+
+  @media print {
+    body { background: #fff; font-size: 12.5px; }
+    .wrap { padding: 0; max-width: none; }
+    header.hero { border-radius: 0; }
+    .card, .phase, .test, .step { box-shadow: none; break-inside: avoid; }
+    section { margin-top: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="brand-row">
+      <div class="wordmark">LU<span>C</span>E</div>
+      <div class="meta">Luce Innovative Technologies<br>Para Logitravel · 6 de octubre de 2026</div>
+    </div>
+    <div class="eyebrow">MORFEO · Resumen ejecutivo</div>
+    <h1>Un plan para personalizar la web de Logitravel, demostrando cada paso con un test</h1>
+    <p class="sub">Qué proponemos, en qué etapas, y cómo serán los primeros seis tests. Es un resumen de cuatro minutos del documento completo, que detalla más de 35 iniciativas.</p>
+  </header>
+  <div class="hero-rule"></div>
+
+  <!-- ====== QUÉ ES ====== -->
+  <section>
+    <div class="kicker">Qué es MORFEO</div>
+    <h2>Mostrar a cada viajero lo que le importa, sin tocar el precio</h2>
+    <p class="lead">Hoy la web enseña lo mismo a una familia con dos niños, a una pareja en luna de miel y a quien busca el chollo más barato. MORFEO propone adaptar el contenido, el orden y los mensajes a cada tipo de viajero. Es un proyecto a medio plazo, paralelo a los quick wins actuales, con un objetivo único: <strong>más reservas, demostradas con test</strong>.</p>
+
+    <div class="steps">
+      <div class="card step">
+        <span class="n">PASO 1</span>
+        <h3>Validamos sin desarrollo</h3>
+        <p>Cada idea se prueba con AB Tasty y GTM sobre la web actual. El equipo de desarrollo de Logitravel no interviene.</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="card step">
+        <span class="n">PASO 2</span>
+        <h3>Pedimos desarrollo solo con resultado</h3>
+        <p>Si un test gana, se pide a desarrollo que lo haga definitivo. Si no gana, se descarta y no cuesta nada más.</p>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><div class="tag">THANK YOU</div><p>Reserva completada. Es la métrica principal de todos los tests.</p></div>
+      <div class="metric"><div class="tag">GP · PRESUPUESTO GUARDADO</div><p>En Cruceros, Grandes Viajes y Vuelo + Hotel es el camino normal hacia la compra: unos 32.000 al mes.</p></div>
+      <div class="metric"><div class="tag">CONTROL</div><p>Cada test compara el mismo tipo de viajero con y sin personalización. Así el efecto es real.</p></div>
+    </div>
+  </section>
+
+  <!-- ====== LO QUE SABEMOS ====== -->
+  <section>
+    <div class="kicker">Punto de partida</div>
+    <h2>Lo que ya sabemos de la web</h2>
+    <div class="card">
+      <ul class="facts">
+        <li><strong>Ya podemos reconocer al viajero sin desarrollo.</strong> Los datos que la web ya expone (línea, destino, fechas, quién viaja, régimen, categoría) permiten identificar 22 tipos de viajero.</li>
+        <li><strong>Los usuarios con sesión iniciada convierten unas 15 veces más,</strong> pero solo son el 3 % de las sesiones. Es correlación, no causa: lo comprobaremos con tests.</li>
+        <li><strong>En el checkout, el icono de perfil saca de la compra al usuario que ya está logado.</strong> Al no logado le devuelve al checkout tras entrar. Un 18 % de los usuarios móviles lo toca.</li>
+        <li><strong>Los presupuestos guardados son la mayor palanca.</strong> Hoy solo se pueden leer de los usuarios logados. Proponemos guardarlos también en el navegador de los anónimos.</li>
+        <li><strong>Ya se probó y no funcionó:</strong> ofertas desde el aeropuerto del usuario en la Home. Funcionan mejor los recomendados por línea de negocio.</li>
+        <li><strong>Empezamos por donde hay tráfico:</strong> ficha de Vuelo + Hotel (1,8 M de sesiones al mes) y ficha de Cruceros (550.000), con segmentos amplios.</li>
+      </ul>
+      <div class="chips">
+        <span class="chip hi">Familia</span><span class="chip hi">Pareja</span><span class="chip hi">Cazador de chollos</span>
+        <span class="chip">Última hora</span><span class="chip">Planificador</span><span class="chip">Sénior</span><span class="chip">Premium</span>
+        <span class="chip">Todo incluido</span><span class="chip">Escapada</span><span class="chip">Negocios</span><span class="chip">Luna de miel</span>
+        <span class="chip">Residente en islas</span><span class="chip">Con presupuesto guardado</span><span class="chip">Fiel a una naviera</span><span class="chip">… y 8 más</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ETAPAS ====== -->
+  <section>
+    <div class="kicker">Etapas</div>
+    <h2>Cuatro fases. Cada una se apoya en lo aprendido en la anterior</h2>
+    <div class="phases">
+      <div class="card phase p0">
+        <div class="num">Fase 0 <span class="now">AHORA</span></div>
+        <h3>Medir bien antes de personalizar</h3>
+        <p>Separar la conversión de logados y no logados. Registrar los filtros que usa la gente. Construir el perfil del viajero en el navegador. Guardar los presupuestos de todos, logados o no.</p>
+        <div class="who"><b>Luce</b> · Sin desarrollo. A Logitravel solo le pedimos una respuesta de legal sobre consentimiento.</div>
+      </div>
+      <div class="card phase p1">
+        <div class="num">Fase 1</div>
+        <h3>Primeros tests de personalización</h3>
+        <p>Unas 35 ideas en tres bloques: transversales, con presupuestos guardados y por línea de negocio. Se arranca con seis.</p>
+        <div class="who"><b>Luce</b> · Sin desarrollo. Ritmo estimado: 2 o 3 tests de personalización al mes.</div>
+      </div>
+      <div class="card phase p2">
+        <div class="num">Fase 2</div>
+        <h3>Peticiones a desarrollo, solo si la fase 1 las justifica</h3>
+        <p>Iniciar sesión sin salir del funnel en toda la web. Autologin con Google. Sesiones más largas. Dos errores ya detectados al guardar presupuestos.</p>
+        <div class="who"><b>Desarrollo de Logitravel</b> · Cada petición llega con el test que la justifica.</div>
+      </div>
+      <div class="card phase p3">
+        <div class="num">Fase 3</div>
+        <h3>Escalar a medio y largo plazo</h3>
+        <p>Preguntar al usuario en su área personal. Usar el modelo de propensión de compra cuando sea fiable. Conectar con Salesforce. Llevar lo que funcione a la app. Retención y fidelización.</p>
+        <div class="who"><b>Luce + Logitravel</b> · Con los resultados de las fases anteriores como argumento.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PRIMEROS TESTS ====== -->
+  <section>
+    <div class="kicker">Propuesta de arranque</div>
+    <h2>Los seis primeros tests</h2>
+    <p class="lead">Combinan mucho tráfico, segmentos amplios y los cuellos de botella de cada funnel. Los dos primeros atacan además el problema de fondo: los pocos usuarios con sesión iniciada. Ninguno necesita desarrollo.</p>
+
+    <div class="tests">
+      <div class="card test">
+        <div class="top"><span class="line">Checkout · Todas las líneas</span><span class="pill-dev">SIN DESARROLLO</span></div>
+        <h3>1 · El icono de perfil deja de sacar al usuario logado de la compra</h3>
+        <p>Hoy, al usuario que ya ha iniciado sesión, el icono le lleva a "Mi cuenta" y abandona el checkout. Proponemos mostrar su nombre y abrir un menú, sin cambiar de página. Se lanza junto con la idea ya propuesta de señalar que la sesión está iniciada.</p>
+        <div class="how"><b>Cómo se prueba:</b> test A/B/C en el checkout de Hoteles, solo para usuarios logados. Control, solo señal, señal + menú. Se mide la reserva y las salidas a "Mi cuenta".</div>
+      </div>
+
+      <div class="card test">
+        <div class="top"><span class="line">Presupuestos · CRU, GV, V+H</span><span class="pill-dev">SIN DESARROLLO</span></div>
+        <h3>2 · Del presupuesto a la cuenta</h3>
+        <p>Quien guarda un presupuesto ya ha dado su nombre y su email. En ese momento le invitamos a crear la cuenta con ese email para tener sus presupuestos siempre a mano. Es la mayor palanca de registro que tenemos.</p>
+        <div class="how"><b>Cómo se prueba:</b> test A/B en la confirmación del presupuesto, unos 32.000 al mes. Se miden las cuentas creadas y que la reserva no baje.</div>
+      </div>
+
+      <div class="card test">
+        <div class="top"><span class="line">Cruceros</span><span class="pill-dev">SIN DESARROLLO</span></div>
+        <h3>3 · Cabina bloqueada: cuenta atrás real</h3>
+        <p>Las cabinas bloqueadas caducan de verdad, entre 24 y 72 horas después. Al usuario que vuelve se le recuerda en la cabecera, la Home y la ficha: "Tu cabina está bloqueada hasta el jueves a las 17:00", con botón para confirmar.</p>
+        <div class="how"><b>Cómo se prueba:</b> test A/B para quien tiene una cabina bloqueada vigente. Se mide la confirmación de la pre-reserva.</div>
+      </div>
+
+      <div class="card test">
+        <div class="top"><span class="line">Vuelo + Hotel · Paso de extras</span><span class="pill-dev">SIN DESARROLLO</span></div>
+        <h3>4 · Extras según el tipo de viajero</h3>
+        <p>El paso de extras es el mayor cuello de botella de Vuelo + Hotel. A las familias se les destacan traslados y seguro; a los séniores, el seguro de cancelación; a las parejas en escapada, menos extras.</p>
+        <div class="how"><b>Cómo se prueba:</b> test A/B en el paso de extras, por segmento. Se mide el avance al presupuesto.</div>
+      </div>
+
+      <div class="card test">
+        <div class="top"><span class="line">Cruceros · Paso de presupuesto</span><span class="pill-dev">SIN DESARROLLO</span></div>
+        <h3>5 · Presupuesto de crucero según el segmento</h3>
+        <p>El paso de presupuesto a checkout es el cuello de botella de Cruceros. A familias, ventajas para niños y parques acuáticos del barco; a parejas, bebidas y experiencias; a séniores, servicios, excursiones y tranquilidad.</p>
+        <div class="how"><b>Cómo se prueba:</b> test A/B en el paso de presupuesto. Se mide el avance a checkout y el presupuesto guardado.</div>
+      </div>
+
+      <div class="card test">
+        <div class="top"><span class="line">Hoteles · Ficha</span><span class="pill-dev">SIN DESARROLLO</span></div>
+        <h3>6 · Ficha de hotel según el segmento</h3>
+        <p>Es el funnel con más reservas y el paso con la conversión más baja del sitio. Orden de habitaciones y mensajes según quién viaja: familia, habitación familiar y servicios infantiles; negocios, wifi, ubicación y cancelación; pareja, vistas y solo adultos.</p>
+        <div class="how"><b>Cómo se prueba:</b> test A/B en la ficha, por segmento. Se mide el avance a checkout.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== QUÉ PEDIMOS / QUÉ NO HACEMOS ====== -->
+  <section>
+    <div class="kicker">Para arrancar</div>
+    <h2>Qué pedimos a Logitravel y qué no vamos a hacer</h2>
+    <div class="grid-2 two-col">
+      <div class="card ask">
+        <h3>Lo que necesitamos de Logitravel</h3>
+        <ul>
+          <li><strong>Vía libre para la fase 0 y la fase 1.</strong> Las hace el equipo actual de Luce, sin desarrollo.</li>
+          <li><strong>Una respuesta de legal</strong> sobre qué categoría de consentimiento cubre la personalización y si el perfil puede guardarse de forma permanente.</li>
+          <li><strong>Dos arreglos pequeños,</strong> cuando desarrollo pueda: guardar un presupuesto sobrescribe el nombre de la cuenta, y si se guarda con otro email no aparece en "Mi cuenta".</li>
+        </ul>
+      </div>
+      <div class="card nope">
+        <h3>Lo que no hacemos por ahora</h3>
+        <ul>
+          <li><strong>Precios distintos según el segmento.</strong> La normativa europea obliga a avisar al usuario. Personalizamos contenido, orden y mensajes.</li>
+          <li><strong>Pedir el login fuera del checkout</strong> mientras saque al usuario de la compra.</li>
+          <li><strong>Repetir "ofertas desde tu aeropuerto".</strong> Ya se probó y no funcionó.</li>
+          <li><strong>Construir un motor propio de personalización</strong> antes de agotar lo que ya ofrece AB Tasty.</li>
+          <li><strong>Vender con retención o viaje en curso.</strong> Es buena idea, pero no se demuestra con un test de ventas. Va a la fase 3.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wordmark">LU<span style="color:var(--orange)">C</span>E</div>
+    <div>Luce Innovative Technologies · MORFEO · Resumen del documento de decisión v2 · Clasificación: Confidencial</div>
+  </footer>
+
+</div>
+</body>
+</html>
