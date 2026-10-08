@@ -1,0 +1,37 @@
+/* Test 4 · "Continúa tu búsqueda". Se añade sobre la Home capturada de logitravel.com.
+   Reutiliza las clases de la web (dBHsMv, geA-DvC, jUtDwl, bTlkKp...) para que el bloque herede su aspecto. */
+html.mf-test-off .mf-recent { display: none !important; }
+
+.mf-new {
+  position: absolute; top: 9px; right: 14px; z-index: 2; /* dentro de la cabecera del grupo */
+  padding: 2px 9px; border-radius: 3px;
+  background: #e5322d; color: #fff;
+  font: 700 11px/1.4 Roboto, Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase;
+}
+.mf-recent__group { position: relative; }
+.mf-recent__row strong { font-weight: 700; color: #3c3c3c; }
+.mf-stars { color: #faaf05; letter-spacing: 1px; margin: 0 2px; }
+.mf-recent__row small { font-size: inherit; }
+
+/* ---------- Escritorio: desplegable que se abre hacia arriba, igual que el real ---------- */
+[data-platform="desktop"] [data-mf="dest"] { position: relative; }
+.mf-pop {
+  position: absolute; left: 0; bottom: calc(100% + 4px); z-index: 1100;
+  width: 575px; max-width: 90vw;
+  background: #fff; border-radius: 4px;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, .16)) drop-shadow(0 1px 4px rgba(0, 0, 0, .24));
+}
+.mf-pop[hidden] { display: none; }
+.mf-pop .mf-recent__row { font-family: Roboto, sans-serif; }
+.mf-pop .geA-DvC { cursor: pointer; }
+
+/* ---------- Móvil: pantalla "Elige tu origen y destino" ---------- */
+#mf-modal[hidden] { display: none; }
+.mf-m-list { position: relative; margin-top: 4px; }
+.mf-m-list[hidden] { display: none; }
+.mf-m-list .mf-new { top: 14px; right: 12px; }
+.mf-m-list { margin-top: 10px; }
+.mf-m-list .bTlkKp { white-space: normal; }
+
+/* Que el iframe no navegue ni salte al pulsar enlaces o el botón Buscar */
+a, button[type="submit"] { cursor: pointer; }

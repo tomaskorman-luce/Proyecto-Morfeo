@@ -1,0 +1,76 @@
+/* Aviso del test 1 · Cabina bloqueada. Se añade sobre la página capturada de logitravel.com */
+html.mf-test-off .mf-cabin { display: none; }
+
+.mf-cabin {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  grid-template-areas: "title time cta" "sub sub cta";
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 3px;
+  margin: 0 0 16px;
+  padding: 12px 16px 12px 18px;
+  background: #fff;
+  border: 1px solid #e3e3e3;
+  border-left: 5px solid #faaf05;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
+  font-family: Roboto, Arial, sans-serif;
+  color: #3c3c3c;
+  animation: mf-in .35s ease-out;
+}
+@keyframes mf-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+.mf-cabin__new {
+  position: absolute; top: -10px; left: 18px;
+  padding: 2px 9px; border-radius: 3px;
+  background: #e5322d; color: #fff;
+  font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+}
+.mf-cabin__title { grid-area: title; margin: 0; font-size: 16.5px; line-height: 1.25; font-weight: 700; color: #1f1f1f; }
+.mf-cabin__sub { grid-area: sub; margin: 0; font-size: 13.5px; line-height: 1.35; color: #6a6a6a; }
+
+/* Reloj + icono, juntos en una sola píldora */
+.mf-cabin__time {
+  grid-area: time;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px 4px 10px; border-radius: 999px;
+  background: #fef5e1; color: #c67a00;
+}
+.mf-cabin__label { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #8a6a2a; }
+.mf-cabin__clock { font-size: 17px; line-height: 1.2; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.mf-cabin__cta {
+  grid-area: cta; align-self: center;
+  appearance: none; border: 0; border-radius: 3px; cursor: pointer;
+  padding: 13px 22px;
+  background: #faaf05; color: #fff;
+  font: 700 14px/1 Roboto, Arial, sans-serif; letter-spacing: .02em; text-transform: uppercase;
+  transition: background .15s;
+}
+.mf-cabin__cta:hover { background: #e59f00; }
+.mf-cabin__cta:focus-visible { outline: 2px solid #1a3760; outline-offset: 2px; }
+
+/* Estados */
+.mf-cabin.is-expired { border-left-color: #b4b4b4; }
+.mf-cabin.is-expired .mf-cabin__time { background: #efefef; color: #8a8a8a; }
+.mf-cabin.is-expired .mf-cabin__label { color: #8a8a8a; }
+.mf-cabin.is-expired .mf-cabin__cta { background: #cfcfcf; cursor: default; }
+.mf-cabin.is-confirmed { border-left-color: #1e8e5a; }
+.mf-cabin.is-confirmed .mf-cabin__time { visibility: hidden; }
+.mf-cabin.is-confirmed .mf-cabin__cta { background: #1e8e5a; cursor: default; }
+
+/* Móvil: texto a todo el ancho, reloj y botón en una fila debajo */
+@media (max-width: 640px) {
+  .mf-cabin {
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "title title" "sub sub" "time cta";
+    column-gap: 12px; row-gap: 6px;
+    margin: 16px 12px 12px; padding: 14px 14px 12px;
+  }
+  .mf-cabin__title { font-size: 15.5px; }
+  .mf-cabin__sub { font-size: 13px; margin-bottom: 4px; }
+  .mf-cabin__cta { width: 100%; padding: 13px 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .mf-cabin { animation: none; } }
