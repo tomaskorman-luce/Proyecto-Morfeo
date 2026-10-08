@@ -281,6 +281,14 @@
   .sim-phone { flex: none; width: 406px; height: 716px; margin-top: 8px; transform-origin: top center; border: 8px solid var(--navy-dark); border-radius: 36px; background: #fff; box-shadow: 0 8px 24px rgba(20,33,58,.25); }
   .sim-phone iframe { width: 100%; height: 100%; }
   .sim-stage[data-view="desktop"] .sim-phone, .sim-stage[data-view="mobile"] .sim-desk { display: none; }
+  /* Maqueta de una sola pieza (perfil progresivo): el iframe ocupa toda la zona */
+  .sim-stage.single { background: #eef1f6; border-color: var(--line); --sim-h: clamp(420px, 66vh, 700px); }
+  .sim-stage.single iframe { position: static; width: 100%; height: 100%; transform: none; }
+  .sim-count { font-size: 13px; color: var(--ink-2); }
+  .sim-count strong { color: var(--navy); font-size: 15px; }
+  dialog.viaj { width: min(1240px, calc(100vw - 32px)); }
+  dialog.viaj .detail { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 900px) { dialog.viaj .detail { grid-template-columns: 1fr; } .sim-stage.single { height: auto; } .sim-stage.single iframe { height: 1400px; } }
   .sim-stage iframe { display: block; border: 0; background: #fff; transform-origin: 0 0; position: absolute; top: 0; left: 0; }
   @media (max-width: 900px) { .sim-ctl.sim-right { margin-left: 0; } }
 
@@ -416,7 +424,7 @@
         <h3>Mayor recogida de datos</h3>
         <ul>
           <li><strong>Más usuarios identificados:</strong> iniciar sesión sin salir del funnel, acceso automático con Google.</li>
-          <li><strong>Más datos de cada usuario:</strong> gamificación del área personal, y recolección progresiva de datos.</li>
+          <li><strong>Más datos de cada usuario:</strong> perfil progresivo en el área personal, con los datos del checkout y los acompañantes habituales.</li>
         </ul>
       </div>
       <div class="card phase p3">
@@ -483,10 +491,11 @@
 
     <h3 class="sub-h">Y a largo plazo, dos ejemplos de hacia dónde queremos llegar</h3>
     <div class="tests">
-      <div class="card test long">
-        <div class="top"><span class="line">Área personal</span><span class="pill-long">FASE 2 · CON DESARROLLO</span></div>
+      <div class="card test long" data-open="dlg-l1" role="button" tabindex="0" aria-haspopup="dialog">
+        <div class="top"><span class="line">Área personal · Checkout</span><span class="pill-long">FASE 2 · CON DESARROLLO</span></div>
         <h3>Perfil progresivo en el área personal</h3>
-        <p>El inicio de la cuenta ya muestra "Completar mi perfil" con un círculo de progreso. Añadimos ahí preguntas cortas de viaje, con quién viajas y qué te gusta, con un toque de juego. Cada respuesta afina la personalización, y son datos que el usuario nos da directamente.</p>
+        <p>El inicio de la cuenta ya muestra "Completar mi perfil" con un círculo de progreso. Ahí el usuario guarda una vez sus datos (fecha de nacimiento, documento) y a las personas con las que viaja. En cada reserva, el checkout rellena al titular y a sus acompañantes, y solo pide lo que falta. Cada dato afina la personalización y nos lo da el propio usuario.</p>
+        <span class="go">Ver diseño</span>
       </div>
       <div class="card test long">
         <div class="top"><span class="line">Listados · Todas las líneas</span><span class="pill-long">FASE 3 · CON DESARROLLO</span></div>
@@ -783,19 +792,42 @@
   </div>
 </dialog>
 
-<dialog id="dlg-l1" class="narrow">
+<dialog id="dlg-l1" class="wide sim viaj">
   <div class="modal-head">
     <div>
       <h2>Perfil progresivo en el área personal</h2>
-      <p>Área personal · Fase 2, con desarrollo</p>
+      <p>Área personal y checkout · Fase 2, con desarrollo · Diseño ilustrativo</p>
     </div>
     <button class="close" aria-label="Cerrar">×</button>
   </div>
   <div class="modal-body">
+    <div class="sim-bar">
+      <div class="sim-ctl">
+        <span class="sim-lbl">Checkout</span>
+        <button type="button" class="sim-switch" role="switch" aria-checked="true" data-sim="toggle"><span class="sim-knob"></span><span data-sim="toggle-text">Con el perfil</span></button>
+      </div>
+      <div class="sim-ctl">
+        <span class="sim-lbl">Viaje</span>
+        <div class="sim-seg" role="group" aria-label="Viaje">
+          <button type="button" data-sim="trip" data-trip="solo" aria-pressed="false">Solo</button>
+          <button type="button" data-sim="trip" data-trip="pareja" aria-pressed="false">Pareja</button>
+          <button type="button" data-sim="trip" data-trip="familia" aria-pressed="true">Familia (2+2)</button>
+        </div>
+      </div>
+      <div class="sim-ctl sim-right">
+        <span class="sim-count" data-sim="count" aria-live="polite"></span>
+        <button type="button" class="sim-ghost" data-sim="reset">↺ Reiniciar</button>
+      </div>
+    </div>
+    <div class="sim-stage single">
+      <iframe data-sim="frame" data-src="assets/sim/viajeros/index.html" title="Maqueta interactiva: el área personal con «Mis datos» y «Mis viajeros» a la izquierda y el checkout móvil que se rellena a partir de ellos a la derecha"></iframe>
+    </div>
+    <p class="mock-note">Maqueta interactiva. A la izquierda, el área personal de Logitravel (banner, avatar y menú lateral como en la web actual, con «Mis viajeros» como opción nueva); a la derecha, el formulario de pasajeros del checkout. Edita un dato en el perfil y mira cómo cambia el checkout, o desactiva el perfil para ver cómo se compra hoy.</p>
     <dl class="detail">
-      <div><dt>Qué hacemos</dt><dd>El inicio de la cuenta ya muestra "Completar mi perfil" con un círculo de progreso. Añadimos ahí preguntas cortas de viaje (con quién viajas, qué te gusta), con un toque de juego.</dd></div>
-      <div><dt>Por qué</dt><dd>Son datos que el usuario nos da directamente, y cada respuesta afina la personalización y completa los perfiles de viajero.</dd></div>
-      <div><dt>Cuándo</dt><dd>Cuando haya más usuarios logados (fase 2).</dd></div>
+      <div><dt>Qué hacemos</dt><dd>Sobre el «Completar mi perfil» que ya existe, el usuario guarda una vez su fecha de nacimiento y su documento, y registra a las personas con las que viaja («Mis viajeros»). En el checkout, cada plaza ofrece «¿Quién viaja?»: el titular y los acompañantes se rellenan solos y solo se pide lo que falta, con la opción de guardarlo en el perfil.</dd></div>
+      <div><dt>Por qué</dt><dd>Quita al usuario con cuenta el trabajo de repetir los mismos datos en cada compra, sobre todo en reservas de familia. A cambio recogemos datos fiables que hoy no tenemos: la edad real de los niños, la composición del grupo habitual y la fecha de nacimiento del titular. Son datos que el usuario nos da directamente, y dan una razón concreta para crear la cuenta o volver a entrar.</dd></div>
+      <div><dt>Cómo se prueba antes</dt><dd>Sin desarrollo: autocompletado del navegador y aviso de qué falta; después, recordar los datos en el dispositivo (sin el número de documento). Esta fase solo se pide a Logitravel si esos tests mejoran la conversión.</dd></div>
+      <div><dt>Cuándo</dt><dd>Fase 2. Hace falta guardar el documento en el servidor, con el visto bueno de legal y seguridad, sobre todo para los datos de menores. Los datos y la maqueta son de ejemplo.</dd></div>
     </dl>
   </div>
 </dialog>
@@ -924,6 +956,54 @@
   }
   initSim('dlg-t1');
   initSim('dlg-t4');
+
+  /* Maqueta del perfil progresivo: interruptor del perfil, tipo de viaje y contador de campos por rellenar */
+  function initViajeros(id) {
+    var dlg = document.getElementById(id);
+    var frame = dlg.querySelector('[data-sim="frame"]');
+    var sw = dlg.querySelector('[data-sim="toggle"]');
+    var swText = dlg.querySelector('[data-sim="toggle-text"]');
+    var tripBtns = [].slice.call(dlg.querySelectorAll('[data-sim="trip"]'));
+    var count = dlg.querySelector('[data-sim="count"]');
+    var DEFAULT = 'familia';
+    var on = true, trip = DEFAULT, loaded = false;
+
+    function send(extra) {
+      if (!frame.contentWindow) return;
+      var m = { morfeo: 'viajeros', test: on, trip: trip };
+      for (var k in extra) m[k] = extra[k];
+      frame.contentWindow.postMessage(m, '*');
+    }
+    function paint() {
+      sw.setAttribute('aria-checked', String(on));
+      swText.textContent = on ? 'Con el perfil' : 'Sin el perfil (hoy)';
+      tripBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-trip') === trip)); });
+    }
+    function init() {
+      if (loaded) return;
+      loaded = true;
+      frame.src = frame.getAttribute('data-src');
+    }
+    document.querySelectorAll('[data-open="' + id + '"]').forEach(function (b) { b.addEventListener('click', init); });
+    sw.addEventListener('click', function () { on = !on; paint(); send({}); });
+    tripBtns.forEach(function (b) {
+      b.addEventListener('click', function () { trip = b.getAttribute('data-trip'); paint(); send({}); });
+    });
+    dlg.querySelector('[data-sim="reset"]').addEventListener('click', function () { send({ reset: true }); });
+    window.addEventListener('message', function (e) {
+      if (e.source !== frame.contentWindow || !e.data) return;
+      if (e.data.morfeo === 'ready') send({ reset: true });
+      if (e.data.morfeo === 'viajeros-count') {
+        count.innerHTML = 'Campos por teclear: <strong>' + e.data.n + '</strong> de ' + e.data.total;
+      }
+    });
+    dlg.addEventListener('close', function () {
+      on = true; trip = DEFAULT; paint();
+      if (loaded) frame.src = frame.getAttribute('data-src');
+    });
+    paint();
+  }
+  initViajeros('dlg-l1');
 
   document.querySelectorAll('dialog').forEach(function (dlg) {
     dlg.querySelector('.close').addEventListener('click', function () { dlg.close(); });

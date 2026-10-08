@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maqueta · Perfil progresivo: mis datos y mis viajeros rellenan el checkout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lb: #0b5394;        /* azul Logitravel */
+    --lb-dark: #08406f;
+    --navy: #1A3760;
+    --orange: #FBB040;
+    --orange-soft: #FFF3E6;
+    --ok: #1e8e5a;
+    --err: #c62828;
+    --ink: #1d2433;
+    --ink-2: #4a556b;
+    --ink-3: #7c8599;
+    --line: #dcdfe6;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { font-family: "Roboto", Arial, sans-serif; font-size: 14px; color: var(--ink); background: #eef1f6; }
+  button { font-family: inherit; }
+
+  .stage { height: 100%; display: flex; align-items: stretch; gap: 0; padding: 14px 16px; }
+
+  /* ---------- Área personal ---------- */
+  /* Marco del área personal real (logitravel.com/myaccount): banner con degradado, avatar y columna izquierda con el menú */
+  .dash { flex: 1 1 0; min-width: 0; background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+  .banner { flex: none; height: 54px; position: relative; background: linear-gradient(100deg, #f4a56a 0%, #e2788c 38%, #8a63a8 68%, #3a4a85 100%); }
+  .banner::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 9px; background: rgba(26,55,96,.55); }
+  .banner .ref { position: absolute; right: 10px; top: 8px; font: 800 9.5px "Raleway", Arial, sans-serif; letter-spacing: 1.2px; text-transform: uppercase; color: #fff; background: rgba(20,33,58,.45); padding: 3px 8px; border-radius: 999px; }
+  .dash-body { flex: 1; min-height: 0; display: flex; }
+  .side { flex: none; width: 150px; background: #f8f8f8; border-right: 1px solid #ececec; display: flex; flex-direction: column; align-items: stretch; position: relative; z-index: 1; }
+  .av { width: 58px; height: 58px; margin: -30px auto 14px; border-radius: 50%; border: 3px solid #fff; background: var(--navy); color: #fff; display: grid; place-items: center; font: 800 18px "Raleway", Arial, sans-serif; box-shadow: 0 1px 4px rgba(20,33,58,.25); position: relative; z-index: 1; }
+  .menu { display: flex; flex-direction: column; }
+  .menu span { display: block; text-align: right; padding: 8px 12px 8px 6px; font: 500 10.5px "Roboto", Arial, sans-serif; letter-spacing: .2px; text-transform: uppercase; color: #6f6f6f; border-right: 3px solid transparent; white-space: nowrap; }
+  .menu span.on { color: var(--lb); border-right-color: var(--lb); }
+  .menu .sub { text-transform: none; font-size: 11.5px; color: #8a8a8a; padding-top: 5px; padding-bottom: 5px; }
+  .menu .sub { font-size: 11px; }
+  .menu .sub.on { color: var(--lb); font-weight: 700; border-right-color: transparent; }
+  .menu .sub b { font: 800 8.5px "Raleway", Arial, sans-serif; letter-spacing: .6px; text-transform: uppercase; background: var(--orange); color: var(--navy); padding: 1px 5px; border-radius: 999px; margin-right: 5px; vertical-align: 1px; }
+  .dash-in { flex: 1; min-width: 0; overflow: auto; padding: 16px 20px 24px; }
+  .tag { display: inline-block; font: 800 10px "Raleway", Arial, sans-serif; letter-spacing: 1.4px; text-transform: uppercase; color: var(--navy); background: #C6BBE4; padding: 2px 8px; border-radius: 999px; }
+  .dh { margin-bottom: 12px; }
+  .dh .hi { font: 700 18px "Raleway", Arial, sans-serif; color: var(--navy); }
+  .dh .sub { font-size: 12.5px; color: var(--ink-3); }
+
+  .prog { display: flex; align-items: center; gap: 16px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: #f8fafd; margin-bottom: 8px; }
+  .ring { position: relative; width: 66px; height: 66px; flex: none; }
+  .ring svg { width: 66px; height: 66px; transform: rotate(-90deg); }
+  .ring .bg { fill: none; stroke: #dfe5ee; stroke-width: 7; }
+  .ring .fg { fill: none; stroke: var(--lb); stroke-width: 7; stroke-linecap: round; transition: stroke-dashoffset .5s, stroke .3s; }
+  .ring.full .fg { stroke: var(--ok); }
+  .ring b { position: absolute; inset: 0; display: grid; place-items: center; font: 800 15px "Raleway", Arial, sans-serif; color: var(--navy); }
+  .prog .pt { font: 700 15px "Raleway", Arial, sans-serif; color: var(--navy); }
+  .prog .ph { font-size: 13px; color: var(--ink-2); margin-top: 2px; }
+  .prog .ph strong { color: var(--ink); }
+
+  .dash h4 { margin: 20px 0 8px; font: 800 11.5px "Raleway", Arial, sans-serif; letter-spacing: 1.8px; text-transform: uppercase; color: var(--navy); padding-left: 10px; border-left: 4px solid var(--orange); display: flex; align-items: center; gap: 10px; }
+  .new { font: 800 9.5px "Raleway", Arial, sans-serif; letter-spacing: 1px; background: var(--orange); color: var(--navy); padding: 2px 7px; border-radius: 999px; }
+  .dash p.note { margin: 0 0 10px; font-size: 12.5px; color: var(--ink-2); }
+  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; }
+  .df { border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px 4px; background: #fff; }
+  .df:focus-within { border-color: var(--lb); box-shadow: 0 0 0 2px #cfe2f6; }
+  .df label { display: block; font-size: 10.5px; color: var(--ink-3); }
+  .df input, .df select { width: 100%; border: 0; outline: 0; background: transparent; font: 13.5px "Roboto", Arial, sans-serif; color: var(--ink); padding: 2px 0; }
+  .df.empty { background: #fff8ec; border-color: #f0c98a; }
+  .df.ro input { color: var(--ink-3); }
+
+  .vc { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px 12px; margin-bottom: 10px; background: #fff; }
+  .vc-h { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .vc-h .vav { width: 30px; height: 30px; border-radius: 50%; background: #e7f0fa; color: var(--lb); display: grid; place-items: center; font: 800 12px "Raleway", Arial, sans-serif; }
+  .vc-h .vn { font: 700 14px "Raleway", Arial, sans-serif; color: var(--navy); }
+  .vc-h .va { font-size: 12px; color: var(--ink-3); }
+  .vc-h .vr { margin-left: auto; }
+  .vc-h select { border: 1px solid var(--line); border-radius: 999px; background: #fff; padding: 3px 8px; font: 12px "Roboto", Arial, sans-serif; color: var(--ink-2); }
+  .add { width: 100%; border: 1.5px dashed #9db8d6; background: #f3f8fd; color: var(--lb); font: 700 13px "Roboto", Arial, sans-serif; padding: 10px; border-radius: 12px; cursor: pointer; }
+  .add:hover { background: #e7f0fa; }
+
+  /* ---------- Conector ---------- */
+  .link { flex: none; width: 74px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; color: var(--lb); font: 800 10.5px "Raleway", Arial, sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+  .link svg { width: 44px; height: 24px; }
+  .link.off { color: #a3a9b8; }
+  .link.off svg { opacity: .5; }
+
+  /* ---------- Checkout móvil ---------- */
+  .phone-wrap { flex: none; width: 396px; display: flex; justify-content: center; }
+  .phone { width: 380px; height: 100%; border: 8px solid var(--navy); border-radius: 34px; background: #fff; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 24px rgba(20,33,58,.25); }
+  .ph-top { flex: none; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid #eceef3; }
+  .ph-top b { font: 700 15px "Roboto", Arial, sans-serif; color: #1d2433; margin: 0 auto; }
+  .ph-top i { font-style: normal; color: var(--lb); font-size: 20px; line-height: 1; }
+  .ph-scroll { flex: 1; overflow: auto; padding: 12px 14px 8px; background: #fff; }
+  .trip { font-size: 12px; color: var(--ink-2); margin: 0 0 8px; }
+  .trip b { color: var(--ink); }
+  .info { background: #e3f2fd; border: 1px solid #bcdcf7; border-radius: 10px; padding: 9px 11px; font-size: 11.5px; line-height: 1.4; color: #1d3a57; margin-bottom: 10px; }
+  .filled { display: flex; gap: 8px; align-items: flex-start; background: #e6f5ed; border: 1px solid #b6e0c8; color: #14693f; border-radius: 10px; padding: 8px 11px; font-size: 12px; font-weight: 500; margin-bottom: 10px; }
+  .pax { border: 1px solid #d5d9e2; border-radius: 12px; padding: 10px 10px 2px; margin-bottom: 12px; }
+  .pax-h { display: flex; align-items: baseline; gap: 6px; font-size: 13px; margin: 0 2px 8px; }
+  .pax-h b { font-weight: 700; color: var(--ink); }
+  .pax-h span { color: var(--ink-3); font-size: 12px; }
+  .who { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; }
+  .who label { font-size: 11px; color: var(--lb); font-weight: 700; white-space: nowrap; }
+  .who select { flex: 1; border: 1px solid #9db8d6; background: #f3f8fd; color: var(--ink); border-radius: 8px; padding: 6px 8px; font: 13px "Roboto", Arial, sans-serif; }
+  .fw { margin-bottom: 9px; }
+  .fld { border: 1px solid #c9cdd6; border-radius: 8px; padding: 5px 11px 4px; background: #fff; }
+  .fld:focus-within { border-color: var(--lb); }
+  .fld label { display: block; font-size: 10.5px; color: #6b7280; }
+  .fld input, .fld select { width: 100%; border: 0; outline: 0; background: transparent; font: 14px "Roboto", Arial, sans-serif; color: #111; padding: 2px 0; }
+  .fld.date .row { display: flex; align-items: center; }
+  .fld.date .row input { text-align: center; width: 33%; padding: 2px 0; }
+  .fld.date .row i { width: 1px; height: 18px; background: #c9cdd6; flex: none; }
+  .fw.err .fld { border-color: var(--err); }
+  .fw.err .fld label { color: var(--err); }
+  .fw.gap .fld { border-color: #f0a13a; background: #fff8ec; }
+  .hint { font-size: 11px; margin: 3px 0 0 3px; display: none; }
+  .fw.err .hint { display: block; color: var(--err); }
+  .fw.gap .hint { display: block; color: #9a6200; }
+  .save { display: flex; align-items: center; gap: 7px; margin: 0 2px 10px; font-size: 12px; color: var(--ink-2); cursor: pointer; }
+  .save input { accent-color: var(--lb); width: 15px; height: 15px; margin: 0; }
+  .formerr { color: var(--err); font-size: 12px; margin: 0 0 10px 2px; display: none; }
+  .formerr.on { display: block; }
+  .okmsg { display: none; background: #e6f5ed; border: 1px solid #b6e0c8; color: #14693f; border-radius: 10px; padding: 9px 11px; font-size: 12.5px; font-weight: 500; margin-bottom: 10px; }
+  .okmsg.on { display: block; }
+  .ph-foot { flex: none; padding: 10px 14px 12px; border-top: 1px solid #eceef3; background: #fff; }
+  .pay { width: 100%; border: 0; border-radius: 8px; background: var(--lb); color: #fff; font: 700 13px "Roboto", Arial, sans-serif; letter-spacing: .5px; text-transform: uppercase; padding: 13px; cursor: pointer; }
+  .pay:hover { background: var(--lb-dark); }
+  .pay:focus-visible, .add:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+  @media (max-width: 900px) {
+    html, body { height: auto; }
+    .stage { flex-direction: column; height: auto; align-items: stretch; }
+    .dash { max-height: 560px; }
+    .link { width: auto; flex-direction: row; padding: 8px 0; }
+    .link svg { transform: rotate(90deg); }
+    .phone-wrap { width: auto; height: 700px; }
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <section class="dash" aria-label="Área personal">
+    <div class="banner"><span class="ref">Referencia: Mi cuenta de Logitravel</span></div>
+    <div class="dash-body">
+      <nav class="side" aria-label="Menú del área personal">
+        <div class="av" id="side-av">MR</div>
+        <div class="menu">
+          <span>Inicio</span>
+          <span class="on">Datos personales</span>
+          <span class="sub">Mis datos</span>
+          <span class="sub on"><b>Nuevo</b>Mis viajeros</span>
+          <span class="sub">Contraseña y seguridad</span>
+          <span class="sub">Métodos de pago</span>
+          <span>Monedero</span>
+          <span>Reservas</span>
+          <span>Presupuestos</span>
+          <span>Bonos de viaje</span>
+        </div>
+      </nav>
+      <div class="dash-in" id="dash"></div>
+    </div>
+  </section>
+  <div class="link" id="link" aria-hidden="true">
+    <svg viewBox="0 0 44 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h36M30 4l9 8-9 8"/></svg>
+    <span id="link-t">Rellena el checkout</span>
+  </div>
+  <div class="phone-wrap">
+    <div class="phone" aria-label="Checkout en móvil">
+      <div class="ph-top"><b>Datos de los pasajeros</b><i aria-hidden="true">×</i></div>
+      <div class="ph-scroll" id="co"></div>
+      <div class="ph-foot"><button type="button" class="pay" id="pay">Guardar</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var TRIPS = { solo: ['adult'], pareja: ['adult', 'adult'], familia: ['adult', 'adult', 'child', 'child'] };
+  var TRIP_DATE = new Date(2027, 1, 19);
+  var REQ = ['nombre', 'apellidos', 'fecha', 'docNum'];
+  var MSG = { nombre: 'Campo obligatorio', apellidos: 'Campo obligatorio', fecha: 'Escribe una fecha de nacimiento', docNum: 'El documento es obligatorio' };
+  var LBL = { trato: 'el tratamiento', nombre: 'el nombre', apellidos: 'los apellidos', fecha: 'la fecha de nacimiento', docNum: 'el documento', nac: 'la nacionalidad', tel: 'el teléfono' };
+  var ON = true, TRIP = 'familia', TRIED = false, M, P, seq = 10;
+
+  function fresh() {
+    M = {
+      t: { trato: 'Sra.', nombre: 'Marta', apellidos: 'Ruiz Soler', fecha: '14/05/1988', docNum: '12345678Z', nac: 'ESPAÑA', tel: '+34 600 123 456' },
+      v: [
+        { id: 'v1', nombre: 'Daniel', apellidos: 'Pérez Gil', fecha: '02/09/1986', rel: 'Pareja', tipo: 'adult', docNum: '87654321X' },
+        { id: 'v2', nombre: 'Lucas', apellidos: 'Pérez Ruiz', fecha: '12/03/2017', rel: 'Hijo', tipo: 'child', docNum: '55667788K' },
+        { id: 'v3', nombre: 'Noa', apellidos: 'Pérez Ruiz', fecha: '05/07/2020', rel: 'Hija', tipo: 'child', docNum: '' }
+      ]
+    };
+  }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function $(id) { return document.getElementById(id); }
+  function valid(f, v) { v = String(v == null ? '' : v); return f === 'fecha' ? /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(v) : v.trim() !== ''; }
+  function age(fecha) {
+    if (!valid('fecha', fecha)) return null;
+    var p = fecha.split('/').map(Number), a = TRIP_DATE.getFullYear() - p[2], m = TRIP_DATE.getMonth() + 1;
+    if (m < p[1] || (m === p[1] && TRIP_DATE.getDate() < p[0])) a--;
+    return a;
+  }
+  function initials(n, a) { return ((n || '?').charAt(0) + (a || '').charAt(0)).toUpperCase(); }
+  function viajero(id) { for (var i = 0; i < M.v.length; i++) if (M.v[i].id === id) return M.v[i]; return null; }
+  function src(pl) { return pl.who === 't' ? M.t : (pl.who && pl.who !== 'otra' ? viajero(pl.who) : null); }
+
+  /* ---------- Plazas del viaje ---------- */
+  function usedBy(i) { var u = {}; P.forEach(function (pl, j) { if (j !== i && pl.who && pl.who !== 'otra') u[pl.who] = true; }); return u; }
+  function pick(i) {
+    var u = usedBy(i);
+    for (var k = 0; k < M.v.length; k++) if (M.v[k].tipo === P[i].tipo && !u[M.v[k].id]) return M.v[k].id;
+    return 'otra';
+  }
+  function buildPlazas() {
+    P = TRIPS[TRIP].map(function (tipo, i) { return { tipo: tipo, who: i === 0 ? 't' : null, extra: {}, save: true }; });
+    P.forEach(function (pl, i) { if (i > 0) pl.who = pick(i); });
+  }
+  function normalize() {
+    P.forEach(function (pl, i) {
+      if (i === 0) return;
+      var s = src(pl);
+      if (pl.who !== 'otra' && (!s || s.tipo !== pl.tipo)) { pl.who = pick(i); pl.extra = {}; }
+    });
+  }
+
+  /* ---------- Valores del checkout ---------- */
+  function val(i, f) {
+    var pl = P[i];
+    if (pl.extra[f] !== undefined) return pl.extra[f];
+    if (!ON) return (pl.who === 't' && (f === 'nombre' || f === 'apellidos' || f === 'trato' || f === 'nac')) ? M.t[f] : '';
+    var s = src(pl);
+    return s ? (s[f] || '') : '';
+  }
+  function setVal(i, f, v) {
+    var pl = P[i], s = ON ? src(pl) : null;
+    if (s && pl.save) { s[f] = v; delete pl.extra[f]; } else pl.extra[f] = v;
+  }
+  function missing(i) { return REQ.filter(function (f) { return !valid(f, val(i, f)); }); }
+  function counts() {
+    var n = 0; P.forEach(function (pl, i) { n += missing(i).length; });
+    return { n: n, total: REQ.length * P.length };
+  }
+  function report() { var c = counts(); parent.postMessage({ morfeo: 'viajeros-count', n: c.n, total: c.total }, '*'); }
+
+  /* ---------- Área personal ---------- */
+  function df(path, label, value, extra) {
+    return '<div class="df' + (extra || '') + (valid(path.split('.').pop() === 'fecha' ? 'fecha' : 'x', value) ? '' : ' empty') + '" data-w="' + path + '"><label>' + label + '</label><input data-p="' + path + '" value="' + esc(value) + '" autocomplete="off"' + (path.slice(-5) === 'fecha' ? ' placeholder="dd/mm/aaaa"' : '') + '></div>';
+  }
+  function renderDash() {
+    var t = M.t, h = '';
+    h += '<div class="dh"><div class="hi">Hola, ' + esc(t.nombre) + '</div><div class="sub">Mi cuenta · Datos personales</div></div>';
+    h += '<div class="prog"><div class="ring" id="ring"><svg viewBox="0 0 66 66"><circle class="bg" cx="33" cy="33" r="28"/><circle class="fg" id="ring-fg" cx="33" cy="33" r="28" stroke-dasharray="175.93" stroke-dashoffset="175.93"/></svg><b id="ring-n">0 %</b></div>' +
+         '<div><div class="pt">Completar mi perfil</div><div class="ph" id="ring-h"></div></div></div>';
+    h += '<h4>Mis datos</h4><div class="g2">' +
+         '<div class="df"><label>Tratamiento</label><select data-p="t.trato"><option' + (t.trato === 'Sr.' ? ' selected' : '') + '>Sr.</option><option' + (t.trato === 'Sra.' ? ' selected' : '') + '>Sra.</option></select></div>' +
+         df('t.nombre', 'Nombre *', t.nombre) + df('t.apellidos', 'Apellidos *', t.apellidos) + df('t.fecha', 'Fecha de nacimiento', t.fecha) +
+         df('t.docNum', 'Número de documento (DNI)', t.docNum) + df('t.nac', 'Nacionalidad', t.nac) + df('t.tel', 'Teléfono', t.tel) +
+         '<div class="df ro"><label>Email</label><input value="marta.ruiz@ejemplo.es" disabled></div></div>';
+    h += '<h4>Mis viajeros <span class="new">Nuevo</span></h4><p class="note">Las personas con las que viajas. Se guardan una vez y rellenan el checkout cuando reservas con ellas.</p>';
+    M.v.forEach(function (v) {
+      var a = age(v.fecha), p = 'v.' + v.id + '.';
+      h += '<div class="vc" data-v="' + v.id + '"><div class="vc-h"><div class="vav" data-vi="' + v.id + '">' + initials(v.nombre, v.apellidos) + '</div><div><div class="vn" data-vn="' + v.id + '">' + esc(v.nombre || 'Nuevo viajero') + '</div><div class="va" data-va="' + v.id + '">' + (a == null ? '' : a + ' años') + '</div></div>' +
+           '<div class="vr"><select data-p="' + p + 'rel" aria-label="Relación">' + ['Pareja', 'Hijo', 'Hija', 'Padre / madre', 'Amigo/a', 'Otro'].map(function (r) { return '<option' + (v.rel === r ? ' selected' : '') + '>' + r + '</option>'; }).join('') + '</select> ' +
+           '<select data-p="' + p + 'tipo" aria-label="Tipo"><option value="adult"' + (v.tipo === 'adult' ? ' selected' : '') + '>Adulto</option><option value="child"' + (v.tipo === 'child' ? ' selected' : '') + '>Niño</option></select></div></div>' +
+           '<div class="g2">' + df(p + 'nombre', 'Nombre', v.nombre) + df(p + 'apellidos', 'Apellidos', v.apellidos) + df(p + 'fecha', 'Fecha de nacimiento', v.fecha) + df(p + 'docNum', 'Documento', v.docNum) + '</div></div>';
+    });
+    h += '<button type="button" class="add" id="add">+ Añadir viajero</button>';
+    $('dash').innerHTML = h;
+    meta();
+  }
+  function getP(path) { var s = path.split('.'); return s[0] === 't' ? [M.t, s[1]] : [viajero(s[1]), s[2]]; }
+  function meta() {
+    var tot = 0, ok = 0, first = null;
+    function chk(o, f, who) { tot++; if (valid(f, o[f])) ok++; else if (!first) first = LBL[f] + ' ' + who; }
+    ['trato', 'nombre', 'apellidos', 'fecha', 'docNum', 'nac', 'tel'].forEach(function (f) { chk(M.t, f, 'de tu cuenta'); });
+    M.v.forEach(function (v) { REQ.forEach(function (f) { chk(v, f, 'de ' + (v.nombre || 'tu nuevo viajero')); }); });
+    var pct = tot ? Math.round(100 * ok / tot) : 0, full = pct === 100;
+    $('ring-fg').setAttribute('stroke-dashoffset', String(175.93 * (1 - pct / 100)));
+    $('ring-n').textContent = pct + ' %';
+    $('side-av').textContent = initials(M.t.nombre, M.t.apellidos);
+    $('ring').className = 'ring' + (full ? ' full' : '');
+    $('ring-h').innerHTML = full ? '<strong>Perfil completo.</strong> El checkout se rellena solo, para ti y para quien viaja contigo.' : 'Te falta <strong>' + esc(first) + '</strong>. Complétalo y la próxima reserva se rellena sola.';
+    document.querySelectorAll('#dash [data-p]').forEach(function (el) {
+      var r = getP(el.getAttribute('data-p')); if (!r[0]) return;
+      if (document.activeElement !== el && el.tagName === 'INPUT') el.value = r[0][r[1]] || '';
+      var w = el.closest('.df'), f = r[1];
+      if (w && el.tagName === 'INPUT') w.classList.toggle('empty', !valid(f, r[0][f]));
+    });
+    M.v.forEach(function (v) {
+      var n = document.querySelector('[data-vn="' + v.id + '"]'), a = document.querySelector('[data-va="' + v.id + '"]'), i = document.querySelector('[data-vi="' + v.id + '"]');
+      if (n) n.textContent = v.nombre || 'Nuevo viajero';
+      if (a) { var y = age(v.fecha); a.textContent = y == null ? '' : y + ' años'; }
+      if (i) i.textContent = initials(v.nombre, v.apellidos);
+    });
+  }
+
+  /* ---------- Checkout ---------- */
+  function fw(i, f, label, kind) {
+    var v = val(i, f), bad = !valid(f, v), cls = 'fw', hint = '';
+    if (bad && f !== 'trato' && f !== 'nac') {
+      if (TRIED) { cls += ' err'; hint = MSG[f]; } else if (ON) { cls += ' gap'; hint = 'Este dato aún no está en tu perfil'; }
+    }
+    var inner;
+    if (kind === 'date') {
+      var p = (v || '').split('/');
+      inner = '<div class="fld date"><label>' + label + ' *</label><div class="row"><input data-f="fecha" data-part="d" placeholder="Día" maxlength="2" inputmode="numeric" value="' + esc(p[0] || '') + '"><i></i><input data-f="fecha" data-part="m" placeholder="Mes" maxlength="2" inputmode="numeric" value="' + esc(p[1] || '') + '"><i></i><input data-f="fecha" data-part="y" placeholder="Año" maxlength="4" inputmode="numeric" value="' + esc(p[2] || '') + '"></div></div>';
+    } else if (kind === 'trato') {
+      inner = '<div class="fld"><label>Tratamiento *</label><select data-f="trato"><option' + (v === 'Sr.' ? ' selected' : '') + '>Sr.</option><option' + (v === 'Sra.' ? ' selected' : '') + '>Sra.</option></select></div>';
+    } else if (kind === 'nac') {
+      inner = '<div class="fld"><label>Nacionalidad *</label><select data-f="nac"><option>ESPAÑA</option></select></div>';
+    } else {
+      inner = '<div class="fld"><label>' + label + ' *</label><input data-f="' + f + '" value="' + esc(v) + '" autocomplete="off"></div>';
+    }
+    return '<div class="' + cls + '" data-f="' + f + '" data-i="' + i + '">' + inner + '<div class="hint">' + esc(hint) + '</div></div>';
+  }
+  function renderCheckout() {
+    var n = P.length, h = '';
+    h += '<p class="trip"><b>Roma</b> · vie 19 – sáb 20 feb 2027 · ' + n + (n === 1 ? ' pasajero' : ' pasajeros') + '</p>';
+    h += '<div class="info">Introduce los nombres y apellidos tal y como están en el DNI o Pasaporte.</div>';
+    if (ON) h += '<div class="filled"><span aria-hidden="true">✓</span><span>Hemos rellenado los datos desde tu perfil. Solo te pedimos lo que aún no tenemos.</span></div>';
+    P.forEach(function (pl, i) {
+      var s = src(pl), a = age(val(i, 'fecha')), u = usedBy(i);
+      h += '<div class="pax" data-i="' + i + '"><div class="pax-h"><b>' + (i === 0 ? 'Titular' : 'Pasajero ' + (i + 1)) + '</b><span>' + (pl.tipo === 'adult' ? 'Adulto' : 'Niño') + (pl.tipo === 'child' && a != null ? ' · ' + a + ' años' : '') + '</span></div>';
+      if (ON && i > 0) {
+        h += '<div class="who"><label for="who' + i + '">¿Quién viaja?</label><select id="who' + i + '" data-who="' + i + '">';
+        M.v.forEach(function (v) { if (v.tipo === pl.tipo) h += '<option value="' + v.id + '"' + (pl.who === v.id ? ' selected' : '') + (u[v.id] ? ' disabled' : '') + '>' + esc(v.nombre || 'Nuevo viajero') + '</option>'; });
+        h += '<option value="otra"' + (pl.who === 'otra' ? ' selected' : '') + '>Otra persona</option></select></div>';
+      }
+      if (i === 0) h += fw(i, 'trato', 'Tratamiento', 'trato');
+      h += fw(i, 'nombre', 'Nombre') + fw(i, 'apellidos', 'Apellidos') + fw(i, 'fecha', 'Fecha de nacimiento', 'date') + fw(i, 'docNum', 'Número de documento (DNI)');
+      if (i === 0) h += fw(i, 'nac', 'Nacionalidad', 'nac');
+      if (ON && (s || pl.who === 'otra')) h += '<label class="save"><input type="checkbox" data-save="' + i + '"' + (pl.save ? ' checked' : '') + '> ' + (s ? 'Guardar los cambios en mi perfil' : 'Guardar como viajero en mi perfil') + '</label>';
+      h += '</div>';
+    });
+    h += '<div class="formerr" id="formerr">Por favor, corrige los errores en el formulario</div><div class="okmsg" id="okmsg"></div>';
+    $('co').innerHTML = h;
+    $('pay').textContent = 'Guardar';
+    $('link').className = 'link' + (ON ? '' : ' off');
+    $('link-t').textContent = ON ? 'Rellena el checkout' : 'Hoy: se teclea casi todo';
+    if (TRIED) showErr();
+    report();
+  }
+  function showErr() { $('formerr').classList.toggle('on', counts().n > 0); }
+  function mark(box) {
+    var i = +box.getAttribute('data-i'), f = box.getAttribute('data-f'), bad = !valid(f, val(i, f));
+    box.classList.remove('err', 'gap');
+    if (bad && f !== 'trato' && f !== 'nac') {
+      if (TRIED) { box.classList.add('err'); box.querySelector('.hint').textContent = MSG[f]; }
+      else if (ON) { box.classList.add('gap'); box.querySelector('.hint').textContent = 'Este dato aún no está en tu perfil'; }
+    }
+  }
+
+  $('co').addEventListener('input', function (e) {
+    var t = e.target, f = t.getAttribute('data-f'); if (!f) return;
+    var i = +t.closest('.pax').getAttribute('data-i'), v;
+    if (t.getAttribute('data-part')) {
+      var b = t.closest('.fld'), ps = ['d', 'm', 'y'].map(function (k) { return b.querySelector('[data-part="' + k + '"]').value.trim(); });
+      v = ps.join('') === '' ? '' : ps.join('/');
+    } else v = t.value;
+    setVal(i, f, v);
+    t.closest('.pax').querySelectorAll('.fw').forEach(mark);
+    if (f === 'fecha') { var a = age(v), sp = t.closest('.pax').querySelector('.pax-h span'); if (P[i].tipo === 'child') sp.textContent = 'Niño' + (a != null ? ' · ' + a + ' años' : ''); }
+    if (TRIED) showErr();
+    if (ON) meta();
+    report();
+  });
+  $('co').addEventListener('change', function (e) {
+    var t = e.target;
+    if (t.getAttribute('data-who')) { var i = +t.getAttribute('data-who'); P[i].who = t.value; P[i].extra = {}; P[i].save = true; renderCheckout(); }
+    else if (t.getAttribute('data-save')) { P[+t.getAttribute('data-save')].save = t.checked; }
+    else if (t.tagName === 'SELECT' && t.getAttribute('data-f')) { setVal(+t.closest('.pax').getAttribute('data-i'), t.getAttribute('data-f'), t.value); if (ON) meta(); }
+  });
+
+  $('pay').addEventListener('click', function () {
+    TRIED = true;
+    var c = counts();
+    if (c.n === 0) {
+      /* los pasajeros nuevos marcados para guardar pasan a «Mis viajeros» */
+      var added = [];
+      if (ON) P.forEach(function (pl, i) {
+        if (pl.who === 'otra' && pl.save) {
+          var id = 'v' + (++seq);
+          M.v.push({ id: id, nombre: val(i, 'nombre'), apellidos: val(i, 'apellidos'), fecha: val(i, 'fecha'), rel: 'Otro', tipo: pl.tipo, docNum: val(i, 'docNum') });
+          pl.who = id; pl.extra = {}; added.push(val(i, 'nombre'));
+        }
+      });
+      if (added.length) renderDash();
+      renderCheckout();
+      var m = $('okmsg');
+      m.textContent = '✓ Datos completos. ' + (ON ? 'Tu perfil está al día' + (added.length ? ' y hemos añadido a ' + added.join(', ') + ' a «Mis viajeros»' : '') + '.' : 'Pasa al pago.');
+      m.classList.add('on'); m.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    } else {
+      renderCheckout();
+      var first = document.querySelector('#co .fw.err'); if (first) first.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  });
+
+  /* ---------- Edición en el área personal ---------- */
+  $('dash').addEventListener('input', function (e) {
+    var p = e.target.getAttribute('data-p'); if (!p) return;
+    var r = getP(p); if (!r[0]) return;
+    r[0][r[1]] = e.target.value;
+    meta(); renderCheckout();
+  });
+  $('dash').addEventListener('change', function (e) {
+    var p = e.target.getAttribute('data-p'); if (!p || e.target.tagName !== 'SELECT') return;
+    var r = getP(p); if (!r[0]) return;
+    r[0][r[1]] = e.target.value;
+    if (r[1] === 'tipo') normalize();
+    meta(); renderCheckout();
+  });
+  $('dash').addEventListener('click', function (e) {
+    if (e.target.id !== 'add') return;
+    M.v.push({ id: 'v' + (++seq), nombre: '', apellidos: '', fecha: '', rel: 'Otro', tipo: 'adult', docNum: '' });
+    renderDash(); renderCheckout();
+    var d = $('dash'); d.scrollTop = d.scrollHeight;
+  });
+
+  /* ---------- Mensajes de la página que contiene la maqueta ---------- */
+  function restart() { fresh(); buildPlazas(); TRIED = !ON; renderDash(); renderCheckout(); }
+  window.addEventListener('message', function (e) {
+    var d = e.data; if (!d || d.morfeo !== 'viajeros') return;
+    if (d.reset) { ON = d.test !== false; if (d.trip) TRIP = d.trip; restart(); return; }
+    var tripChanged = d.trip && d.trip !== TRIP, testChanged = typeof d.test === 'boolean' && d.test !== ON;
+    if (d.trip) TRIP = d.trip;
+    if (typeof d.test === 'boolean') ON = d.test;
+    if (tripChanged) buildPlazas();
+    if (tripChanged || testChanged) { TRIED = !ON; renderCheckout(); }
+  });
+
+  fresh(); buildPlazas(); TRIED = false; renderDash(); renderCheckout();
+  parent.postMessage({ morfeo: 'ready' }, '*');
+})();
+</script>
+</body>
+</html>
