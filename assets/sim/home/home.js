@@ -87,7 +87,8 @@
     }
     ['wheel', 'touchstart', 'mousedown', 'keydown'].forEach(function (ev) { window.addEventListener(ev, function () { touched = true; }, { passive: true }); });
     window.addEventListener('resize', function () { if (!touched) align(true); });
-    window.addEventListener('load', function () { setTimeout(function () { align(true); }, 60); });
+    /* La maqueta arranca con el selector ya desplegado, para que se vea el bloque sin tener que pulsar */
+    window.addEventListener('load', function () { setTimeout(function () { align(true); open(); }, 60); });
 
     function open() { wrap.classList.add('is-focused'); floatLabel(label, true); render(); align(false); }
     function close() { wrap.classList.remove('is-focused', 'has-error'); pop.hidden = true; floatLabel(label, !!input.value); }
