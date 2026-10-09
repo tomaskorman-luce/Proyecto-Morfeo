@@ -292,6 +292,34 @@
   .sim-stage iframe { display: block; border: 0; background: #fff; transform-origin: 0 0; position: absolute; top: 0; left: 0; }
   @media (max-width: 900px) { .sim-ctl.sim-right { margin-left: 0; } }
 
+  /* ---- Maqueta interactiva de favoritos (modal del test 5) ---- */
+  dialog.fav { width: min(820px, calc(100vw - 32px)); }
+  .fav-demo { background: #eef1f6; border: 1px solid var(--line); border-radius: 12px; padding: 14px; min-height: 440px; }
+  @media (max-width: 720px) { .fav-demo-drop { left: 0; right: auto; } .fav-demo-drop::before { left: auto; right: 18px; } }
+  .fav-demo-top { display: flex; justify-content: space-between; align-items: center; background: var(--navy); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; }
+  .fav-demo-brand { font-family: "Raleway", Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 1.5px; color: #fff; }
+  .fav-demo-actions { display: flex; align-items: center; gap: 14px; }
+  .fav-demo-counter-wrap { position: relative; }
+  .fav-demo-counter { display: inline-flex; align-items: center; gap: 6px; border: 0; background: rgba(255,255,255,0.12); color: #fff; padding: 6px 12px; border-radius: 999px; cursor: pointer; font: 700 13px "Lato", Arial, sans-serif; transition: background .15s, opacity .15s, transform .15s; opacity: 0; transform: scale(.85); pointer-events: none; }
+  .fav-demo-counter.is-shown { opacity: 1; transform: scale(1); pointer-events: auto; }
+  .fav-demo-counter:hover { background: rgba(255,255,255,0.22); }
+  .fav-demo-counter-ico { width: 15px; height: 15px; fill: var(--orange); flex: none; }
+  .fav-demo-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--orange); color: var(--navy); font-family: "Raleway", Arial, sans-serif; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex: none; }
+  .fav-demo-drop { position: absolute; top: calc(100% + 10px); right: 0; width: min(330px, calc(100vw - 64px)); background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 10px 28px rgba(20,33,58,0.2); padding: 10px; z-index: 2; }
+  .fav-demo-drop::before { content: ""; position: absolute; top: -6px; right: 18px; width: 12px; height: 12px; background: var(--card); border-left: 1px solid var(--line); border-top: 1px solid var(--line); transform: rotate(45deg); }
+  .fav-demo-drop-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .fav-demo-drop-list li { display: grid; gap: 4px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; font-size: 13px; animation: fav-unfold .22s ease-out both; transform-origin: top; }
+  .fav-demo-drop-list li:hover { background: var(--orange-soft); border-color: #f3dcb8; }
+  .fav-demo-drop-list .t { color: var(--ink); font-weight: 700; font-family: "Raleway", Arial, sans-serif; font-size: 13.5px; }
+  .fav-demo-drop-list .m { color: var(--ink-2); font-size: 12px; }
+  .fav-demo-drop-list .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 4px; }
+  .fav-demo-drop-list .p { color: var(--ink-3); font-size: 12px; white-space: nowrap; }
+  .fav-demo-cta { border: 0; background: var(--orange); color: var(--navy); font: 800 12px "Lato", Arial, sans-serif; padding: 7px 12px; border-radius: 999px; cursor: pointer; white-space: nowrap; transition: background .15s, transform .15s; }
+  .fav-demo-cta:hover { background: #f5a21c; transform: translateX(2px); }
+  .fav-demo-cta:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+  @keyframes fav-unfold { from { opacity: 0; transform: translateY(-6px) scaleY(.85); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .fav-demo-drop-list li { animation: none; } }
+
   /* ---- Pie ---- */
   footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12px; color: var(--ink-3); }
   footer .wordmark { color: var(--navy); font-size: 14px; letter-spacing: 3px; }
@@ -476,10 +504,11 @@
         <span class="go">Ver detalle</span>
       </div>
 
-      <div class="card test">
-        <div class="top"><span class="line">Toda la web</span><span class="pill-dev">SIN DESARROLLO</span></div>
-        <h3>5 · Preferencias recordadas</h3>
-        <p>Lo que el usuario eligió la última vez se preselecciona o se destaca la siguiente: el régimen todo incluido, el tipo de camarote, los vuelos directos, la franja horaria o los filtros del listado. Menos pasos y más coherencia con lo que busca, en todas las líneas.</p>
+      <div class="card test" data-open="dlg-t5" role="button" tabindex="0" aria-haspopup="dialog">
+        <div class="top"><span class="line">Cruceros</span><span class="pill-dev">SIN DESARROLLO</span></div>
+        <h3>5 · Favoritos: contador y lista en la cabecera</h3>
+        <p>El corazón de la tarjeta de crucero ya existe. Al marcarlo, junto al avatar aparece un contador ("2 favoritos") que se despliega en una lista con producto y precio, para cualquiera, logado o no.</p>
+        <span class="go">Ver detalle</span>
       </div>
 
       <div class="card test">
@@ -578,8 +607,8 @@
         <tr><td>★ Mensajes por antelación</td><td>A quien sale pronto, disponibilidad y "última hora". A quien planifica con tiempo, "Reserva por 10 €", cancelación gratis, pago flexible</td></tr>
         <tr><td>Cazadores de chollos</td><td>Destacar ahorro, precio más bajo y chollos de su destino</td></tr>
         <tr><td>Premium</td><td>Mostrar primero 5* y suites, y quitar los mensajes de precio y chollos</td></tr>
-        <tr><td>★ Preferencias recordadas</td><td>Preseleccionar o destacar lo que eligió la última vez: régimen, tipo de camarote, vuelos directos, franja horaria o filtros. En todas las líneas</td></tr>
-        <tr><td>Comparador indeciso</td><td>A quien repite búsquedas o ve muchas fichas sin avanzar, ofrecer "Guarda tu presupuesto" o "Te ayudamos por teléfono"</td></tr>
+        <tr><td>Preferencias recordadas</td><td>Preseleccionar o destacar lo que eligió la última vez: régimen, tipo de camarote, vuelos directos, franja horaria o filtros. En todas las líneas</td></tr>
+        <tr><td>Comparador indeciso</td><td>A quien repite búsquedas o ve muchas fichas sin avanzar, ofrecer "Guarda tu presupuesto" o "Te ayudamos por teléfono", o marca 3 o más favoritos sin avanzar</td></tr>
       </tbody>
     </table>
 
@@ -604,6 +633,9 @@
     <table>
       <thead><tr><th>Test</th><th>Qué hacemos</th></tr></thead>
       <tbody>
+        <tr><td>★ Favoritos: contador y lista</td><td>Al marcar el corazón de una tarjeta, junto al avatar aparece un contador que se despliega en una lista con producto y precio, para cualquiera, logado o no</td></tr>
+        <tr><td>Favorito a la vista</td><td>Tarjeta en la Home con lo marcado, aviso si ya está en favoritos y aviso si baja el precio o queda poca disponibilidad</td></tr>
+        <tr><td>Favorito y login</td><td>Al marcar sin cuenta, invitar a crearla; al shadow, el motivo de tener sus favoritos en cualquier dispositivo</td></tr>
         <tr><td>Presupuesto según el perfil</td><td>A familias, ventajas para niños y parques acuáticos; a parejas, bebidas y experiencias; a séniores, servicios, excursiones y tranquilidad</td></tr>
         <tr><td>Naviera favorita</td><td>A quien ha visto 2 o más fichas de la misma naviera, mostrar primero sus barcos</td></tr>
         <tr><td>Puerto de salida cercano</td><td>Preseleccionar el puerto más cercano a su mercado en el buscador</td></tr>
@@ -760,18 +792,36 @@
   </div>
 </dialog>
 
-<dialog id="dlg-t5" class="narrow">
+<dialog id="dlg-t5" class="narrow fav">
   <div class="modal-head">
     <div>
-      <h2>5 · Preferencias recordadas</h2>
-      <p>Toda la web · Sin desarrollo</p>
+      <h2>5 · Favoritos: contador y lista en la cabecera</h2>
+      <p>Cruceros · Sin desarrollo</p>
     </div>
     <button class="close" aria-label="Cerrar">×</button>
   </div>
   <div class="modal-body">
+    <div class="fav-demo">
+      <div class="fav-demo-top">
+        <span class="fav-demo-brand">LOGITRAVEL</span>
+        <div class="fav-demo-actions">
+          <div class="fav-demo-counter-wrap">
+            <button type="button" class="fav-demo-counter is-shown" data-fav="counter" aria-expanded="true" aria-haspopup="true">
+              <svg class="fav-demo-counter-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.3C.6 8.4 2 5 5.3 5c2 0 3.4 1.1 4.2 2.4C10.3 6.1 11.7 5 13.7 5 17 5 18.4 8.4 17 11.7 14.5 16.4 12 21 12 21Z"/></svg>
+              <span data-fav="count">3</span>
+            </button>
+            <div class="fav-demo-drop" data-fav="dropdown">
+              <ul class="fav-demo-drop-list" data-fav="list"></ul>
+            </div>
+          </div>
+          <span class="fav-demo-avatar" aria-hidden="true">T</span>
+        </div>
+      </div>
+    </div>
+    <p class="mock-note">Maqueta con el desplegable de favoritos abierto, con tres cruceros del listado real ya marcados. Pulsa el contador para cerrarlo y abrirlo; cada favorito lleva su botón para seguir hacia las fechas y camarotes.</p>
     <dl class="detail">
-      <div><dt>Qué hacemos</dt><dd>Lo que el usuario eligió la última vez se preselecciona o se destaca la siguiente: régimen (todo incluido), tipo de camarote, vuelos directos, franja horaria, aerolínea o filtros del listado.</dd></div>
-      <div><dt>Por qué</dt><dd>Menos pasos y más coherencia con lo que busca, en todas las líneas.</dd></div>
+      <div><dt>Qué hacemos</dt><dd>El corazón de la tarjeta de crucero ya existe en la web. Junto al avatar, un contador ("2 favoritos") visible en toda la web, para cualquiera, logado o no. Al desplegarlo, la lista de lo marcado con producto y precio.</dd></div>
+      <div><dt>Por qué</dt><dd>Recordatorio permanente y de bajo esfuerzo, con el mismo patrón ya validado en presupuestos (el contador de la cabecera, test 2). Es además el sitio natural donde, más adelante, invitar a crear cuenta a quien no está logado.</dd></div>
     </dl>
   </div>
 </dialog>
@@ -1004,6 +1054,38 @@
     paint();
   }
   initViajeros('dlg-l1');
+
+  /* Maqueta de favoritos: desplegable del contador de la cabecera, abierto por defecto con tres favoritos */
+  function initFavoritos(id) {
+    var dlg = document.getElementById(id);
+    var counter = dlg.querySelector('[data-fav="counter"]');
+    var drop = dlg.querySelector('[data-fav="dropdown"]');
+    var list = dlg.querySelector('[data-fav="list"]');
+    var saved = [
+      { id: '1', title: 'Mediterráneo sorprendente', meta: '8 días desde Barcelona · MSC Euribia', price: 'desde 483 €' },
+      { id: '2', title: 'Caribe Occidental', meta: '8 días desde Miami (EEUU) · MSC World America', price: 'desde 454 €' },
+      { id: '3', title: 'La música del mar', meta: '8 días desde Barcelona · Costa Toscana', price: 'desde 449 €' }
+    ];
+
+    function render() {
+      list.innerHTML = saved.map(function (f, i) {
+        return '<li style="animation-delay:' + (i * 60) + 'ms"><span class="t">' + f.title + '</span><span class="m">' + f.meta + '</span>' +
+          '<div class="row"><span class="p">' + f.price + '</span><button type="button" class="fav-demo-cta" data-fav="cta">Ver fechas y camarotes →</button></div></li>';
+      }).join('');
+    }
+    function setDrop(open) { drop.hidden = !open; counter.setAttribute('aria-expanded', String(open)); }
+
+    counter.addEventListener('click', function () { setDrop(drop.hidden); });
+    list.addEventListener('click', function (e) {
+      var cta = e.target.closest('[data-fav="cta"]');
+      if (!cta) return;
+      cta.textContent = 'Abriendo la ficha…'; /* en la web real: enlace a la ficha del crucero con sus fechas */
+      cta.disabled = true;
+    });
+    dlg.addEventListener('close', function () { setDrop(true); render(); });
+    render();
+  }
+  initFavoritos('dlg-t5');
 
   document.querySelectorAll('dialog').forEach(function (dlg) {
     dlg.querySelector('.close').addEventListener('click', function () { dlg.close(); });
