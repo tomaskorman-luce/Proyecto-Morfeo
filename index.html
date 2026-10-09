@@ -154,11 +154,11 @@
   .profiles .chips { margin-top: 12px; }
 
   /* ---- Fases ---- */
-  .phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  @media (max-width: 860px) { .phases { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 520px) { .phases { grid-template-columns: 1fr; } }
+  .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: stretch; }
+  @media (max-width: 860px) { .phases { grid-template-columns: 1fr; } }
+  /* Subgrid: las tres tarjetas de arriba comparten fila y los tres recuadros de detalle también, así miden lo mismo */
+  .phase-col { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 8px; }
   .phase { padding: 18px 18px 16px; border-top: 5px solid var(--orange); display: flex; flex-direction: column; }
-  .phase.p0 { border-top-color: var(--lilac); }
   .phase.p1 { border-top-color: var(--orange); }
   .phase.p2 { border-top-color: var(--navy); }
   .phase.p3 { border-top-color: var(--ink-3); }
@@ -166,6 +166,12 @@
   .phase h3 { font-size: 16.5px; margin: 4px 0 10px; line-height: 1.25; }
   .phase ul { margin: 0; padding-left: 16px; }
   .phase li { font-size: 13.5px; color: var(--ink-2); margin-bottom: 6px; }
+  .phase li:last-child { margin-bottom: 0; }
+  .phase-detail { padding: 14px 18px 14px; background: var(--paper); border-style: dashed; }
+  .phase-detail h4 { font-family: "Raleway", Arial, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--navy); margin: 0 0 6px; padding-left: 8px; border-left: 3px solid var(--orange); }
+  .phase-detail h4:not(:first-child) { margin-top: 12px; }
+  .phase-detail ul { margin: 0; padding-left: 16px; }
+  .phase-detail li { font-size: 12.5px; color: var(--ink-2); margin-bottom: 4px; }
   .now { display: inline-block; font-size: 10.5px; font-weight: 900; letter-spacing: 1.5px; color: var(--navy); background: var(--orange); padding: 2px 8px; border-radius: 999px; margin-left: 6px; vertical-align: middle; }
 
   /* ---- Tests ---- */
@@ -424,45 +430,63 @@
   <!-- ====== ETAPAS ====== -->
   <details class="sec" open>
     <summary>
-      <div class="sum-text"><div class="kicker">Etapas</div><h2>Cuatro fases. Cada una se apoya en lo aprendido en la anterior</h2></div>
+      <div class="sum-text"><div class="kicker">Etapas</div><h2>Tres fases. Cada una se apoya en lo aprendido en la anterior</h2></div>
       <span class="chev" aria-hidden="true"></span>
     </summary>
     <div class="sec-body">
     <div class="phases">
-      <div class="card phase p0">
-        <div class="num">Fase 0 <span class="now">AHORA</span></div>
-        <h3>Lo posible hoy</h3>
-        <ul>
-          <li>Guardar los presupuestos de todos los usuarios, logados o no, y los favoritos en Cruceros.</li>
-          <li>Registrar las búsquedas en todas las líneas, y los filtros y el orden que elige la gente.</li>
-          <li>Construir un perfil de cada viajero (líneas, destinos, antelación, etc.) y asignarle su segmento.</li>
-        </ul>
+      <div class="phase-col">
+        <div class="card phase p1">
+          <div class="num">Fase 1 <span class="now">AHORA</span></div>
+          <h3>Del interés mostrado al primer test</h3>
+          <ul>
+            <li>Aprovechar la navegación explícita de todos los usuarios, logados o no.</li>
+            <li>Deducir de ella el interés mostrado y construir su perfil de viajero.</li>
+            <li>Validar con los primeros tests sobre esos perfiles.</li>
+          </ul>
+        </div>
+        <div class="card phase-detail">
+          <h4>Qué registramos</h4>
+          <ul>
+            <li>Presupuestos de todos los usuarios y favoritos en Cruceros.</li>
+            <li>Búsquedas en todas las líneas, y filtros y orden que elige la gente.</li>
+            <li>Perfil de cada viajero (líneas, destinos, antelación...) y su segmento.</li>
+          </ul>
+        </div>
       </div>
-      <div class="card phase p1">
-        <div class="num">Fase 1</div>
-        <h3>Primeros tests y validaciones</h3>
-        <ul>
-          <li><strong>Transversales:</strong> Mensajes y recomendaciones para toda la web.</li>
-          <li><strong>Con presupuestos guardados:</strong> Cruceros, Grandes Viajes y Vuelo + Hotel.</li>
-          <li><strong>Por línea de negocio:</strong> listados, fichas y pasos del funnel de cada producto.</li>
-        </ul>
+      <div class="phase-col">
+        <div class="card phase p2">
+          <div class="num">Fase 2</div>
+          <h3>Mayor recogida de datos</h3>
+          <ul>
+            <li><strong>Más usuarios identificados:</strong> impulsar, incentivar y motivar que más usuarios inicien sesión.</li>
+            <li><strong>Más datos de cada usuario:</strong> hacer del área personal la fuente de su información, tanto la que declaran como la implícita que deducimos de cómo la usan.</li>
+          </ul>
+        </div>
+        <div class="card phase-detail">
+          <h4>Acciones</h4>
+          <ul>
+            <li><strong>Mejorar el login:</strong> login sin salir del funnel, autologin con Google al cargar la página y sesiones más largas.</li>
+            <li><strong>Incentivar la creación de cuentas:</strong> guardar y sincronizar favoritos, avisos de bajada de precio, mejor visibilidad de presupuestos y reservas.</li>
+            <li><strong>Datos en el checkout:</strong> guardar los datos de los viajeros durante el proceso de checkout.</li>          </ul>
+        </div>
       </div>
-      <div class="card phase p2">
-        <div class="num">Fase 2</div>
-        <h3>Mayor recogida de datos</h3>
-        <ul>
-          <li><strong>Más usuarios identificados:</strong> iniciar sesión sin salir del funnel, autologin con Google al cargar la página, y más motivos para iniciar sesión.</li>
-          <li><strong>Más datos de cada usuario:</strong> perfil progresivo en el área personal: más datos de preferencias, y del titular y los acompañantes habituales; favoritos sincronizados en la cuenta.</li>
-        </ul>
-      </div>
-      <div class="card phase p3">
-        <div class="num">Fase 3</div>
-        <h3>Plan integral con áreas especializadas</h3>
-        <ul>
-          <li><strong>CRM:</strong> conectar con Salesforce y el historial de reservas.</li>
-          <li><strong>Paid y Loyalty:</strong> Retención y fidelización.</li>
-          <li><strong>Propensión de compra e hiperpersonalización:</strong> con un equipo de datos y machine learning, una web adaptada a cada perfil y usuario.</li>
-        </ul>
+      <div class="phase-col">
+        <div class="card phase p3">
+          <div class="num">Fase 3</div>
+          <h3>Plan integral con áreas especializadas</h3>
+          <ul>
+            <li><strong>Hiperpersonalizar la experiencia:</strong> una navegación para cada audiencia y perfil.</li>
+            <li><strong>Desarrollo del área de Loyalty</strong> para impulsar fidelización y cross sell.</li>
+          </ul>
+        </div>
+        <div class="card phase-detail">
+          <h4>Qué incluye</h4>
+          <ul>
+            <li>Crear modelos de propensión de compra mediante machine learning.</li>
+            <li>Audiencias en tiempo real conectando vía Salesforce u herramientas alternativas.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -475,7 +499,7 @@
       <span class="chev" aria-hidden="true"></span>
     </summary>
     <div class="sec-body">
-    <p class="lead">Seis tests de arranque que no necesitan desarrollo de Logitravel: se apoyan en lo que se mide en la fase 0 y se lanzan con AB Tasty.</p>
+    <p class="lead">Seis tests de arranque que no necesitan desarrollo de Logitravel: se apoyan en la navegación que ya se registra en la fase 1 y se lanzan con AB Tasty.</p>
 
     <div class="tests">
       <div class="card test" data-open="dlg-t1" role="button" tabindex="0" aria-haspopup="dialog">
@@ -500,7 +524,7 @@
       <div class="card test" data-open="dlg-t4" role="button" tabindex="0" aria-haspopup="dialog">
         <div class="top"><span class="line">Home</span><span class="pill-dev">SIN DESARROLLO</span></div>
         <h3>4 · "Continúa tu búsqueda"</h3>
-        <p>Quien vuelve a la web encuentra su última búsqueda lista para retomar, con destino, fechas y pasajeros, en lugar de empezar de cero. Arranca con el historial de Vuelo + Hotel, que ya existe, y se extiende al resto de líneas con lo que se registre en la fase 0.</p>
+        <p>Quien vuelve a la web encuentra su última búsqueda lista para retomar, con destino, fechas y pasajeros, en lugar de empezar de cero. Arranca con el historial de Vuelo + Hotel, que ya existe, y se extiende al resto de líneas con lo que se registre en la fase 1.</p>
         <span class="go">Ver detalle</span>
       </div>
 
@@ -574,7 +598,7 @@
         <tr><td>Fiel a una naviera o un destino</td><td>Ha visto 2 o más fichas de la misma naviera, zona o país</td><td><span class="rel hi">Alta</span></td><td>CRU, GV</td></tr>
         <tr><td>Indeciso / comparador</td><td>Repite la misma búsqueda, ve muchas fichas sin avanzar, descarga el PDF (GV), clic en el call center</td><td><span class="rel hi">Alta</span></td><td>Todas</td></tr>
         <tr><td>Multi-línea</td><td>Ha visitado dos o más líneas (p. ej. Vuelos y Hoteles)</td><td><span class="rel hi">Alta</span></td><td>Todas</td></tr>
-        <tr><td>Con presupuesto guardado</td><td>Presupuestos en su área personal (logados) o guardados en su navegador (todos, a partir de la fase 0)</td><td><span class="rel hi">Alta</span></td><td>CRU, GV, V+H</td></tr>
+        <tr><td>Con presupuesto guardado</td><td>Presupuestos en su área personal (logados) o guardados en su navegador (todos, a partir de la fase 1)</td><td><span class="rel hi">Alta</span></td><td>CRU, GV, V+H</td></tr>
         <tr><td>Canal de llegada</td><td>Metabuscador, publicidad de pago, buscadores, email, afiliado</td><td><span class="rel hi">Alta</span></td><td>Todas</td></tr>
         <tr><td>Propensión de compra</td><td>Modelo del equipo de Data de Logitravel</td><td><span class="rel lo">Baja hoy</span><br><small>en desarrollo</small></td><td>Todas</td></tr>
         <tr><td>Necesidad emocional</td><td>EmotionsAI, módulo de AB Tasty que clasifica al visitante por cómo navega</td><td><span class="rel lo">Sin validar</span></td><td>Todas</td></tr>
