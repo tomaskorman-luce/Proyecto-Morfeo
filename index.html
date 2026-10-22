@@ -4,1129 +4,1245 @@
 <link rel="icon" type="image/png" href="https://assets-manager.abtasty.com/1c94758205a046f98bb061ac07249edb/account/logi-icon-1024x1024.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyecto MORFEO · Plan de personalización — Luce para Logitravel</title>
+<title>Propuesta de estandarización de funnels — Logitravel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1A3760;
-    --navy-dark: #12284a;
-    --orange: #FBB040;
-    --orange-soft: #FFF3E6;
-    --lilac: #C6BBE4;
-    --ink: #14213a;
-    --ink-2: #4a556b;
-    --ink-3: #7c8599;
-    --line: #e4e3dd;
-    --paper: #fcfbf8;
-    --card: #ffffff;
-    --ok: #1e8e5a;
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page-plane:     #f9f9f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --gridline:       #e1e0d9;
+    --baseline:       #c3c2b7;
+    --border-ring:    rgba(11,11,11,0.10);
+
+    /* categorical — asignación fija por línea de negocio, en el orden documentado */
+    --line-cru: #2a78d6; /* blue */
+    --line-grv: #eb6834; /* orange */
+    --line-paq: #1baf7a; /* aqua */
+    --line-vue: #eda100; /* yellow */
+    --line-hot: #e87ba4; /* magenta */
+
+    /* color de texto legible sobre cada fill, elegido por luminancia del hue */
+    --line-cru-ink: #ffffff;
+    --line-grv-ink: #ffffff;
+    --line-paq-ink: #ffffff;
+    --line-vue-ink: #161916;
+    --line-hot-ink: #161916;
+
+    /* líneas añadidas con las sublíneas: partnerships y "otras líneas" (DIS, EPA, ACT, HOM, CHO) */
+    --line-par: #7a5cd6;
+    --line-par-soft: #efeafc;
+    --line-par-ink: #ffffff;
+    --line-oth: #5f6b7a;
+    --line-oth-ink: #ffffff;
+    /* Liverpool: otro negocio, ni línea ni partner */
+    --line-biz: #0f8a7e;
+    --line-biz-soft: #e2f4f1;
+    --line-biz-ink: #ffffff;
+
+    --brand: #005591; /* marca Logitravel, solo para chrome/UI, nunca como color de dato */
+    --brand-subtle: #def0fc;
+
+    --good: #0ca30c;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 24px;
   }
+
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+
   body {
     margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: "Lato", Arial, sans-serif;
-    font-size: 15.5px;
-    line-height: 1.55;
+    background: var(--page-plane);
+    color: var(--text-primary);
+    font-family: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.5;
   }
-  h1, h2, h3, h4 { font-family: "Raleway", Arial, sans-serif; margin: 0; color: var(--navy); }
-  p { margin: 0 0 10px; }
-  strong { font-weight: 700; }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 36px 24px 72px; }
 
-  /* ---- Cabecera ---- */
+  h1, h2, h3 { font-family: "Poppins", system-ui, sans-serif; font-weight: 600; margin: 0; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 40px 24px 80px; }
+
   header.hero {
-    background: var(--navy);
+    background: linear-gradient(135deg, var(--brand) 0%, #003366 100%);
     color: #fff;
-    border-radius: 18px;
-    padding: 34px 40px 30px;
-    position: relative;
-    overflow: hidden;
+    border-radius: var(--radius-xl);
+    padding: 40px 44px;
+    margin-bottom: 32px;
   }
-  header.hero::after {
-    content: "";
-    position: absolute; right: -60px; top: -60px;
-    width: 220px; height: 220px; border-radius: 50%;
-    background: var(--orange); opacity: 0.16;
+  header.hero .eyebrow {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #cfe6f8;
+    margin-bottom: 10px;
   }
-  .brand-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
-  .wordmark {
-    font-family: "Raleway", Arial, sans-serif; font-weight: 800; font-size: 20px;
-    letter-spacing: 4px; color: #fff;
+  header.hero h1 { font-size: 30px; color: #fff; max-width: 720px; }
+  header.hero p.sub { color: #dcebf6; max-width: 660px; margin-top: 12px; font-size: 15px; }
+  .pill-row { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.24);
+    color: #fff; font-size: 12.5px; font-weight: 500;
+    padding: 6px 12px; border-radius: 9999px;
   }
-  .wordmark span { color: var(--orange); }
-  .brands { display: flex; align-items: center; gap: 16px; position: relative; z-index: 1; }
-  .logo-luce { display: block; height: 56px; width: auto; }
-  .brand-sep { width: 1px; height: 26px; background: rgba(255,255,255,0.28); }
-  .logo-plate { display: inline-flex; align-items: center; background: #fff; border-radius: 8px; padding: 6px 12px; }
-  .logo-logi { display: block; height: 20px; width: auto; }
-  .brand-row .meta { font-size: 12px; color: var(--lilac); text-align: right; line-height: 1.4; }
-  .eyebrow { font-family: "Raleway", Arial, sans-serif; font-size: 16px; font-weight: 800; letter-spacing: 2.6px; text-transform: uppercase; color: var(--lilac); margin-bottom: 8px; }
-  header.hero h1 { color: #fff; font-size: 30px; line-height: 1.2; max-width: 680px; letter-spacing: -0.3px; }
-  header.hero p.sub { color: #e6ebf5; max-width: 660px; margin-top: 12px; font-size: 15.5px; }
-  .hero-rule { height: 4px; background: linear-gradient(90deg, var(--orange) 0 60%, var(--lilac) 60% 100%); border-radius: 0 0 18px 18px; margin: 0 20px; }
+  .pill.status { background: #fff; color: #a06600; border-color: transparent; }
+  .pill.status .dot { width: 8px; height: 8px; border-radius: 50%; background: #eda100; }
 
-  /* ---- Secciones ---- */
-  details.sec { margin-top: 38px; }
-  details.sec summary {
-    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px;
-    padding: 6px 0; border-radius: 10px;
+  section { margin-bottom: 40px; }
+  section .section-head { margin-bottom: 18px; }
+  section .section-head .kicker {
+    font-size: 12.5px; font-weight: 700; color: var(--brand);
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
   }
-  details.sec summary::-webkit-details-marker { display: none; }
-  details.sec summary:hover h2 { color: var(--navy-dark); }
-  details.sec summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
-  .sum-text .kicker { margin-bottom: 6px; }
-  .sum-text h2 { margin-bottom: 0; }
-  .chev {
-    flex: none; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); background: var(--card);
-    position: relative; transition: transform .2s, background .15s;
-  }
-  .chev::before {
-    content: ""; position: absolute; left: 12px; top: 10px; width: 8px; height: 8px;
-    border-right: 2px solid var(--navy); border-bottom: 2px solid var(--navy); transform: rotate(45deg);
-  }
-  details.sec[open] .chev { transform: rotate(180deg); }
-  details.sec summary:hover .chev { background: var(--orange-soft); }
-  .sec-body { margin-top: 12px; }
-  details.sec:not([open]) summary { border-bottom: 1px dashed var(--line); padding-bottom: 14px; }
-  .toggle-all {
-    display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px; font-size: 12.5px; color: var(--ink-3);
-  }
-  .toggle-all button { background: none; border: none; color: var(--navy); font: inherit; font-weight: 700; cursor: pointer; padding: 0; }
-  .toggle-all button:hover { text-decoration: underline; }
-  .kicker {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: "Raleway", Arial, sans-serif; font-size: 11.5px; font-weight: 800;
-    letter-spacing: 2px; text-transform: uppercase; color: var(--navy); margin-bottom: 8px;
-  }
-  .kicker::before { content: ""; width: 22px; height: 4px; background: var(--orange); border-radius: 2px; }
-  h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
-  .sec-body > p.lead { color: var(--ink-2); max-width: 760px; margin-bottom: 18px; }
+  section h2 { font-size: 21px; }
+  section .section-head p { color: var(--text-secondary); font-size: 14.5px; margin-top: 6px; max-width: 780px; }
 
   .card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-    padding: 20px 22px; box-shadow: 0 1px 2px rgba(20,33,58,0.04);
-  }
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 760px) { .grid-2 { grid-template-columns: 1fr; } }
-
-  /* ---- Enlaces que abren detalle ---- */
-  .more {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: "Raleway", Arial, sans-serif; font-weight: 700; font-size: 13.5px;
-    color: var(--navy); background: var(--orange-soft); border: 1px solid #f3dcb8;
-    padding: 8px 14px; border-radius: 999px; cursor: pointer; text-decoration: none;
-    transition: background .15s, border-color .15s;
-  }
-  .more:hover { background: var(--orange); border-color: var(--orange); }
-  .more::after { content: "›"; font-size: 17px; line-height: 1; }
-  .more.small { font-size: 12.5px; padding: 6px 12px; }
-
-  /* ---- Cómo trabajamos ---- */
-  .steps { display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items: stretch; }
-  .step { padding: 18px 20px; }
-  .step .n {
-    display: inline-block; font-family: "Raleway", Arial, sans-serif; font-weight: 800; font-size: 12px;
-    background: var(--orange); color: var(--navy); padding: 3px 10px; border-radius: 999px; margin-bottom: 8px; letter-spacing: 1px;
-  }
-  .step h3 { font-size: 16px; margin-bottom: 6px; }
-  .step p { font-size: 14px; color: var(--ink-2); margin: 0; }
-  .arrow { align-self: center; font-size: 26px; color: var(--orange); font-weight: 900; }
-  @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } .arrow { text-align: center; transform: rotate(90deg); } }
-
-  /* ---- Punto de partida ---- */
-  .know h3 { font-size: 16.5px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-  .know h3::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--orange); flex: none; }
-  .know.biz h3::before { background: var(--navy); }
-  ul.facts { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-  ul.facts li { padding-left: 16px; position: relative; font-size: 14.5px; color: var(--ink-2); }
-  ul.facts li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--ink-3); }
-  ul.facts li strong { color: var(--ink); }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-  .chip { font-size: 13px; font-weight: 700; color: var(--navy); background: #eef1f7; border: 1px solid #dfe4ee; padding: 5px 11px; border-radius: 999px; }
-  .chip.hi { background: var(--navy); color: #fff; border-color: var(--navy); }
-  .profiles { margin-top: 16px; }
-  .profiles-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .profiles-head h3 { font-size: 15px; color: var(--ink-3); font-weight: 700; letter-spacing: .3px; }
-  .profiles .chips { margin-top: 12px; }
-
-  /* ---- Fases ---- */
-  .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: stretch; }
-  @media (max-width: 860px) { .phases { grid-template-columns: 1fr; } }
-  /* Subgrid: las tres tarjetas de arriba comparten fila y los tres recuadros de detalle también, así miden lo mismo */
-  .phase-col { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 8px; }
-  .phase { padding: 18px 18px 16px; border-top: 5px solid var(--orange); display: flex; flex-direction: column; }
-  .phase.p1 { border-top-color: var(--orange); }
-  .phase.p2 { border-top-color: var(--navy); }
-  .phase.p3 { border-top-color: var(--ink-3); }
-  .phase .num { font-family: "Raleway", Arial, sans-serif; font-weight: 800; font-size: 11.5px; letter-spacing: 2px; color: var(--ink-3); text-transform: uppercase; }
-  .phase h3 { font-size: 16.5px; margin: 4px 0 10px; line-height: 1.25; }
-  .phase ul { margin: 0; padding-left: 16px; }
-  .phase li { font-size: 13.5px; color: var(--ink-2); margin-bottom: 6px; }
-  .phase li:last-child { margin-bottom: 0; }
-  .phase-detail { padding: 14px 18px 14px; background: var(--paper); border-style: dashed; }
-  .phase-detail h4 { font-family: "Raleway", Arial, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--navy); margin: 0 0 6px; padding-left: 8px; border-left: 3px solid var(--orange); }
-  .phase-detail h4:not(:first-child) { margin-top: 12px; }
-  .phase-detail ul { margin: 0; padding-left: 16px; }
-  .phase-detail li { font-size: 12.5px; color: var(--ink-2); margin-bottom: 4px; }
-  .now { display: inline-block; font-size: 10.5px; font-weight: 900; letter-spacing: 1.5px; color: var(--navy); background: var(--orange); padding: 2px 8px; border-radius: 999px; margin-left: 6px; vertical-align: middle; }
-
-  /* ---- Tests ---- */
-  .tests { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  @media (max-width: 760px) { .tests { grid-template-columns: 1fr; } }
-  .test { padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
-  .test .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-  .test .line { font-size: 11.5px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-3); }
-  .test h3 { font-size: 16px; line-height: 1.3; }
-  .test p { font-size: 14px; color: var(--ink-2); margin: 0; }
-  .pill-dev { font-size: 11px; font-weight: 900; letter-spacing: 1px; color: var(--ok); border: 1.5px solid var(--ok); padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
-  .tests-foot { margin-top: 16px; }
-  .sub-h { font-size: 15px; color: var(--ink-3); font-weight: 700; margin: 26px 0 12px; }
-  .test.long { border-style: dashed; background: var(--paper); }
-  .pill-long { font-size: 10.5px; font-weight: 900; letter-spacing: 1px; color: #fff; background: var(--navy); padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
-
-  /* ---- Modales ---- */
-  dialog {
-    border: none; border-radius: 16px; padding: 0;
-    width: min(1040px, calc(100vw - 32px)); max-height: 88vh;
-    background: var(--card); color: var(--ink);
-    box-shadow: 0 24px 60px rgba(20,33,58,0.28);
-  }
-  dialog::backdrop { background: rgba(20,33,58,0.55); }
-  .modal-head {
-    position: sticky; top: 0; z-index: 1;
-    display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
-    padding: 20px 26px 14px; background: var(--card); border-bottom: 1px solid var(--line);
-  }
-  .modal-head h2 { font-size: 20px; margin: 0; }
-  .modal-head p { font-size: 13.5px; color: var(--ink-2); margin: 4px 0 0; }
-  .close {
-    flex: none; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line);
-    background: var(--paper); color: var(--navy); font-size: 20px; line-height: 1; cursor: pointer;
-  }
-  .close:hover { background: var(--orange-soft); }
-  .modal-body { padding: 10px 26px 26px; }
-  .modal-body h3 {
-    font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--navy);
-    margin: 22px 0 8px; padding-left: 12px; border-left: 4px solid var(--orange);
-  }
-  .modal-body h3 small { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--ink-3); font-family: "Lato", Arial, sans-serif; font-size: 12.5px; margin-left: 8px; }
-  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-  th { text-align: left; font-family: "Raleway", Arial, sans-serif; font-size: 11.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink-3); padding: 8px 10px; border-bottom: 2px solid var(--line); }
-  td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
-  td:first-child { color: var(--ink); font-weight: 700; white-space: nowrap; }
-  tr:hover td { background: #fcf8f1; }
-  .rel { display: inline-block; font-size: 11.5px; font-weight: 900; letter-spacing: .5px; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
-  .rel.hi { background: #e3f4ea; color: var(--ok); }
-  .rel.mid { background: var(--orange-soft); color: #9a6200; }
-  .rel.lo { background: #eef1f7; color: var(--ink-3); }
-  td:first-child { white-space: normal; min-width: 180px; }
-  td small { display: inline-block; margin-top: 4px; font-size: 12px; color: var(--ink-3); }
-
-  /* ---- Tarjetas de test clicables + modales de detalle ---- */
-  .test[data-open] { cursor: pointer; transition: border-color .15s, box-shadow .15s, transform .15s; }
-  .test[data-open]:hover { border-color: var(--orange); box-shadow: 0 6px 18px rgba(20,33,58,0.10); transform: translateY(-1px); }
-  .test[data-open]:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
-  .test .go { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: var(--orange); font-family: "Raleway", Arial, sans-serif; font-weight: 800; font-size: 13px; color: var(--navy); box-shadow: 0 2px 6px rgba(20,33,58,0.15); transition: background .15s, color .15s; }
-  .test .go::before { content: ""; width: 18px; height: 18px; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E") center / contain no-repeat; }
-  .test[data-open]:hover .go { background: var(--navy); color: #fff; }
-  dialog.lightbox { width: min(1400px, calc(100vw - 32px)); max-height: 96vh; overflow: auto; background: #fff; padding: 12px; text-align: center; }
-  dialog.lightbox img { max-width: 100%; max-height: calc(96vh - 40px); height: auto; }
-  dialog.lightbox .close { position: absolute; top: 10px; right: 10px; z-index: 2; }
-  dialog.narrow { width: min(760px, calc(100vw - 32px)); }
-  .detail { margin: 0; display: grid; gap: 16px; }
-  .detail dt { font-family: "Raleway", Arial, sans-serif; font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--navy); padding-left: 10px; border-left: 4px solid var(--orange); margin-bottom: 4px; }
-  .detail dd { margin: 0; font-size: 14.5px; color: var(--ink-2); }
-  /* Modal con mockups: todo cabe en pantalla, sin scroll. La altura de las imágenes se calcula a partir de la ventana */
-  dialog.wide { width: min(1024px, calc(100vw - 32px)); max-height: 96vh; overflow: hidden; }
-  dialog.wide .modal-head { padding: 14px 26px 10px; }
-  dialog.wide .modal-body { padding: 8px 26px 18px; }
-  .wide .detail { grid-template-columns: 1fr 1fr; gap: 12px 28px; margin-top: 12px; }
-  .mock { display: flex; justify-content: center; align-items: flex-start; gap: 20px; --mh: min(clamp(200px, calc((96vh - 300px) * 0.8), 520px), calc((min(1024px, 100vw - 32px) - 72px) / 2.1)); }
-  .mock figure { margin: 0; flex: none; }
-  .mock .mock-tag { margin-bottom: 6px; }
-  .mock a.zoom { display: block; cursor: zoom-in; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #f6f6f6; }
-  .mock img { display: block; height: var(--mh); width: auto; max-width: 100%; }
-  .mock-note { margin: 8px 0 0; font-size: 12.5px; color: var(--ink-3); text-align: center; }
-  .mock-tag { display: inline-block; font-size: 10.5px; font-weight: 900; letter-spacing: 1.2px; text-transform: uppercase; color: var(--navy); background: var(--lilac); padding: 2px 8px; border-radius: 999px; }
-  @media (max-width: 900px) {
-    dialog.wide { overflow: auto; }
-    .mock { flex-direction: column; align-items: center; }
-    .mock img { height: auto; width: 100%; }
-    .wide .detail { grid-template-columns: 1fr; }
+    background: var(--surface-1);
+    border: 1px solid var(--border-ring);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 1px 2px rgba(11,11,11,0.04);
   }
 
-  /* ---- Maqueta interactiva (modal del test 1) ---- */
-  dialog.sim { width: min(1180px, calc(100vw - 32px)); max-height: 96vh; overflow: auto; }
-  dialog.sim .modal-head { padding: 14px 26px 10px; }
-  dialog.sim .modal-body { padding: 12px 26px 20px; }
-  .sim-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; margin-bottom: 12px; }
-  .sim-ctl { display: flex; align-items: center; gap: 10px; }
-  .sim-ctl.sim-right { margin-left: auto; gap: 8px; }
-  .sim-lbl { font-family: "Raleway", Arial, sans-serif; font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--ink-3); }
-  .sim-switch { display: inline-flex; align-items: center; gap: 10px; padding: 4px 14px 4px 4px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); cursor: pointer; font: 700 13px "Lato", Arial, sans-serif; color: var(--ink-2); }
-  .sim-switch .sim-knob { position: relative; width: 40px; height: 22px; border-radius: 999px; background: #c9ccd6; transition: background .15s; }
-  .sim-switch .sim-knob::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(20,33,58,.3); transition: transform .15s; }
-  .sim-switch[aria-checked="true"] { color: var(--navy); border-color: #f3dcb8; background: var(--orange-soft); }
-  .sim-switch[aria-checked="true"] .sim-knob { background: var(--navy); }
-  .sim-switch[aria-checked="true"] .sim-knob::after { transform: translateX(18px); }
-  .sim-seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--paper); }
-  .sim-seg button { border: 0; background: none; padding: 5px 14px; border-radius: 999px; cursor: pointer; font: 700 13px "Lato", Arial, sans-serif; color: var(--ink-2); }
-  .sim-seg button[aria-pressed="true"] { background: var(--navy); color: #fff; }
-  .sim-ghost { border: 1px solid var(--line); background: var(--card); color: var(--navy); border-radius: 999px; padding: 6px 12px; cursor: pointer; font: 700 12.5px "Lato", Arial, sans-serif; }
-  .sim-ghost:hover { background: var(--orange-soft); border-color: #f3dcb8; }
-  .sim-switch:focus-visible, .sim-seg button:focus-visible, .sim-ghost:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
-  .sim-stage { --sim-h: clamp(340px, 58vh, 640px); height: var(--sim-h); display: flex; justify-content: center; align-items: flex-start; background: #fdebd3; border: 1px solid #f3dcb8; border-radius: 12px; overflow: hidden; }
-  .sim-desk, .sim-phone { position: relative; overflow: hidden; }
-  /* Escritorio con el mismo marco oscuro que el móvil, separado del borde de la zona */
-  .sim-desk { flex: none; width: calc(100% - 40px); height: calc(100% - 24px); margin: 12px 20px; border: 8px solid var(--navy-dark); border-radius: 14px; background: #fff; box-shadow: 0 8px 24px rgba(20,33,58,.25); }
-  /* Móvil completo (390 × 700 de pantalla + marco); se escala para que quepa entero en la zona */
-  .sim-phone { flex: none; width: 406px; height: 716px; margin-top: 8px; transform-origin: top center; border: 8px solid var(--navy-dark); border-radius: 36px; background: #fff; box-shadow: 0 8px 24px rgba(20,33,58,.25); }
-  .sim-phone iframe { width: 100%; height: 100%; }
-  .sim-stage[data-view="desktop"] .sim-phone, .sim-stage[data-view="mobile"] .sim-desk { display: none; }
-  /* Maqueta de una sola pieza (perfil progresivo): el iframe ocupa toda la zona */
-  .sim-stage.single { background: #eef1f6; border-color: var(--line); --sim-h: clamp(420px, 66vh, 700px); }
-  .sim-stage.single iframe { position: static; width: 100%; height: 100%; transform: none; }
-  .sim-count { font-size: 13px; color: var(--ink-2); }
-  .sim-count strong { color: var(--navy); font-size: 15px; }
-  dialog.viaj { width: min(1240px, calc(100vw - 32px)); }
-  dialog.viaj .detail { grid-template-columns: 1fr 1fr; }
-  @media (max-width: 900px) { dialog.viaj .detail { grid-template-columns: 1fr; } .sim-stage.single { height: auto; } .sim-stage.single iframe { height: 1400px; } }
-  .sim-stage iframe { display: block; border: 0; background: #fff; transform-origin: 0 0; position: absolute; top: 0; left: 0; }
-  @media (max-width: 900px) { .sim-ctl.sim-right { margin-left: 0; } }
-
-  /* ---- Maqueta interactiva de favoritos (modal del test 5) ---- */
-  dialog.fav { width: min(820px, calc(100vw - 32px)); }
-  .fav-demo { background: #eef1f6; border: 1px solid var(--line); border-radius: 12px; padding: 14px; min-height: 440px; }
-  @media (max-width: 720px) { .fav-demo-drop { left: 0; right: auto; } .fav-demo-drop::before { left: auto; right: 18px; } }
-  .fav-demo-top { display: flex; justify-content: space-between; align-items: center; background: var(--navy); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; }
-  .fav-demo-brand { font-family: "Raleway", Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 1.5px; color: #fff; }
-  .fav-demo-actions { display: flex; align-items: center; gap: 14px; }
-  .fav-demo-counter-wrap { position: relative; }
-  .fav-demo-counter { display: inline-flex; align-items: center; gap: 6px; border: 0; background: rgba(255,255,255,0.12); color: #fff; padding: 6px 12px; border-radius: 999px; cursor: pointer; font: 700 13px "Lato", Arial, sans-serif; transition: background .15s, opacity .15s, transform .15s; opacity: 0; transform: scale(.85); pointer-events: none; }
-  .fav-demo-counter.is-shown { opacity: 1; transform: scale(1); pointer-events: auto; }
-  .fav-demo-counter:hover { background: rgba(255,255,255,0.22); }
-  .fav-demo-counter-ico { width: 15px; height: 15px; fill: var(--orange); flex: none; }
-  .fav-demo-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--orange); color: var(--navy); font-family: "Raleway", Arial, sans-serif; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex: none; }
-  .fav-demo-drop { position: absolute; top: calc(100% + 10px); right: 0; width: min(330px, calc(100vw - 64px)); background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 10px 28px rgba(20,33,58,0.2); padding: 10px; z-index: 2; }
-  .fav-demo-drop::before { content: ""; position: absolute; top: -6px; right: 18px; width: 12px; height: 12px; background: var(--card); border-left: 1px solid var(--line); border-top: 1px solid var(--line); transform: rotate(45deg); }
-  .fav-demo-drop-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-  .fav-demo-drop-list li { display: grid; gap: 4px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; font-size: 13px; animation: fav-unfold .22s ease-out both; transform-origin: top; }
-  .fav-demo-drop-list li:hover { background: var(--orange-soft); border-color: #f3dcb8; }
-  .fav-demo-drop-list .t { color: var(--ink); font-weight: 700; font-family: "Raleway", Arial, sans-serif; font-size: 13.5px; }
-  .fav-demo-drop-list .m { color: var(--ink-2); font-size: 12px; }
-  .fav-demo-drop-list .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 4px; }
-  .fav-demo-drop-list .p { color: var(--ink-3); font-size: 12px; white-space: nowrap; }
-  .fav-demo-cta { border: 0; background: var(--orange); color: var(--navy); font: 800 12px "Lato", Arial, sans-serif; padding: 7px 12px; border-radius: 999px; cursor: pointer; white-space: nowrap; transition: background .15s, transform .15s; }
-  .fav-demo-cta:hover { background: #f5a21c; transform: translateX(2px); }
-  .fav-demo-cta:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
-  @keyframes fav-unfold { from { opacity: 0; transform: translateY(-6px) scaleY(.85); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { .fav-demo-drop-list li { animation: none; } }
-
-  /* ---- Pie ---- */
-  footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12px; color: var(--ink-3); }
-  footer .wordmark { color: var(--navy); font-size: 14px; letter-spacing: 3px; }
-
-  @media print {
-    body { background: #fff; font-size: 12.5px; }
-    .wrap { padding: 0; max-width: none; }
-    header.hero { border-radius: 0; }
-    .card, .phase, .test, .step { box-shadow: none; break-inside: avoid; }
-    details.sec { margin-top: 22px; }
-    .more, dialog, .chev, .toggle-all { display: none !important; }
+  /* ---- Horizontal funnel matrix ---- */
+  .matrix-card { padding: 24px; overflow-x: auto; }
+  .matrix-table { border-collapse: separate; border-spacing: 6px; width: 100%; min-width: 980px; }
+  .matrix-table th { text-align: left; padding: 0 6px 10px; }
+  .matrix-table th.col-head {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text-muted); text-align: center;
   }
+  .row-head { width: 168px; vertical-align: middle; }
+  .row-head-inner {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; border-radius: var(--radius-md);
+  }
+  .row-head-code {
+    font-family: ui-monospace, monospace; font-weight: 800; font-size: 15px;
+    color: #fff; padding: 4px 9px; border-radius: 6px; letter-spacing: 0.02em;
+  }
+  .row-head-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+  .matrix-table td.cell { padding: 0; vertical-align: top; }
+  .step-cell {
+    min-width: 108px; min-height: 74px;
+    border-radius: var(--radius-md);
+    padding: 9px 10px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative;
+  }
+  .step-cell .code { font-family: ui-monospace, monospace; font-weight: 800; font-size: 15px; letter-spacing: 0.02em; }
+  .step-cell .label { font-size: 11px; font-weight: 500; margin-top: 2px; opacity: 0.92; }
+  .step-cell.empty {
+    background: transparent; border: 1.5px dashed var(--gridline);
+    align-items: center; text-align: center;
+  }
+  .step-cell.empty .label { color: var(--text-muted); font-size: 11px; margin: 0; opacity: 1; }
+  .opt-flag {
+    position: absolute; top: -8px; right: -6px;
+    background: #fff; color: #a06600; border: 1px solid #f3e2ac;
+    font-size: 9.5px; font-weight: 700; text-transform: uppercase;
+    padding: 2px 6px; border-radius: 9999px; box-shadow: 0 1px 2px rgba(11,11,11,0.12);
+  }
+  /* ---- Matriz expandida: ESC + sublíneas + partners (misma cabecera que el pipeline/roadmap) ---- */
+  .matrix-table th.row-head-wide { width: 240px; }
+  .matrix-table th.col-th { padding: 0 0 10px; }
+  /* Columnas de paso con el mismo ancho en todas las matrices expandidas */
+  .matrix-table.wide { table-layout: fixed; }
+  .matrix-table.wide th.row-head-wide { width: 240px; }
+  /* Cabeceras fijas al hacer scroll, hasta el final de cada tabla. El shadow rellena los huecos del border-spacing para que no asome el contenido */
+  .matrix-table thead th {
+    position: sticky; top: 0; z-index: 5; background: var(--surface-1);
+    box-shadow: 0 0 0 3px var(--surface-1), 0 6px 0 var(--surface-1);
+  }
+  /* overflow-x:auto convertiría la tarjeta en contenedor de scroll y rompería el sticky; con ancho suficiente no hace falta scroll horizontal */
+  @media (min-width: 1100px) {
+    .card.matrix-card, .card.sub-card { overflow-x: clip; }
+  }
+  .col-chip { background: #0f172a; color: #fff; border-radius: 8px; padding: 9px 6px; text-align: center; line-height: 1.25; }
+  .col-chip .cc-code { display: block; font-weight: 800; font-size: 13px; letter-spacing: 0.03em; text-transform: none; }
+  .col-chip .cc-name { display: block; font-weight: 500; font-size: 11px; opacity: 0.9; text-transform: none; letter-spacing: 0; }
+  .row-head-wide .row-head-code { font-size: 13px; white-space: nowrap; }
+  .row-head-text { display: flex; flex-direction: column; min-width: 0; }
+  .row-head-line { display: flex; align-items: center; gap: 6px; min-width: 0; }
+  .row-head-line .chip { margin: 0; flex: 0 0 auto; }
+  .matrix-table.wide .row-head-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row-head-sub { font-size: 10.5px; font-weight: 400; color: var(--text-muted); line-height: 1.3; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* Altura fija en todas las filas de las matrices expandidas, para que el ritmo vertical sea uniforme */
+  .step-cell.compact { min-width: 0; height: 56px; padding: 6px 7px; }
+  .matrix-table.wide .row-head-inner { height: 56px; padding: 0 8px; gap: 8px; }
+  .step-cell.inherited { background: var(--line-par-soft); border: 1.5px solid var(--line-par); color: #3d2a8c; }
+  .step-cell.inherited.biz { background: var(--line-biz-soft); border-color: var(--line-biz); color: #0b4f49; }
+  .view-toggle { display: inline-flex; border: 1.5px solid var(--gridline); border-radius: 9999px; padding: 3px; background: var(--page-plane); margin-bottom: 16px; }
+  .view-toggle button { font: inherit; font-size: 12.5px; font-weight: 600; border: none; background: transparent; color: var(--text-secondary); padding: 6px 14px; border-radius: 9999px; cursor: pointer; }
+  .view-toggle button.active { background: var(--brand); color: #fff; }
+  .chip { display: inline-block; font-family: ui-monospace, monospace; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 4px; background: var(--surface-1); border: 1px solid var(--gridline); color: var(--text-secondary); margin: 3px 3px 0 0; }
+  .sub-card { padding: 24px; overflow-x: auto; margin-top: 18px; }
+  .sub-card .card-kicker { font-size: 11.5px; font-weight: 700; color: var(--line-par); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .sub-card h3 { font-size: 16.5px; margin-bottom: 6px; }
+  .sub-card .card-lead { margin: 0 0 16px; font-size: 13.5px; color: var(--text-secondary); max-width: 820px; }
+  .sub-card .card-lead code, .code-ex { font-family: ui-monospace, monospace; background: var(--page-plane); border: 1px solid var(--gridline); border-radius: 4px; padding: 1px 5px; }
+
+  .matrix-note {
+    display: flex; gap: 18px; flex-wrap: wrap; margin-top: 16px; padding-top: 14px;
+    border-top: 1px solid var(--gridline); font-size: 12px; color: var(--text-secondary);
+  }
+  .matrix-note span { display: inline-flex; align-items: center; gap: 6px; }
+  .matrix-note .swatch { width: 10px; height: 10px; border-radius: 3px; border: 1.5px dashed var(--gridline); }
+  .hint-hover { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+
+  /* ---- Raw/original step cell (fragmentation "before" matrix) ---- */
+  .step-cell-raw { min-height: 74px; align-items: flex-start; }
+  .step-cell-raw .raw-name { font-size: 11.5px; font-weight: 700; line-height: 1.3; }
+  .step-cell-raw .owner-name {
+    display: block; margin-top: 5px; padding-top: 5px;
+    border-top: 1px solid rgba(255,255,255,0.28);
+    font-size: 11px; font-weight: 400; font-style: italic; line-height: 1.3; opacity: 0.95;
+  }
+  .step-cell-raw .owner-name::before { content: 'Owner: '; font-style: normal; font-weight: 700; opacity: 0.8; }
+  .step-cell-raw .code-mini {
+    display: inline-block; margin-top: 7px; font-family: ui-monospace, monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.02em; opacity: 0.9;
+    background: rgba(255,255,255,0.3); padding: 1px 6px; border-radius: 4px; width: fit-content;
+  }
+
+  /* ---- Why-it-matters list ---- */
+  .why-card { padding: 2px 10px; }
+  .why-item { display: flex; align-items: center; gap: 14px; padding: 9px 14px; border-bottom: 1px solid var(--gridline); }
+  .why-item:last-child { border-bottom: none; }
+  .why-num {
+    flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--brand-subtle); color: var(--brand);
+    font-family: "Poppins", sans-serif; font-weight: 700; font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .why-body h4 { font-size: 13.5px; margin-bottom: 2px; color: var(--text-primary); }
+  .why-body p { margin: 0; font-size: 13px; line-height: 1.4; color: var(--text-secondary); }
+
+  /* ---- Segmentation extension rationale ---- */
+  .seg-why { padding: 22px 26px; margin-top: 16px; }
+  .seg-why h4 { font-size: 13.5px; margin-bottom: 12px; }
+  .seg-why ul { margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--text-secondary); }
+  .seg-why li { margin-bottom: 10px; }
+  .seg-why li:last-child { margin-bottom: 0; }
+  .seg-why code { font-family: ui-monospace, monospace; background: var(--page-plane); border: 1px solid var(--gridline); border-radius: 4px; padding: 1px 5px; }
+
+  /* ---- Dictionary table ---- */
+  .dict-table-card { padding: 8px; overflow-x: auto; }
+  .dict-table { border-collapse: collapse; width: 100%; min-width: 880px; font-size: 13px; }
+  .dict-table thead th {
+    text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--text-muted);
+    padding: 10px 14px; border-bottom: 1.5px solid var(--gridline);
+    position: sticky; top: 0; background: var(--surface-1);
+  }
+  .dict-table tbody tr { border-bottom: 1px solid var(--gridline); }
+  .dict-table tbody tr:last-child { border-bottom: none; }
+  .dict-table tbody tr:hover { background: var(--page-plane); }
+  .dict-table tbody tr.entry-row td:first-child { border-left: 3px solid var(--text-muted); }
+  .dict-table tbody tr.step-row td:first-child { border-left: 3px solid var(--brand); }
+  .dict-table td { padding: 11px 14px; vertical-align: top; color: var(--text-secondary); }
+  .dict-table .code-badge {
+    display: inline-flex; font-family: ui-monospace, monospace; font-weight: 700; font-size: 12.5px;
+    color: #fff; background: var(--brand);
+    padding: 3px 9px; border-radius: 6px; letter-spacing: 0.02em; white-space: nowrap;
+  }
+  .entry-row .code-badge { background: var(--text-muted); }
+  .dict-table td.name-cell { font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+  .dict-table td.def-cell { max-width: 340px; }
+  .dict-table td.lines-cell { font-size: 12px; color: var(--text-muted); max-width: 300px; }
+  .dict-table .note-inline { display: block; font-size: 11.5px; color: #a06600; background: #fff7db; border: 1px solid #f3e2ac; border-radius: 6px; padding: 4px 7px; margin-top: 5px; }
+  .dict-legend { display: flex; gap: 18px; flex-wrap: wrap; padding: 12px 14px 6px; font-size: 12px; color: var(--text-secondary); }
+  .dict-legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .dict-legend .swatch { width: 12px; height: 12px; border-radius: 3px; }
+  .dict-legend .swatch.entry { background: var(--text-muted); }
+  .dict-legend .swatch.step { background: var(--brand); }
+
+  /* ---- Segmentation builder ---- */
+  .builder { padding: 26px 28px; }
+  .builder-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+  .builder-field > label { display:block; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .multiselect { position: relative; font-family: "Roboto", system-ui, sans-serif; }
+  .multiselect-trigger {
+    width: 100%; font-family: inherit; font-size: 13.5px; padding: 9px 10px;
+    border-radius: 8px; border: 1.5px solid var(--gridline); background: var(--page-plane); color: var(--text-primary);
+    cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 6px; text-align: left;
+  }
+  .multiselect-trigger .ms-value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+  .multiselect-trigger .ms-caret { flex: 0 0 auto; font-size: 9px; color: var(--text-muted); transition: transform 0.15s; }
+  .multiselect.open .multiselect-trigger { border-color: var(--brand); background: var(--surface-1); }
+  .multiselect.open .ms-caret { transform: rotate(180deg); }
+  .multiselect-panel {
+    position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 30;
+    background: var(--surface-1); border: 1px solid var(--border-ring); border-radius: 10px;
+    box-shadow: 0 10px 28px rgba(11,11,11,0.16); padding: 6px; max-height: 300px; overflow-y: auto;
+    display: none;
+  }
+  .multiselect.wide .multiselect-panel { min-width: 260px; }
+  .ms-option.sub { padding-left: 30px; }
+  .ms-option.sub .ms-text { font-size: 12.5px; }
+  .ms-option.sub2 { padding-left: 48px; }
+  .ms-option.parent .ms-text .ms-code { color: var(--brand); }
+  .multiselect.open .multiselect-panel { display: block; }
+  .ms-option {
+    display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500;
+    padding: 8px 9px; border-radius: 6px; cursor: pointer; color: var(--text-primary);
+    user-select: none;
+  }
+  .ms-option:hover { background: var(--page-plane); }
+  .ms-option .ms-box {
+    flex: 0 0 auto; width: 16px; height: 16px; border-radius: 4px;
+    border: 1.5px solid var(--gridline); background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.12s, border-color 0.12s;
+  }
+  .ms-option .ms-box svg { width: 10px; height: 10px; opacity: 0; transform: scale(0.6); transition: opacity 0.12s, transform 0.12s; }
+  .ms-option input { display: none; }
+  .ms-option input:checked ~ .ms-box { background: var(--brand); border-color: var(--brand); }
+  .ms-option input:checked ~ .ms-box svg { opacity: 1; transform: scale(1); }
+  .ms-option .ms-text { color: var(--text-secondary); }
+  .ms-option .ms-text .ms-code { font-weight: 700; color: var(--text-primary); }
+  .ms-option .ms-text .ms-name { font-weight: 400; color: var(--text-secondary); }
+  .ms-option input:checked ~ .ms-text .ms-name { color: var(--text-primary); }
+  .builder-output {
+    background: #161916; color: #fff; border-radius: var(--radius-md);
+    padding: 16px 20px; font-family: ui-monospace, monospace; font-size: 18px; font-weight: 600;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .builder-output .parts span { padding: 0 2px; }
+  .copy-btn {
+    font-family: "Roboto", sans-serif; font-size: 12.5px; font-weight: 600;
+    background: rgba(255,255,255,0.14); color: #fff; border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 6px; padding: 6px 12px; cursor: pointer;
+  }
+  .copy-btn:hover { background: rgba(255,255,255,0.22); }
+
+  /* ---- Tracker section ---- */
+  .tracker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .tracker-card { padding: 20px 22px; }
+  .tracker-card h4 { font-size: 13.5px; margin-bottom: 10px; }
+  .tracker-pattern { font-family: ui-monospace, monospace; font-size: 13px; background: var(--page-plane); border: 1px solid var(--gridline); border-radius: 6px; padding: 10px 12px; margin-bottom: 10px; }
+  .tracker-example { font-size: 12.5px; color: var(--text-secondary); }
+  .tracker-example code { font-family: ui-monospace, monospace; background: var(--brand-subtle); color: #003366; padding: 1px 6px; border-radius: 4px; }
+  @media (max-width: 760px) { .tracker-grid { grid-template-columns: 1fr; } .builder-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  footer.next-steps {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    padding: 22px 28px; background: var(--brand-subtle); border-radius: var(--radius-lg);
+  }
+  footer.next-steps p { margin: 0; font-size: 13.5px; color: #003366; max-width: 640px; }
+  footer.next-steps .approve-badge { font-size: 12.5px; font-weight: 700; color: var(--brand); border: 1.5px solid var(--brand); padding: 8px 16px; border-radius: 9999px; white-space: nowrap; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header class="hero">
-    <div class="brand-row">
-      <div class="brands">
-        <img src="assets/luce_innovative_technologies_blanco.svg" alt="Luce Innovative Technologies" class="logo-luce">
-        <span class="brand-sep" aria-hidden="true"></span>
-        <span class="logo-plate"><img src="assets/logitravel_logo.svg" alt="Logitravel" class="logo-logi"></span>
-      </div>
-      <div class="meta">Luce Innovative Technologies<br>Para Logitravel · 13 de octubre de 2026</div>
+    <div class="eyebrow">Logitravel · CRO / UX Research</div>
+    <h1>Estandarización de nombres de funnel &amp; codificación de 3 letras</h1>
+    <p class="sub">Propuesta consolidada que incluye diccionario de páginas, vista comparativa de los funnels, y el código de 5 partes para nombrar tests A/B, estudios UX y trackers de AB Tasty.</p>
+    <div class="pill-row">
+      <span class="pill">11 códigos de página</span>
+      <span class="pill">Código: SEGMENTO|DISPOSITIVO|LINEA[_SUBLINEA]|PAGINA|PAIS</span>
+      <span class="pill" id="pill-lines"></span>
+      <span class="pill status"><span class="dot"></span>Pendiente de aprobación</span>
     </div>
-    <div class="eyebrow">Proyecto MORFEO</div>
-    <h1>Plan de Personalización Digital: Experiencias únicas para acelerar el crecimiento</h1>
-    <p class="sub">Qué proponemos, en qué etapas, y cómo serán los primeros tests.</p>
   </header>
-  <div class="hero-rule"></div>
-  <div class="toggle-all"><button data-all="open">Desplegar todo</button> · <button data-all="close">Plegar todo</button></div>
 
-  <!-- ====== QUÉ ES ====== -->
-  <details class="sec" open>
-    <summary>
-      <div class="sum-text"><div class="kicker">Qué es MORFEO</div><h2>Mostrar a cada viajero lo que le importa</h2></div>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="sec-body">
-    <p class="lead">Hoy la web enseña lo mismo a una familia con dos niños, a una pareja en luna de miel y a quien busca el chollo más barato. MORFEO propone adaptar el contenido, el orden y los mensajes a cada tipo de viajero. Es un proyecto a medio plazo, paralelo a los quick wins actuales, con un objetivo único: <strong>más reservas, demostradas con test</strong>.</p>
-
-    <div class="steps">
-      <div class="card step">
-        <span class="n">PASO 1</span>
-        <h3>Validamos sin desarrollo</h3>
-        <p>Cada idea se prueba con <strong>AB Tasty y GTM</strong> sobre la web actual. <strong>El equipo de desarrollo de Logitravel no interviene.</strong></p>
+  <!-- WHY IT MATTERS -->
+  <section>
+    <div class="section-head">
+      <div class="kicker">01 · Por qué estandarizar</div>
+      <h2>5 razones para invertir en un vocabulario común</h2>
+      <p>Cada punto hoy cuesta más de lo necesario porque cada línea de negocio nombra sus pasos a su manera.</p>
+    </div>
+    <div class="card why-card">
+      <div class="why-item">
+        <div class="why-num">1</div>
+        <div class="why-body">
+          <h4>Mejor asistencia de IA</h4>
+          <p>Un vocabulario común permite a la IA interpretar los pasos sin tener que adivinarlos.</p>
+        </div>
       </div>
-      <div class="arrow">→</div>
-      <div class="card step">
-        <span class="n">PASO 2</span>
-        <h3>Con el impacto demostrado, damos el siguiente paso</h3>
-        <p>Lo que un test demuestra que funciona, <strong>pasa a construirse de forma nativa.</strong></p>
+      <div class="why-item">
+        <div class="why-num">2</div>
+        <div class="why-body">
+          <h4>Matriz de implementaciones entre líneas</h4>
+          <p>Los pasos comparables facilitan replicar tests y analizar qué funciona en cada línea.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">3</div>
+        <div class="why-body">
+          <h4>Facilita la consolidación del reporting y KPIs</h4>
+          <p>Un mismo código permite definir métricas una sola vez y aplicarlas a todas las líneas.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">4</div>
+        <div class="why-body">
+          <h4>Comparaciones más fiables</h4>
+          <p>Cada nombre identifica el mismo momento del funnel en todas las líneas.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">5</div>
+        <div class="why-body">
+          <h4>Estándar y onboarding</h4>
+          <p>Un diccionario común facilita mantener el criterio y formar a nuevas personas del equipo.</p>
+        </div>
       </div>
     </div>
-  </div>
-  </details>
+  </section>
 
-  <!-- ====== PUNTO DE PARTIDA ====== -->
-  <details class="sec" open>
-    <summary>
-      <div class="sum-text"><div class="kicker">Punto de partida</div><h2>Lo que ya sabemos</h2></div>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="sec-body">
-    <div class="grid-2">
+  <!-- FRAGMENTATION "BEFORE" MATRIX -->
+  <section>
+    <div class="section-head">
+      <div class="kicker">02 · Situación actual: nombres sin estandarizar</div>
+      <h2>Los funnels hoy</h2>
+      <p>La columna de cada paso agrupa nombres que no son iguales entre sí ni siguen un patrón común — esa es la deunificación que la propuesta busca resolver.</p>
+    </div>
+    <div class="card matrix-card">
+      <table class="matrix-table" id="matrix-table-raw">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="col-head">PLP</th>
+            <th class="col-head">PDP</th>
+            <th class="col-head">CFG</th>
+            <th class="col-head">TRA</th>
+            <th class="col-head">XTR</th>
+            <th class="col-head">PRE</th>
+            <th class="col-head">CHK</th>
+            <th class="col-head">WAI</th>
+          </tr>
+        </thead>
+        <tbody id="matrix-body-raw"></tbody>
+      </table>
+      <div class="matrix-note">
+        <span><span class="swatch"></span> celda vacía = ese paso no existe en esa línea</span>
+      </div>
+      <p class="hint-hover">💡 El código pequeño bajo cada nombre es el código de 3 letras que se propone en la sección 04 — para comparar de un vistazo con la vista estandarizada.</p>
+    </div>
+  </section>
 
-      <div class="card know">
-        <h3>Del usuario</h3>
-        <ul class="facts">
-          <li><strong>El presupuesto guardado es la señal de intención más clara.</strong> Son unos 32.000 al mes en Cruceros, Grandes Viajes y Vuelo + Hotel, y la mayor palanca de personalización.</li>
-          <li><strong>Es posible reconocer al viajero sin desarrollo.</strong> Con los datos que la web ya expone en cada búsqueda estamos en condiciones de modelizar los primeros perfiles de usuario.</li>
-          <li><strong>Los perfiles más amplios</strong> son familias, parejas y cazadores de chollos. Son los que permiten tests rápidos; los más finos (luna de miel, nichos) tardan más.</li>
+  <!-- HORIZONTAL FUNNEL MATRIX -->
+  <section>
+    <div class="section-head">
+      <div class="kicker">03 · Propuesta: nombres estandarizados</div>
+      <h2>Líneas, sublíneas, partners y otros negocios, con los mismos pasos</h2>
+      <p>Cada fila es una línea o sublínea de negocio; cada columna, un paso canónico del funnel estandarizado (la misma cabecera que el pipeline/roadmap de CRO Hub, con ESC como primer paso). Una celda vacía indica que esa fila no tiene ese paso. Pasa el ratón sobre una celda para ver la definición del paso. <b>Criterio user-centric:</b> los nombres describen la experiencia o acción del usuario, no la estructura interna del negocio.</p>
+    </div>
+
+    <div class="card matrix-card">
+      <table class="matrix-table wide" id="matrix-table">
+        <thead id="thead-main"></thead>
+        <tbody id="matrix-body"></tbody>
+      </table>
+      <div class="matrix-note">
+        <span><span class="opt-flag" style="position:static;">Opc.</span> = paso opcional (hay entrada directa a PDP sin pasar por él)</span>
+        <span><span class="swatch"></span> celda vacía = ese paso no existe en esa fila</span>
+        <span><span class="chip" style="margin:0;">Principal</span> = sublínea más importante de su línea</span>
+      </div>
+      <p class="hint-hover">💡 Líneas principales: Cruceros, Grandes Viajes, Paquetes, Transporte y Hoteles. Dentro de Paquetes la principal es Vuelo + Hotel (<code class="code-ex">PAQ_V+H</code>) y dentro de Transporte, Vuelos (<code class="code-ex">TRP_VUE</code>). <code class="code-ex">PAQ_CyE</code> y <code class="code-ex">PAQ_SES</code> son «Paquetes terceros» y se muestran con la etiqueta «Terceros». En el constructor de segmentación cuelgan de la agrupación <code class="code-ex">PAQ_TER</code>. Fuente: CSV de consolidación de funnels (versión 3), con el mismo orden de líneas; Ferries (<code class="code-ex">TRP_FER</code>) es sublínea de Transporte.</p>
+    </div>
+
+    <div class="card sub-card">
+      <div class="card-kicker">Otras líneas</div>
+      <h3>Líneas con funnel propio, de menor volumen</h3>
+      <p class="card-lead">Home, Chollos, Disney, Escapadas, Actividades y Transversales (<code>TRV</code>, sin sublíneas y con los 9 pasos). <b>Regla de códigos:</b> un código solo puede repetirse entre campos si designa lo mismo (<code>CHO</code> y <code>HOM</code> son línea y página a la vez). Si designa cosas distintas se renombra: la línea Escapadas es <code>EPA</code> (<code>ESC</code> queda para el paso Escaparate), la línea Transportes es <code>TRP</code> (<code>TRA</code> queda para el paso Selección de transporte) y los transfers son <code>TRP_TRF</code>.</p>
+      <table class="matrix-table wide" id="matrix-table-oth">
+        <thead id="thead-oth"></thead>
+        <tbody id="matrix-body-oth"></tbody>
+      </table>
+      <p class="hint-hover">💡 HOM y CHO solo tienen ESC: son puntos de entrada, sin CHK ni WAI.</p>
+    </div>
+
+    <div class="card sub-card">
+      <div class="card-kicker">Partners</div>
+      <h3>El partner va en el ID de la hipótesis; su funnel es el de cada línea que contrata</h3>
+      <p class="card-lead">Un partner no es una línea ni una sublínea: se identifica por el <b>prefijo del ID</b> de la hipótesis en CRO Hub (<code>LOGI-0253</code> → <code>MEL-0254</code>, <code>PAW-0256</code>), elegido con selector al crearla. En el código de segmentación el campo LINEA lleva la línea de producto con la nomenclatura de funnel de siempre (<code>PAQ_V+H</code>, <code>HOT</code>…), igual que en Logitravel. Cada partner tiene <b>una fila por línea contratada</b> (por ejemplo, Por Aventura tiene <code>PAQ_V+H</code> y <code>PAQ_T+H</code>; Balearia, <code>PAQ_F+H</code> y <code>HOT</code>), con el funnel de esa línea. Cada partner tiene su propio color, para ver de un vistazo qué filas son suyas.</p>
+      <table class="matrix-table wide" id="matrix-table-par">
+        <thead id="thead-par"></thead>
+        <tbody id="matrix-body-par"></tbody>
+      </table>
+      <p class="hint-hover">💡 Normalizado respecto al CSV: <code class="code-ex">F+H</code> → <code class="code-ex">PAQ_F+H</code> y <code class="code-ex">PAQ V+H</code> → <code class="code-ex">PAQ_V+H</code>.</p>
+      <div class="card seg-why">
+        <h4>Ejemplo: mismo test, dos canales</h4>
+        <ul>
+          <li><b>Logitravel:</b> <code>LOGI-0253</code> · <code>ALL|DES|PAQ_V+H|PDP|ALL</code></li>
+          <li><b>Melia:</b> <code>MEL-0254</code> · <code>ALL|DES|PAQ_V+H|PDP|ALL</code>. El código de segmentación es idéntico y solo cambia el prefijo del ID, así que los dos tests se comparan por línea y página.</li>
+          <li><b>Por qué no PAR_MEL en LINEA:</b> en Por Aventura y Balearia no distinguiría paquetes de hoteles, y el partner ya queda identificado en el ID.</li>
         </ul>
       </div>
-      <div class="card know biz">
-        <h3>Del negocio</h3>
-        <ul class="facts">
-          <li><strong>Tenemos datos del 13 % de las sesiones</strong> (con cuenta, logados o no). Del 87 % restante solo sabemos lo que navegan y lo que guardamos en su navegador.</li>
-          <li><strong>Los logados son el 3 % de las sesiones.</strong> Con sesión iniciada, podemos leer su área personal. Convierten 15 veces más, pero puede ser correlación, no causa: lo comprobaremos con tests.</li>
-          <li><strong>El monedero</strong> está disponible en toda la web, pero muy pocos usuarios tienen saldo. Todavía no se puede utilizar como palanca.</li>
+    </div>
+
+    <div class="card sub-card">
+      <div class="card-kicker" style="color: var(--line-biz);">Otro negocio</div>
+      <h3>Liverpool no es un partner: es un negocio aparte</h3>
+      <p class="card-lead">Liverpool (<code>viajesci.liverpool.com.mx</code>) opera como un negocio distinto, no como partner ni como línea de Logitravel. Contrata <b>todas las líneas</b>, así que se muestra la unión de todos los funnels. Su tratamiento en el ID y en el código de segmentación está por definir.</p>
+      <table class="matrix-table wide" id="matrix-table-biz">
+        <thead id="thead-biz"></thead>
+        <tbody id="matrix-body-biz"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- DICTIONARY -->
+  <section>
+    <div class="section-head">
+      <div class="kicker">04 · Diccionario de páginas</div>
+      <h2>11 códigos de funnel de 3 letras cubren todas las líneas de negocio</h2>
+      <p>HOM y CHO son puntos de entrada previos al funnel trackeado; ESC (escaparate) pasa a ser el primer paso del funnel, como en el pipeline/roadmap de CRO Hub; el resto son los demás pasos del funnel estandarizado. <b>Criterio user-centric:</b> los nombres describen lo que el usuario ve o hace, no cómo cada línea organiza internamente su proceso.</p>
+    </div>
+    <div class="card dict-table-card">
+      <div class="dict-legend">
+        <span><span class="swatch entry"></span>Punto de entrada (HOM/CHO)</span>
+        <span><span class="swatch step"></span>Paso del funnel</span>
+      </div>
+      <table class="dict-table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nombre unificado</th>
+            <th>Definición</th>
+            <th>Líneas donde aparece</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="entry-row">
+            <td><span class="code-badge">HOM</span></td>
+            <td class="name-cell">Home</td>
+            <td class="def-cell">Home del site. Buscador propio y productos destacados; salto directo a PDP posible.</td>
+            <td class="lines-cell">Todas las líneas · punto de entrada</td>
+          </tr>
+          <tr class="entry-row">
+            <td><span class="code-badge">CHO</span></td>
+            <td class="name-cell">Viajes Chollos</td>
+            <td class="def-cell">Landing de alto valor y tráfico que redirige directo a fichas de producto (PDP).</td>
+            <td class="lines-cell">Todas las líneas · punto de entrada</td>
+          </tr>
+          <tr class="step-row">
+            <td><span class="code-badge">ESC</span></td>
+            <td class="name-cell">Escaparate</td>
+            <td class="def-cell">Landing/buscador previo al listado (categoría o campaña).</td>
+            <td class="lines-cell">Todas las líneas salvo Caribe y Exóticos y Salidas Especiales (PAQ). En partners, según las líneas contratadas.</td>
+          </tr>
+          <tr class="step-row">
+            <td><span class="code-badge">PLP</span></td>
+            <td class="name-cell">Listado de resultados</td>
+            <td class="def-cell">
+              Listado de productos/opciones tras una búsqueda (incluye el searcher de Cruceros).
+              <span class="note-inline">Opcional en CRU/GRV/PAQ (entrada directa a PDP vía campañas/orgánico). Obligatorio en VUE/HOT.</span>
+            </td>
+            <td class="lines-cell">CRU, GRV, PAQ (V+H, F+H, T+H, CyE, SES), TRP (VUE, TRE, TRF, COC, FER), DIS, EPA (Escapadas), ACT, TRV, HOT</td>
+          </tr>
+          <tr class="step-row">
+            <td><span class="code-badge">PDP</span></td>
+            <td class="name-cell">Ficha de producto</td>
+            <td class="def-cell">Ficha de detalle de un crucero/paquete/hotel concreto.</td>
+            <td class="lines-cell">CRU, GRV, PAQ (V+H, F+H, T+H, CyE, SES), DIS, EPA (Escapadas), ACT, TRV, HOT (TRP no trackea este paso)</td>
+          </tr>
+          <tr class="step-row">
+            <td><span class="code-badge">CFG</span></td>
+            <td class="name-cell">Configuración</td>
+            <td class="def-cell">Elegir cabina, habitación o fechas dentro de un producto ya abierto.</td>
+            <td class="lines-cell">CRU, GRV, PAQ (CyE, SES), TRV</td>
+          </tr>
+          <tr class="step-row">
+            <td><span class="code-badge">TRA</span></td>
+            <td class="name-cell">Selección de transporte</td>
+            <td class="def-cell">Elegir vuelo/transporte dentro de un paquete.</td>
+            <td class="lines-cell">PAQ (V+H, F+H, T+H), DIS, TRV</td>
+          </tr>
+          <tr class="step-row">
+            <td><span class="code-badge">XTR</span></td>
+            <td class="name-cell">Extras</td>
+            <td class="def-cell">Complementos o add-ons del paquete.</td>
+            <td class="lines-cell">PAQ (V+H, F+H, T+H), DIS, EPA (Escapadas), TRV</td>
+          </tr>
+          <tr class="step-row">
+            <td><span class="code-badge">PRE</span></td>
+            <td class="name-cell">Presupuesto</td>
+            <td class="def-cell">Resumen o carrito antes de pagar.</td>
+            <td class="lines-cell">CRU, GRV, PAQ (V+H, F+H, T+H), DIS, EPA (Escapadas), TRV (TRP, ACT y HOT no trackean este paso)</td>
+          </tr>
+          <tr class="step-row">
+            <td><span class="code-badge">CHK</span></td>
+            <td class="name-cell">Checkout</td>
+            <td class="def-cell">Pago y datos del cliente.</td>
+            <td class="lines-cell">Todas salvo CHO y HOM</td>
+          </tr>
+          <tr class="step-row">
+            <td><span class="code-badge">WAI</span></td>
+            <td class="name-cell">Wait</td>
+            <td class="def-cell">Espera y confirmación tras la intención de pago. Puede derivar en confirmación (Thank You) o en error de pago (Payment error).</td>
+            <td class="lines-cell">Todas salvo CHO y HOM</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SEGMENTATION BUILDER -->
+  <section>
+    <div class="section-head">
+      <div class="kicker">05 · Código de segmentación (tests A/B · estudios UX)</div>
+      <h2>SEGMENTO | DISPOSITIVO | LINEA[_SUBLINEA] | PAGINA | PAIS</h2>
+      <p>Multiselección por posición, igual que en el uso real: cada campo admite varios valores separados por coma (ej. <code style="font-family: ui-monospace, monospace;">NEW|DES,TAB|CRU,PAQ_V+H,F+H|PLP|PT,ES,FR</code>). Selecciona uno o varios valores en cada desplegable para ver el resultado exacto.</p>
+    </div>
+    <div class="card builder">
+      <div class="builder-grid" id="builder-grid"></div>
+      <div class="builder-output">
+        <span class="parts" id="builder-result">ALL|ALL|ALL|PDP|ALL</span>
+        <button class="copy-btn" id="copy-code">Copiar</button>
+      </div>
+      <div class="card seg-why">
+        <h4>¿Cómo se escribe la línea cuando hay sublínea?</h4>
+        <ul>
+          <li><b>Sin sublínea:</b> solo el código de línea, p. ej. <code>PAQ</code> (línea completa). Las líneas con una única sublínea (CRU, HOT, ACT…) se escriben siempre así.</li>
+          <li><b>Con sublínea:</b> <code>LINEA_SUBLINEA</code> dentro del mismo campo, p. ej. <code>PAQ_V+H</code>.</li>
+          <li><b>Varias sublíneas de una línea:</b> se separan con coma y el prefijo se escribe una sola vez, p. ej. <code>PAQ_V+H,F+H</code>. Con varias líneas: <code>CRU,PAQ_V+H,F+H,TRP_VUE</code>.</li>
+          <li><b>Línea completa y sublínea a la vez</b> sería redundante: el selector lo evita.</li>
+          <li><b>Partners:</b> no van en este campo. Se identifican por el prefijo del ID de la hipótesis (<code>MEL-0254</code>) y su línea se escribe con la nomenclatura de funnel (<code>PAQ_V+H</code>); ver sección 03.</li>
         </ul>
       </div>
-
-    </div>
-
-    <div class="card profiles">
-      <div class="profiles-head">
-        <h3>Los 25 perfiles de viajero</h3>
-        <button class="more small" data-open="dlg-segmentos">Ver todos y cómo los reconocemos</button>
-      </div>
-      <div class="chips">
-        <span class="chip hi">Familia</span><span class="chip hi">Pareja</span><span class="chip hi">Cazador de chollos</span>
-        <span class="chip">Última hora</span><span class="chip">Planificador</span><span class="chip">Sénior</span><span class="chip">Premium</span>
-        <span class="chip">Todo incluido</span><span class="chip">Escapada</span><span class="chip">Negocios</span><span class="chip">Luna de miel</span>
-        <span class="chip">Residente en islas</span><span class="chip">Con presupuesto guardado</span><span class="chip">Fiel a una naviera</span><span class="chip">… y 11 más</span>
+      <div class="card seg-why">
+        <h4>¿Por qué añadir un 5º elemento (PAGINA) al código?</h4>
+        <ul>
+          <li><b>Mejor asistencia de IA:</b> preguntar por <code>ALL|ALL|ALL|ALL</code> — "cambio de copy en el CTA" — obliga a la IA (o a cualquier persona) a adivinar en qué página ocurrió el test; con <code>ALL|ALL|ALL|PDP|ALL</code> la pregunta ya lleva la respuesta incorporada y el análisis o la réplica en otra línea es inmediata.</li>
+          <li><b>Vista al vuelo:</b> con solo leer el nombre del test se entiende en qué página se ejecutó, sin tener que abrir la ficha del test o preguntarle a quien lo montó.</li>
+          <li><b>Automatización en CRO Hub:</b> con el código creado mediante selectores, solo habrá que rellenar el nombre del test; el resto de campos relacionados se autorrellenará automáticamente a partir de los valores seleccionados.</li>
+          <li><b>Evita colisiones de nombre:</b> dos tests corriendo a la vez en la misma línea y dispositivo pero en páginas distintas (ej. un cambio de CTA en PDP y otro en CHK) quedan claramente diferenciados en vez de competir por el mismo nombre genérico.</li>
+        </ul>
       </div>
     </div>
-  </div>
-  </details>
+  </section>
 
-  <!-- ====== ETAPAS ====== -->
-  <details class="sec" open>
-    <summary>
-      <div class="sum-text"><div class="kicker">Etapas</div><h2>Tres fases. Cada una se apoya en lo aprendido en la anterior</h2></div>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="sec-body">
-    <div class="phases">
-      <div class="phase-col">
-        <div class="card phase p1">
-          <div class="num">Fase 1 <span class="now">AHORA</span></div>
-          <h3>Mejor registro de la información disponible y primeros tests</h3>
-          <ul>
-            <li><strong>Aprovechar la navegación explícita</strong> de todos los usuarios, logados o no.</li>
-            <li><strong>Deducir el interés mostrado</strong> y construir los primeros perfiles de viajero.</li>
-            <li><strong>Validar con los primeros tests</strong> sobre esos perfiles.</li>
-          </ul>
-        </div>
-        <div class="card phase-detail">
-          <h4>Qué registramos</h4>
-          <ul>
-            <li><strong>Presupuestos</strong> de todos los usuarios.</li>
-            <li><strong>Añadidos en favoritos</strong> en Cruceros.</li>
-            <li><strong>Búsquedas</strong> en todas las líneas, uso de filtros y orden elegidos.</li>
-            <li><strong>Perfil de cada viajero</strong> (líneas, destinos, antelación...) y su segmento.</li>
-          </ul>
-        </div>
+  <!-- TRACKER CONVENTION -->
+  <section>
+    <div class="section-head">
+      <div class="kicker">06 · Convención de trackers (AB Tasty)</div>
+      <h2>Reutiliza los mismos códigos de línea y dispositivo</h2>
+      <p>El tracker de <code style="font-family: ui-monospace, monospace;">ABTastyClickTracking</code> mide una acción dentro de una variante ya montada — por eso no lleva página, país ni partner: esa segmentación ya la aporta la campaña donde vive el tracker.</p>
+    </div>
+    <div class="tracker-grid">
+      <div class="card tracker-card">
+        <h4>Patrón</h4>
+        <div class="tracker-pattern">LINEA_NEGOCIO[_SUBLINEA] | DISPOSITIVO | ACCION - Nombre</div>
+        <p class="tracker-example">Ejemplos: <code>PAQ_V+H|ALL|CLIC - Copiar promocode</code> · <code>CRU|MOB|HOVER - Saldo monedero</code></p>
       </div>
-      <div class="phase-col">
-        <div class="card phase p2">
-          <div class="num">Fase 2</div>
-          <h3>Profundizar recogida de datos</h3>
-          <ul>
-            <li><strong>Más usuarios identificados:</strong> impulsar, incentivar y motivar que más usuarios inicien sesión.</li>
-            <li><strong>Más datos de cada usuario:</strong> hacer del área personal una fuente de información, rellenada de forma explícita como implícita (ej: datos ingresados en checkout).</li>
-          </ul>
-        </div>
-        <div class="card phase-detail">
-          <h4>Acciones</h4>
-          <ul>
-            <li><strong>Login mejorado:</strong> login sin salir del funnel, autologin con Google al cargar la página, sesiones más largas.</li>
-            <li><strong>Incentivar la creación de cuentas:</strong> Sincronización de favoritos, avisos de bajada de precio, mejor visibilidad de presupuestos y reservas.</li>
-            <li><strong>Datos en el checkout:</strong> guardar los datos de los viajeros durante el proceso de checkout.</li>          </ul>
-        </div>
-      </div>
-      <div class="phase-col">
-        <div class="card phase p3">
-          <div class="num">Fase 3</div>
-          <h3>Hiperpersonalización con áreas especializadas</h3>
-          <ul>
-            <li><strong>Experiencias únicas:</strong> una navegación para cada audiencia y perfil.</li>
-            <li><strong>Desarrollo del área de Loyalty</strong> para impulsar fidelización y cross sell.</li>
-            <li><strong>Mejorar la colaboración con Paid:</strong> las audiencias de MORFEO alimentan las campañas de pago.</li>
-          </ul>
-        </div>
-        <div class="card phase-detail">
-          <h4>Qué incluye</h4>
-          <ul>
-            <li>Consolidar y afinar el <strong>modelo de propensión de compra</strong> mediante machine learning.</li>
-            <li><strong>Audiencias en tiempo real</strong> conectando vía Salesforce u herramientas alternativas.</li>
-            <li><strong>Audiencias para campañas de pago</strong> en Google y Meta: remarketing, públicos similares y exclusiones, apoyadas en el modelo de propensión de compra.</li>
-          </ul>
-        </div>
+      <div class="card tracker-card">
+        <h4>Reglas clave</h4>
+        <p class="tracker-example">
+          · El nombre va siempre <b>hardcodeado</b> como string literal fijo, nunca concatenado con datos que cambien (precio, código promo).<br>
+          · <b>ACCION</b> no se limita a <code>CLIC</code>: también <code>VIEW</code>, <code>HOVER</code>, etc.<br>
+          · Sin dedupe por defecto — AB Tasty ya separa visitantes de sesiones en su reporting.<br>
+          · <b>Sin partner:</b> el tracker no identifica al partner (ni como prefijo ni en el nombre), porque la campaña ya lo aporta. El partner se identifica solo en el prefijo del ID de la hipótesis (<code>MEL-0254</code>); la línea del tracker usa la nomenclatura de funnel de siempre (<code>PAQ_V+H</code>).
+        </p>
       </div>
     </div>
-  </div>
-  </details>
+  </section>
 
-  <!-- ====== PRIMEROS TESTS ====== -->
-  <details class="sec" open>
-    <summary>
-      <div class="sum-text"><div class="kicker">Propuesta de arranque</div><h2>Los primeros tests</h2></div>
-      <span class="chev" aria-hidden="true"></span>
-    </summary>
-    <div class="sec-body">
-    <p class="lead">Seis tests de arranque que no necesitan desarrollo de Logitravel: se apoyan en la navegación que ya se registra en la fase 1 y se lanzan con AB Tasty.</p>
-
-    <div class="tests">
-      <div class="card test" data-open="dlg-t1" role="button" tabindex="0" aria-haspopup="dialog">
-        <div class="top"><span class="line">Cruceros</span><span class="pill-dev">SIN DESARROLLO</span></div>
-        <h3>1 · Cabina bloqueada: cuenta atrás real</h3>
-        <p>Las cabinas bloqueadas <strong>caducan de verdad</strong>, entre 24 y 72 horas después. Al usuario que vuelve se le recuerda en la cabecera, la Home y la ficha: "Tu cabina está bloqueada hasta el jueves a las 17:00", con botón para confirmar. Es <strong>el momento de más intención</strong> de todo Cruceros.</p>
-        <span class="go">Ver detalle</span>
-      </div>
-
-      <div class="card test">
-        <div class="top"><span class="line">Presupuestos · CRU, GV, V+H</span><span class="pill-dev">SIN DESARROLLO</span></div>
-        <h3>2 · "Retoma tu presupuesto"</h3>
-        <p>En la Home y en la página de su línea, <strong>una tarjeta con el producto, las fechas y el precio</strong> del presupuesto que guardó. Al usuario logado, un botón que lleva directo al checkout; al anónimo, un enlace a la ficha con sus fechas. <strong>Convierte presupuestos guardados en reservas.</strong></p>
-      </div>
-
-      <div class="card test">
-        <div class="top"><span class="line">Home y Chollos</span><span class="pill-dev">SIN DESARROLLO</span></div>
-        <h3>3 · Recomendados según la línea de afinidad</h3>
-        <p><strong>El orden de las secciones</strong> de la Home y de Chollos se adapta a la línea que más visita el usuario: a quien mira cruceros, primero la sección de cruceros; a quien busca chollos, primero chollos. Aplica lo aprendido: <strong>la gente responde mejor a recomendados por línea</strong> que a ofertas por origen.</p>
-      </div>
-
-      <div class="card test" data-open="dlg-t4" role="button" tabindex="0" aria-haspopup="dialog">
-        <div class="top"><span class="line">Home</span><span class="pill-dev">SIN DESARROLLO</span></div>
-        <h3>4 · "Continúa tu búsqueda"</h3>
-        <p>Quien vuelve a la web encuentra <strong>su última búsqueda lista para retomar</strong>, con destino, fechas y pasajeros, en lugar de empezar de cero. Arranca con el historial de Vuelo + Hotel, que ya existe, y se extiende al resto de líneas con lo que se registre en la fase 1.</p>
-        <span class="go">Ver detalle</span>
-      </div>
-
-      <div class="card test" data-open="dlg-t5" role="button" tabindex="0" aria-haspopup="dialog">
-        <div class="top"><span class="line">Cruceros</span><span class="pill-dev">SIN DESARROLLO</span></div>
-        <h3>5 · Favoritos: contador y lista en la cabecera</h3>
-        <p>El corazón de la tarjeta de crucero ya existe. Al marcarlo, junto al avatar aparece <strong>un contador ("2 favoritos")</strong> que se despliega en una lista con producto y precio, para cualquiera, logado o no.</p>
-        <span class="go">Ver detalle</span>
-      </div>
-
-      <div class="card test">
-        <div class="top"><span class="line">Ficha y listado · Todas las líneas</span><span class="pill-dev">SIN DESARROLLO</span></div>
-        <h3>6 · Mensajes según la antelación</h3>
-        <p>La misma oferta se decide por motivos distintos <strong>según cuánto falta para el viaje</strong>. A quien sale en menos de 15 días: disponibilidad y "última hora". A quien planifica con más de 90 días: "Reserva por 10 €", cancelación gratis y pago flexible.</p>
-      </div>
-    </div>
-
-    <h3 class="sub-h">Y a largo plazo, dos ejemplos de hacia dónde queremos llegar</h3>
-    <div class="tests">
-      <div class="card test long" data-open="dlg-l1" role="button" tabindex="0" aria-haspopup="dialog">
-        <div class="top"><span class="line">Área personal · Checkout</span><span class="pill-long">FASE 2 · CON DESARROLLO</span></div>
-        <h3>Perfil progresivo en el área personal</h3>
-        <p>El inicio de la cuenta ya muestra "Completar mi perfil" con un círculo de progreso. Ahí el usuario <strong>guarda una vez sus datos</strong> (fecha de nacimiento, documento) y a las personas con las que viaja. En cada reserva, <strong>el checkout rellena al titular y a sus acompañantes</strong>, y solo pide lo que falta. Cada dato afina la personalización y nos lo da el propio usuario.</p>
-        <span class="go">Ver diseño</span>
-      </div>
-      <div class="card test long">
-        <div class="top"><span class="line">Listados · Todas las líneas</span><span class="pill-long">FASE 3 · CON DESARROLLO</span></div>
-        <h3>Hiperpersonalización: un listado distinto para cada viajero</h3>
-        <p>Hoy el listado es el mismo para todos. A largo plazo, <strong>un algoritmo ordena y compone el listado para cada usuario</strong> a partir de sus presupuestos guardados, sus favoritos, sus búsquedas, su perfil y la predicción de compra. El producto que ve cada uno es el que más probabilidad tiene de reservar. Los tests de la fase 1 sobre listados por segmento son el primer paso.</p>
-      </div>
-    </div>
-    <div class="tests-foot"><button class="more" data-open="dlg-tests">Ver todos los tests de la fase 1 del proyecto</button></div>
-  </div>
-  </details>
-
-  <footer>
-    <div class="wordmark">LU<span style="color:var(--orange)">C</span>E</div>
-    <div>Luce Innovative Technologies · Proyecto MORFEO · Resumen del plan v6 · Clasificación: Confidencial</div>
+  <footer class="next-steps card">
+    <p><b>Siguiente paso:</b> una vez aprobada esta propuesta, se integra el diccionario de códigos y la convención de nombres en la skill <code style="font-family: ui-monospace, monospace;">cro-configuracion-wingify</code> para que el código de tracking se genere ya con esta nomenclatura por defecto.</p>
+    <span class="approve-badge">Pendiente de aprobación</span>
   </footer>
 
 </div>
 
-<!-- ====== MODAL · PERFILES ====== -->
-<dialog id="dlg-segmentos">
-  <div class="modal-head">
-    <div>
-      <h2>Los 25 perfiles de viajero</h2>
-      <p>Cada perfil sale de señales que ya existen en la web. La columna "Fiabilidad" indica cuánto nos fiamos de la señal.</p>
-    </div>
-    <button class="close" aria-label="Cerrar">×</button>
-  </div>
-  <div class="modal-body">
-    <table>
-      <thead><tr><th>Perfil</th><th>Cómo lo reconocemos</th><th>Fiabilidad</th><th>Líneas</th></tr></thead>
-      <tbody>
-        <tr><td>Familia</td><td>Niños o bebés en la búsqueda (con sus edades), hotel marcado como "Familiar", filtros infantiles (animación, guardería, piscina infantil), parques acuáticos en Cruceros</td><td><span class="rel hi">Alta</span></td><td>V+H, HOT, CRU</td></tr>
-        <tr><td>Pareja</td><td>2 adultos sin niños, hotel "Romántico" o "Solo adultos"</td><td><span class="rel mid">Media</span><br><small>2 adultos es la búsqueda por defecto</small></td><td>V+H, HOT, CRU, GV</td></tr>
-        <tr><td>Luna de miel</td><td>Categoría "Viaje de novios" en Grandes Viajes, destinos exóticos, hotel romántico de 5*</td><td><span class="rel hi">Alta</span><br><small>segmento pequeño</small></td><td>GV, V+H</td></tr>
-        <tr><td>Sénior / jubilado</td><td>Pasajeros sénior en la búsqueda, visita a la campaña "Mayores de 55", viaja entre semana en temporada baja con estancia larga</td><td><span class="rel mid">Media</span></td><td>HOT, V+H, CRU, GV</td></tr>
-        <tr><td>Grupo de amigos</td><td>3 o más adultos sin niños, o varias habitaciones de adultos</td><td><span class="rel mid">Media</span></td><td>V+H, HOT</td></tr>
-        <tr><td>Viajero solo / negocios</td><td>1 adulto, entre semana, 1-2 noches en ciudad, hotel "Business", vuelo solo de ida</td><td><span class="rel mid">Media</span></td><td>HOT, VUE</td></tr>
-        <tr><td>Cazador de chollos</td><td>Clic en "Chollos" en el menú, campañas "Chollos" o "Última hora", orden por precio más bajo, llega desde un metabuscador</td><td><span class="rel hi">Alta</span></td><td>Todas</td></tr>
-        <tr><td>Premium / lujo</td><td>Hotel de 5*, campañas "Hoteles de lujo" o "Viajes de ensueño", orden por categoría de mayor a menor, precio alto, camarote suite o balcón</td><td><span class="rel hi">Alta</span></td><td>HOT, V+H, CRU, GV</td></tr>
-        <tr><td>Fan del todo incluido</td><td>Régimen todo incluido en búsquedas, presupuestos o filtros, campaña "Todo incluido"</td><td><span class="rel hi">Alta</span></td><td>V+H, HOT, CRU</td></tr>
-        <tr><td>Última hora</td><td>Salida en menos de 15 días</td><td><span class="rel hi">Alta</span></td><td>Todas</td></tr>
-        <tr><td>Planificador</td><td>Salida en más de 90 días</td><td><span class="rel hi">Alta</span></td><td>Todas</td></tr>
-        <tr><td>Escapada</td><td>1-3 noches, fin de semana, destino nacional</td><td><span class="rel hi">Alta</span></td><td>HOT, V+H</td></tr>
-        <tr><td>Playa / ciudad / naturaleza</td><td>Hotel "Playa", agrupación "Capitales Europeas", línea Costa, destino</td><td><span class="rel hi">Alta</span></td><td>HOT, V+H</td></tr>
-        <tr><td>Residente en islas</td><td>Marca de residente en la búsqueda, filtro "residente" en Vuelos</td><td><span class="rel hi">Alta</span></td><td>VUE, V+H</td></tr>
-        <tr><td>Intereses de nicho</td><td>Mascotas, golf, cicloturismo, accesible, spa</td><td><span class="rel hi">Alta</span><br><small>segmentos pequeños</small></td><td>HOT, V+H</td></tr>
-        <tr><td>Fiel a una naviera o un destino</td><td>Ha visto 2 o más fichas de la misma naviera, zona o país</td><td><span class="rel hi">Alta</span></td><td>CRU, GV</td></tr>
-        <tr><td>Indeciso / comparador</td><td>Repite la misma búsqueda, ve muchas fichas sin avanzar, descarga el PDF (GV), clic en el call center, marca 3 o más favoritos sin avanzar</td><td><span class="rel hi">Alta</span></td><td>Todas</td></tr>
-        <tr><td>Multi-línea</td><td>Ha visitado dos o más líneas (p. ej. Vuelos y Hoteles)</td><td><span class="rel hi">Alta</span></td><td>Todas</td></tr>
-        <tr><td>Con presupuesto guardado</td><td>Presupuestos en su área personal (logados) o guardados en su navegador (todos, a partir de la fase 1)</td><td><span class="rel hi">Alta</span></td><td>CRU, GV, V+H</td></tr>
-        <tr><td>Con favoritos guardados</td><td>Clic en el corazón de la tarjeta de producto, guardado en su navegador (todos, incluidos los usuarios con cuenta sin sesión iniciada)</td><td><span class="rel hi">Alta</span><br><small>a confirmar qué guarda hoy el corazón</small></td><td>Todas (visto en CRU)</td></tr>
-        <tr><td>Canal de llegada</td><td>Metabuscador, publicidad de pago, buscadores, email, afiliado</td><td><span class="rel hi">Alta</span></td><td>Todas</td></tr>
-        <tr><td>Propensión de compra</td><td>Modelo del equipo de Data de Logitravel</td><td><span class="rel lo">Baja hoy</span><br><small>en desarrollo</small></td><td>Todas</td></tr>
-        <tr><td>Con cuenta, sin sesión iniciada</td><td>La web lo reconoce (muestra su nombre) pero la sesión ha caducado. Tiene en el data layer la misma información que un usuario logado. Es el «shadow login»: alrededor del 10 % de las sesiones</td><td><span class="rel hi">Alta</span></td><td>Todas</td></tr>
-        <tr><td>Con saldo en el monedero</td><td>Saldo disponible en el monedero, visible en el data layer para logados y para usuarios con cuenta sin sesión</td><td><span class="rel hi">Alta</span><br><small>pocos usuarios con saldo</small></td><td>Todas</td></tr>
-        <tr><td>Necesidad emocional</td><td>EmotionsAI, módulo de AB Tasty que clasifica al visitante por cómo navega</td><td><span class="rel lo">Sin validar</span></td><td>Todas</td></tr>
-      </tbody>
-    </table>
-  </div>
-</dialog>
-
-<!-- ====== MODAL · TESTS ====== -->
-<dialog id="dlg-tests">
-  <div class="modal-head">
-    <div>
-      <h2>Los tests de la fase 1</h2>
-      <p>Ninguno necesita desarrollo. Los seis de arranque van marcados con una estrella.</p>
-    </div>
-    <button class="close" aria-label="Cerrar">×</button>
-  </div>
-  <div class="modal-body">
-
-    <h3>Transversales <small>A toda la web o a varias líneas</small></h3>
-    <table>
-      <thead><tr><th>Test</th><th>Qué hacemos</th></tr></thead>
-      <tbody>
-        <tr><td>Icono del checkout</td><td>Al usuario logado, el icono de perfil muestra su nombre y abre un menú en lugar de llevarle a "Mi cuenta" y sacarle de la compra. Se lanza junto con la señal de sesión iniciada ya propuesta en CRO Hub</td></tr>
-        <tr><td>Quitar "Crear cuenta"</td><td>Eliminar el bloque "Crear cuenta" del checkout mobile. Ya propuesto en CRO Hub, independiente del anterior</td></tr>
-        <tr><td>★ Recomendados por afinidad</td><td>El orden de las secciones de la Home y de Chollos se adapta a la línea que más visita el usuario</td></tr>
-        <tr><td>★ Continúa tu búsqueda</td><td>En la Home, retomar la última búsqueda de Vuelo + Hotel, con el historial que ya existe</td></tr>
-        <tr><td>Vistos recientemente</td><td>En la Home y en las páginas de línea, los últimos hoteles, cruceros o circuitos que ha visto</td></tr>
-        <tr><td>Mensajes por canal</td><td>A quien viene de un metabuscador, precio final y confianza. A quien viene de email, continuidad con la oferta del email</td></tr>
-        <tr><td>★ Mensajes por antelación</td><td>A quien sale pronto, disponibilidad y "última hora". A quien planifica con tiempo, "Reserva por 10 €", cancelación gratis, pago flexible</td></tr>
-        <tr><td>Cazadores de chollos</td><td>Destacar ahorro, precio más bajo y chollos de su destino</td></tr>
-        <tr><td>Premium</td><td>Mostrar primero 5* y suites, y quitar los mensajes de precio y chollos</td></tr>
-        <tr><td>Preferencias recordadas</td><td>Preseleccionar o destacar lo que eligió la última vez: régimen, tipo de camarote, vuelos directos, franja horaria o filtros. En todas las líneas</td></tr>
-        <tr><td>Comparador indeciso</td><td>A quien repite búsquedas o ve muchas fichas sin avanzar, ofrecer "Guarda tu presupuesto" o "Te ayudamos por teléfono", o marca 3 o más favoritos sin avanzar</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Con presupuestos guardados <small>Cruceros, Grandes Viajes y Vuelo + Hotel</small></h3>
-    <table>
-      <thead><tr><th>Test</th><th>Qué hacemos</th></tr></thead>
-      <tbody>
-        <tr><td>★ Retoma tu presupuesto</td><td>En la Home y en su línea, tarjeta con producto, fechas y precio. Al logado, botón directo al checkout; al anónimo, enlace a la ficha con sus fechas</td></tr>
-        <tr><td>Aviso en la misma ficha</td><td>"Ya tienes un presupuesto de este crucero. Retómalo"</td></tr>
-        <tr><td>★ Cabina bloqueada: cuenta atrás</td><td>"Tu cabina está bloqueada hasta el jueves a las 17:00", con botón para confirmar. La caducidad es real</td></tr>
-        <tr><td>Motivos reales para decidir</td><td>En el presupuesto normal, que no caduca: "Tu precio no está garantizado", "Faltan X días para tu viaje" y la promoción que ya trae</td></tr>
-        <tr><td>Contador en la cabecera</td><td>"1 presupuesto guardado" junto al avatar</td></tr>
-        <tr><td>Alternativas parecidas</td><td>Mismo destino, fechas y tipo de producto en el listado y en la Home</td></tr>
-        <tr><td>Qué hacer tras guardar</td><td>En la confirmación: reservar ahora, llamar a un agente o compartirlo con su acompañante</td></tr>
-        <tr><td>Lo que incluye su camarote</td><td>Recordar la categoría y las ventajas de su presupuesto, no solo el precio</td></tr>
-        <tr><td>Del presupuesto a la cuenta</td><td>Al anónimo que acaba de guardar un presupuesto, invitarle a crear la cuenta con el email que acaba de dar</td></tr>
-        <tr><td>Segmento desde el presupuesto</td><td>Usar los datos del presupuesto (línea, pasajeros, categoría, destino, importe) para darle su perfil aunque no haya navegado</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Cruceros <small>Cuello de botella: de presupuesto a checkout</small></h3>
-    <table>
-      <thead><tr><th>Test</th><th>Qué hacemos</th></tr></thead>
-      <tbody>
-        <tr><td>★ Favoritos: contador y lista</td><td>Al marcar el corazón de una tarjeta, junto al avatar aparece un contador que se despliega en una lista con producto y precio, para cualquiera, logado o no</td></tr>
-        <tr><td>Favorito a la vista</td><td>Tarjeta en la Home con lo marcado, aviso si ya está en favoritos y aviso si baja el precio o queda poca disponibilidad</td></tr>
-        <tr><td>Favorito y login</td><td>Al marcar sin cuenta, invitar a crearla; al shadow, el motivo de tener sus favoritos en cualquier dispositivo</td></tr>
-        <tr><td>Presupuesto según el perfil</td><td>A familias, ventajas para niños y parques acuáticos; a parejas, bebidas y experiencias; a séniores, servicios, excursiones y tranquilidad</td></tr>
-        <tr><td>Naviera favorita</td><td>A quien ha visto 2 o más fichas de la misma naviera, mostrar primero sus barcos</td></tr>
-        <tr><td>Puerto de salida cercano</td><td>Preseleccionar el puerto más cercano a su mercado en el buscador</td></tr>
-        <tr><td>Camarote recordado</td><td>Preseleccionar o destacar el tipo de camarote que eligió la última vez</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Grandes Viajes <small>Cuello de botella: de disponibilidad a presupuesto</small></h3>
-    <table>
-      <thead><tr><th>Test</th><th>Qué hacemos</th></tr></thead>
-      <tbody>
-        <tr><td>Luna de miel</td><td>A quien mira "Viaje de novios" o destinos exóticos en pareja, ventajas para novios, lista de bodas y circuitos de esa categoría</td></tr>
-        <tr><td>Descarga del PDF</td><td>Después de descargarlo, ofrecer guardar el presupuesto o hablar con un experto</td></tr>
-        <tr><td>Categoría favorita</td><td>Mostrar primero la categoría que más mira (arqueológicos, exóticos, naturaleza…)</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Vuelo + Hotel <small>Cuellos de botella: extras y checkout</small></h3>
-    <table>
-      <thead><tr><th>Test</th><th>Qué hacemos</th></tr></thead>
-      <tbody>
-        <tr><td>Listado según el perfil</td><td>A familias, primero hoteles "Familiar"; a parejas, "Solo adultos" y románticos; a premium, 5*</td></tr>
-        <tr><td>Extras según el perfil</td><td>A familias, traslados y seguro; a séniores, seguro de cancelación; a parejas en escapada, menos extras</td></tr>
-        <tr><td>Residentes en islas</td><td>Mensaje del descuento de residente desde la ficha, no solo al final</td></tr>
-        <tr><td>Régimen recordado</td><td>Si siempre busca todo incluido, preseleccionarlo o destacarlo</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Hoteles <small>Cuello de botella: de ficha a checkout, el más bajo del sitio</small></h3>
-    <table>
-      <thead><tr><th>Test</th><th>Qué hacemos</th></tr></thead>
-      <tbody>
-        <tr><td>Ficha según el perfil</td><td>Orden de habitaciones y mensajes según quién viaja: familia, negocios o pareja</td></tr>
-        <tr><td>Escapadas</td><td>A quien busca 1-3 noches en fin de semana y destino nacional, escapadas cercanas y planes</td></tr>
-        <tr><td>Viajero de negocios</td><td>Cancelación gratis, factura y ubicación, sin mensajes de ocio</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Vuelos <small>Funnel corto: lo que gana en el listado se ve rápido en la reserva</small></h3>
-    <table>
-      <thead><tr><th>Test</th><th>Qué hacemos</th></tr></thead>
-      <tbody>
-        <tr><td>Venta cruzada de hotel</td><td>Tras buscar un vuelo de ida y vuelta, proponer un hotel en el destino y las fechas. No a quien busca solo ida o viaja por negocios</td></tr>
-        <tr><td>Preferencias recordadas</td><td>Vuelos directos, franja horaria o aerolínea que filtró la última vez</td></tr>
-        <tr><td>Residentes</td><td>Activar o recordar el descuento de residente a quien lo usó</td></tr>
-      </tbody>
-    </table>
-
-
-  </div>
-</dialog>
-
-<!-- ====== MODALES · DETALLE DE CADA TEST ====== -->
-<dialog id="dlg-t1" class="wide sim">
-  <div class="modal-head">
-    <div>
-      <h2>1 · Cabina bloqueada: cuenta atrás real</h2>
-      <p>Cruceros · Sin desarrollo</p>
-    </div>
-    <button class="close" aria-label="Cerrar">×</button>
-  </div>
-  <div class="modal-body">
-    <div class="sim-bar">
-      <div class="sim-ctl">
-        <span class="sim-lbl">Test</span>
-        <button type="button" class="sim-switch" role="switch" aria-checked="true" data-sim="toggle"><span class="sim-knob"></span><span data-sim="toggle-text">Con el test</span></button>
-      </div>
-      <div class="sim-ctl">
-        <span class="sim-lbl">Vista</span>
-        <div class="sim-seg" role="group" aria-label="Vista">
-          <button type="button" data-sim="view" data-view="desktop" aria-pressed="true">Escritorio</button>
-          <button type="button" data-sim="view" data-view="mobile" aria-pressed="false">Móvil</button>
-        </div>
-      </div>
-      <div class="sim-ctl sim-right">
-        <button type="button" class="sim-ghost" data-sim="reset">↺ Reiniciar cuenta atrás</button>
-      </div>
-    </div>
-    <div class="sim-stage" data-view="desktop">
-      <div class="sim-desk"><iframe data-sim="frame" data-src="assets/sim/cabina/desktop.html" title="Maqueta interactiva en escritorio del listado de Cruceros con el aviso de cabina bloqueada" width="1280"></iframe></div>
-      <div class="sim-phone"><iframe data-sim="frame" data-src="assets/sim/cabina/mobile.html" title="Maqueta interactiva en móvil del listado de Cruceros con el aviso de cabina bloqueada" width="390"></iframe></div>
-    </div>
-    <p class="mock-note">Maqueta interactiva sobre el listado de Cruceros: se puede desplazar, activar o quitar el test, cambiar de vista y pulsar el botón.</p>
-    <dl class="detail">
-      <div><dt>Qué hacemos</dt><dd>Al usuario que vuelve con una cabina bloqueada vigente se le recuerda en la cabecera, la Home y la ficha del crucero: "Tu cabina Balcón Deluxe está bloqueada hasta el jueves a las 17:00", con un botón para confirmar.</dd></div>
-      <div><dt>Por qué</dt><dd>La urgencia es verdadera: el bloqueo dura entre 24 y 72 horas y, al caducar, se pierden el precio y la cabina. Es el momento de más intención de todo Cruceros.</dd></div>
-    </dl>
-  </div>
-</dialog>
-
-<dialog id="dlg-t2" class="narrow">
-  <div class="modal-head">
-    <div>
-      <h2>2 · "Retoma tu presupuesto"</h2>
-      <p>Presupuestos · Cruceros, Grandes Viajes y Vuelo + Hotel · Sin desarrollo</p>
-    </div>
-    <button class="close" aria-label="Cerrar">×</button>
-  </div>
-  <div class="modal-body">
-    <dl class="detail">
-      <div><dt>Qué hacemos</dt><dd>En la Home y en la página de su línea, una tarjeta con el producto, las fechas y el precio del presupuesto que guardó. Al usuario logado, un botón "Reservar" que lleva directo al checkout; al anónimo, un enlace a la ficha del producto con sus fechas.</dd></div>
-      <div><dt>Por qué</dt><dd>En estas tres líneas guardar el presupuesto es la forma normal de comprar: unos 32.000 al mes. Convertirlos en reservas es la mayor palanca de personalización.</dd></div>
-    </dl>
-  </div>
-</dialog>
-
-<dialog id="dlg-t3" class="narrow">
-  <div class="modal-head">
-    <div>
-      <h2>3 · Recomendados según la línea de afinidad</h2>
-      <p>Home y Chollos · Sin desarrollo</p>
-    </div>
-    <button class="close" aria-label="Cerrar">×</button>
-  </div>
-  <div class="modal-body">
-    <dl class="detail">
-      <div><dt>Qué hacemos</dt><dd>El orden de las secciones de la Home y de Chollos se adapta a la línea que más visita el usuario: a quien mira cruceros, primero la sección de cruceros; a quien busca chollos, primero chollos.</dd></div>
-      <div><dt>Por qué</dt><dd>Aplica lo aprendido en el test de "ofertas desde tu aeropuerto", que no funcionó: la gente responde mejor a recomendados por línea (chollos, vuelos, hotel, cruceros, Black Friday) que a ofertas por origen.</dd></div>
-    </dl>
-  </div>
-</dialog>
-
-<dialog id="dlg-t4" class="wide sim">
-  <div class="modal-head">
-    <div>
-      <h2>4 · "Continúa tu búsqueda"</h2>
-      <p>Home · Sin desarrollo</p>
-    </div>
-    <button class="close" aria-label="Cerrar">×</button>
-  </div>
-  <div class="modal-body">
-    <div class="sim-bar">
-      <div class="sim-ctl">
-        <span class="sim-lbl">Test</span>
-        <button type="button" class="sim-switch" role="switch" aria-checked="true" data-sim="toggle"><span class="sim-knob"></span><span data-sim="toggle-text">Con el test</span></button>
-      </div>
-      <div class="sim-ctl">
-        <span class="sim-lbl">Vista</span>
-        <div class="sim-seg" role="group" aria-label="Vista">
-          <button type="button" data-sim="view" data-view="desktop" aria-pressed="true">Escritorio</button>
-          <button type="button" data-sim="view" data-view="mobile" aria-pressed="false">Móvil</button>
-        </div>
-      </div>
-    </div>
-    <div class="sim-stage" data-view="desktop">
-      <div class="sim-desk"><iframe data-sim="frame" data-src="assets/sim/home/desktop.html" title="Maqueta interactiva en escritorio de la Home con el bloque de búsquedas recientes en el selector de destino" width="1280"></iframe></div>
-      <div class="sim-phone"><iframe data-sim="frame" data-src="assets/sim/home/mobile.html" title="Maqueta interactiva en móvil de la Home con el bloque de búsquedas recientes en el selector de destino" width="390"></iframe></div>
-    </div>
-    <p class="mock-note">Maqueta interactiva sobre la Home: el selector de destino ya está abierto (en móvil, pulsa «Elige un destino»). Escribe para filtrar y activa o quita el test.</p>
-    <dl class="detail">
-      <div><dt>Qué hacemos</dt><dd>Quien vuelve a la web encuentra su última búsqueda lista para retomar, con destino, fechas y pasajeros, en lugar de empezar de cero.</dd></div>
-      <div><dt>Por qué</dt><dd>Que quien vuelve no tenga que empezar de cero.</dd></div>
-    </dl>
-  </div>
-</dialog>
-
-<dialog id="dlg-t5" class="narrow fav">
-  <div class="modal-head">
-    <div>
-      <h2>5 · Favoritos: contador y lista en la cabecera</h2>
-      <p>Cruceros · Sin desarrollo</p>
-    </div>
-    <button class="close" aria-label="Cerrar">×</button>
-  </div>
-  <div class="modal-body">
-    <div class="fav-demo">
-      <div class="fav-demo-top">
-        <span class="fav-demo-brand">LOGITRAVEL</span>
-        <div class="fav-demo-actions">
-          <div class="fav-demo-counter-wrap">
-            <button type="button" class="fav-demo-counter is-shown" data-fav="counter" aria-expanded="true" aria-haspopup="true">
-              <svg class="fav-demo-counter-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.3C.6 8.4 2 5 5.3 5c2 0 3.4 1.1 4.2 2.4C10.3 6.1 11.7 5 13.7 5 17 5 18.4 8.4 17 11.7 14.5 16.4 12 21 12 21Z"/></svg>
-              <span data-fav="count">3</span>
-            </button>
-            <div class="fav-demo-drop" data-fav="dropdown">
-              <ul class="fav-demo-drop-list" data-fav="list"></ul>
-            </div>
-          </div>
-          <span class="fav-demo-avatar" aria-hidden="true">T</span>
-        </div>
-      </div>
-    </div>
-    <p class="mock-note">Maqueta con el desplegable de favoritos abierto, con tres cruceros del listado real ya marcados. Pulsa el contador para cerrarlo y abrirlo; cada favorito lleva su botón para seguir hacia las fechas y camarotes.</p>
-    <dl class="detail">
-      <div><dt>Qué hacemos</dt><dd>El corazón de la tarjeta de crucero ya existe en la web. Junto al avatar, un contador ("2 favoritos") visible en toda la web, para cualquiera, logado o no. Al desplegarlo, la lista de lo marcado con producto y precio.</dd></div>
-      <div><dt>Por qué</dt><dd>Recordatorio permanente y de bajo esfuerzo, con el mismo patrón ya validado en presupuestos (el contador de la cabecera, test 2). Es además el sitio natural donde, más adelante, invitar a crear cuenta a quien no está logado.</dd></div>
-    </dl>
-  </div>
-</dialog>
-
-<dialog id="dlg-t6" class="narrow">
-  <div class="modal-head">
-    <div>
-      <h2>6 · Mensajes según la antelación</h2>
-      <p>Ficha y listado · Todas las líneas · Sin desarrollo</p>
-    </div>
-    <button class="close" aria-label="Cerrar">×</button>
-  </div>
-  <div class="modal-body">
-    <dl class="detail">
-      <div><dt>Qué hacemos</dt><dd>A quien sale en menos de 15 días: disponibilidad y "última hora". A quien planifica con más de 90 días: "Reserva por 10 €", cancelación gratis y pago flexible.</dd></div>
-      <div><dt>Por qué</dt><dd>La misma oferta se decide por motivos distintos según cuánto falta para el viaje.</dd></div>
-    </dl>
-  </div>
-</dialog>
-
-<dialog id="dlg-l1" class="wide sim viaj">
-  <div class="modal-head">
-    <div>
-      <h2>Perfil progresivo en el área personal</h2>
-      <p>Área personal y checkout · Fase 2, con desarrollo · Diseño ilustrativo</p>
-    </div>
-    <button class="close" aria-label="Cerrar">×</button>
-  </div>
-  <div class="modal-body">
-    <div class="sim-bar">
-      <div class="sim-ctl">
-        <span class="sim-lbl">Checkout</span>
-        <button type="button" class="sim-switch" role="switch" aria-checked="true" data-sim="toggle"><span class="sim-knob"></span><span data-sim="toggle-text">Con el perfil</span></button>
-      </div>
-      <div class="sim-ctl">
-        <span class="sim-lbl">Viaje</span>
-        <div class="sim-seg" role="group" aria-label="Viaje">
-          <button type="button" data-sim="trip" data-trip="solo" aria-pressed="false">Solo</button>
-          <button type="button" data-sim="trip" data-trip="pareja" aria-pressed="false">Pareja</button>
-          <button type="button" data-sim="trip" data-trip="familia" aria-pressed="true">Familia (2+2)</button>
-        </div>
-      </div>
-      <div class="sim-ctl sim-right">
-        <span class="sim-count" data-sim="count" aria-live="polite"></span>
-        <button type="button" class="sim-ghost" data-sim="reset">↺ Reiniciar</button>
-      </div>
-    </div>
-    <div class="sim-stage single">
-      <iframe data-sim="frame" data-src="assets/sim/viajeros/index.html" title="Maqueta interactiva: el área personal con «Mis datos» y «Mis viajeros» a la izquierda y el checkout móvil que se rellena a partir de ellos a la derecha"></iframe>
-    </div>
-    <p class="mock-note">Maqueta interactiva. A la izquierda, el área personal de Logitravel (banner, avatar y menú lateral como en la web actual, con «Mis viajeros» como opción nueva); a la derecha, el formulario de pasajeros del checkout. Edita un dato en el perfil y mira cómo cambia el checkout, o desactiva el perfil para ver cómo se compra hoy.</p>
-    <dl class="detail">
-      <div><dt>Qué hacemos</dt><dd>Sobre el «Completar mi perfil» que ya existe, el usuario guarda una vez su fecha de nacimiento y su documento, y registra a las personas con las que viaja («Mis viajeros»). En el checkout, cada plaza ofrece «¿Quién viaja?»: el titular y los acompañantes se rellenan solos y solo se pide lo que falta, con la opción de guardarlo en el perfil.</dd></div>
-      <div><dt>Por qué</dt><dd>Quita al usuario con cuenta el trabajo de repetir los mismos datos en cada compra, sobre todo en reservas de familia. A cambio recogemos datos fiables que hoy no tenemos: la edad real de los niños, la composición del grupo habitual y la fecha de nacimiento del titular. Son datos que el usuario nos da directamente, y dan una razón concreta para crear la cuenta o volver a entrar.</dd></div>
-      <div><dt>Cómo se prueba antes</dt><dd>Sin desarrollo: autocompletado del navegador y aviso de qué falta; después, recordar los datos en el dispositivo (sin el número de documento). Esta fase solo se pide a Logitravel si esos tests mejoran la conversión.</dd></div>
-      <div><dt>Cuándo</dt><dd>Fase 2. Hace falta guardar el documento en el servidor, con el visto bueno de legal y seguridad, sobre todo para los datos de menores. Los datos y la maqueta son de ejemplo.</dd></div>
-    </dl>
-  </div>
-</dialog>
-
-<dialog id="dlg-l2" class="narrow">
-  <div class="modal-head">
-    <div>
-      <h2>Hiperpersonalización: un listado distinto para cada viajero</h2>
-      <p>Listados · Todas las líneas · Fase 3, con desarrollo</p>
-    </div>
-    <button class="close" aria-label="Cerrar">×</button>
-  </div>
-  <div class="modal-body">
-    <dl class="detail">
-      <div><dt>Qué hacemos</dt><dd>Un algoritmo ordena y compone el listado para cada usuario a partir de sus presupuestos guardados, sus favoritos, sus búsquedas, su perfil de viajero y la propensión de compra. Hoy el listado es el mismo para todos, salvo los filtros que el usuario aplica a mano. Requiere un equipo de datos con experiencia en machine learning y algoritmos.</dd></div>
-      <div><dt>Por qué</dt><dd>Es el destino natural de MORFEO: que el producto que ve cada usuario sea el que más probabilidad tiene de reservar.</dd></div>
-      <div><dt>Cuándo</dt><dd>Cuando los tests de la fase 1 sobre listados por segmento y sobre alternativas parecidas al presupuesto ganen, el perfil y los presupuestos estén en producción y la propensión de compra sea fiable. Antes, agotar la asignación dinámica de AB Tasty (fase 2).</dd></div>
-    </dl>
-  </div>
-</dialog>
-
-<dialog id="lightbox" class="lightbox">
-  <button class="close" aria-label="Cerrar">×</button>
-  <img src="" alt="">
-</dialog>
-
 <script>
-  document.querySelectorAll('a.zoom').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      e.preventDefault();
-      var lb = document.getElementById('lightbox'), img = a.querySelector('img');
-      lb.querySelector('img').src = a.getAttribute('href');
-      lb.querySelector('img').alt = img.alt;
-      lb.showModal(); lb.scrollTop = 0;
+(function () {
+  var LINE_COLOR = {
+    CRU: 'var(--line-cru)',
+    GRV: 'var(--line-grv)',
+    PAQ: 'var(--line-paq)',
+    VUE: 'var(--line-vue)',
+    TRP: 'var(--line-vue)',
+    HOT: 'var(--line-hot)',
+    PAR: 'var(--line-par)',
+    BIZ: 'var(--line-biz)',
+    OTH: 'var(--line-oth)'
+  };
+  var LINE_INK = {
+    CRU: 'var(--line-cru-ink)',
+    GRV: 'var(--line-grv-ink)',
+    PAQ: 'var(--line-paq-ink)',
+    VUE: 'var(--line-vue-ink)',
+    TRP: 'var(--line-vue-ink)',
+    HOT: 'var(--line-hot-ink)',
+    PAR: 'var(--line-par-ink)',
+    BIZ: 'var(--line-biz-ink)',
+    OTH: 'var(--line-oth-ink)'
+  };
+
+  // rows: [nombre original, nombre unificado, código]
+  var DATA = {
+    CRU: { label: 'Cruceros', rows: [
+      ['CRU - 0-Searcher', 'Listado de resultados', 'PLP', 'Searcher'],
+      ['CRU - 1-Ficha crucero', 'Ficha de producto', 'PDP', 'Product'],
+      ['CRU - 2-Disponibilidad', 'Configuración', 'CFG', 'Quote'],
+      ['CRU - 3-Presupuesto', 'Presupuesto', 'PRE', 'Price Summary'],
+      ['CRU - 4-Checkout', 'Checkout', 'CHK', 'Checkout'],
+      ['CRU - 5-Wait', 'Wait', 'WAI', 'Thank You']
+    ]},
+    GRV: { label: 'Grandes Viajes', rows: [
+      ['GV - 0-Listado de producto', 'Listado de resultados', 'PLP'],
+      ['GV - 1-Ficha producto', 'Ficha de producto', 'PDP'],
+      ['GV - 2-Disponibilidad', 'Configuración', 'CFG', 'Booking details'],
+      ['GV - 3-Presupuesto', 'Presupuesto', 'PRE', 'Presentación de precio'],
+      ['GV - 4-Checkout', 'Checkout', 'CHK'],
+      ['GV - 5-Wait', 'Wait', 'WAI']
+    ]},
+    PAQ: { label: 'Vuelo + Hotel', rows: [
+      ['PAQ - V+H - 1-Disponibilidad', 'Listado de resultados', 'PLP'],
+      ['PAQ - V+H - 2-Ficha hotel', 'Ficha de producto', 'PDP'],
+      ['PAQ - V+H - 3-Transporte', 'Selección de transporte', 'TRA'],
+      ['PAQ - V+H - 4-Extras', 'Extras', 'XTR'],
+      ['PAQ - V+H - 5-Presupuesto', 'Presupuesto', 'PRE'],
+      ['PAQ - V+H - 6-Checkout', 'Checkout', 'CHK'],
+      ['PAQ - V+H - 7-Wait', 'Wait', 'WAI']
+    ]},
+    VUE: { label: 'Vuelos', rows: [
+      ['TRX - Vuelos - 1-Disponibilidad', 'Listado de resultados', 'PLP'],
+      ['TRX - Vuelos - 2-Presupuesto', 'Presupuesto', 'PRE'],
+      ['TRX - Vuelos - 3-Checkout', 'Checkout', 'CHK'],
+      ['TRX - Vuelos - 4-Wait', 'Wait', 'WAI']
+    ]},
+    HOT: { label: 'Hoteles', rows: [
+      ['HOT - 0 - Disponibilidad', 'Listado de resultados', 'PLP'],
+      ['HOT - 1 - Ficha hotel', 'Ficha de producto', 'PDP'],
+      ['HOT - 2 - Checkout', 'Checkout', 'CHK'],
+      ['HOT - 3 - Wait', 'Wait', 'WAI']
+    ]}
+  };
+
+  var CANONICAL = ['PLP', 'PDP', 'CFG', 'TRA', 'XTR', 'PRE', 'CHK', 'WAI'];
+  var SHORT_LABEL = { ESC: 'Escaparate', PLP: 'Listado', PDP: 'Ficha', CFG: 'Configuración', TRA: 'Transporte', XTR: 'Extras', PRE: 'Presupuesto', CHK: 'Checkout', WAI: 'Wait' };
+  var DEFINITION = {
+    ESC: 'Landing/buscador previo al listado (categoría o campaña).',
+    PLP: 'Listado de productos/opciones tras una búsqueda (incluye el searcher de Cruceros).',
+    PDP: 'Ficha de detalle de un crucero/paquete/hotel concreto.',
+    CFG: 'Elegir cabina, habitación o fechas dentro de un producto ya abierto.',
+    TRA: 'Elegir vuelo/transporte dentro de un paquete.',
+    XTR: 'Complementos o add-ons del paquete.',
+    PRE: 'Resumen o carrito antes de pagar.',
+    CHK: 'Pago y datos del cliente.',
+    WAI: 'Espera y confirmación tras la intención de pago; puede derivar en confirmación (Thank You) o en error de pago.'
+  };
+  var OPTIONAL_PLP_LINES = { CRU: true, GRV: true, PAQ: true };
+  var ORDER = ['CRU', 'GRV', 'PAQ', 'VUE', 'HOT'];
+
+  // ---- Catálogo de líneas y sublíneas (fuente: CSV "Funnels nombres consolidación") ----
+  var STEPS = ['ESC', 'PLP', 'PDP', 'CFG', 'TRA', 'XTR', 'PRE', 'CHK', 'WAI'];
+
+  function st(str) { return str.split(' '); }
+  var CATALOG = [
+    { line: 'CRU', name: 'Cruceros', main: true, subs: [
+      { code: 'CRU', name: 'Cruceros', url: 'logitravel.com/cruceros/', steps: st('ESC PLP PDP CFG PRE CHK WAI') }
+    ]},
+    { line: 'GRV', name: 'Grandes Viajes', main: true, subs: [
+      { code: 'COM', name: 'Combinados', url: 'logitravel.com/grandes-viajes/combinados/', steps: st('ESC PLP PDP CFG PRE CHK WAI') },
+      { code: 'CIR', name: 'Circuitos', url: 'logitravel.com/grandes-viajes/circuitos/', steps: st('ESC PLP PDP CFG PRE CHK WAI') },
+      { code: 'RUT', name: 'Rutas en coche', url: 'logitravel.com/grandes-viajes/rutas-en-coche/', steps: st('ESC PLP PDP CFG PRE CHK WAI') }
+    ]},
+    { line: 'PAQ', name: 'Paquetes', main: true, groups: { TER: 'Paquetes terceros' }, subs: [
+      { code: 'V+H', name: 'Vuelo + Hotel', star: true, url: 'logitravel.com/vuelo-hotel/', steps: st('ESC PLP PDP TRA XTR PRE CHK WAI') },
+      { code: 'F+H', name: 'Ferry + Hotel', url: 'logitravel.com/ferry-hotel/', steps: st('ESC PLP PDP TRA XTR PRE CHK WAI') },
+      { code: 'T+H', name: 'Tren + Hotel', url: 'logitravel.com/tren-hotel/', steps: st('ESC PLP PDP TRA XTR PRE CHK WAI') },
+      { code: 'CyE', name: 'Caribe y Exóticos', group: 'TER', url: '', steps: st('PLP PDP CFG CHK WAI') },
+      { code: 'SES', name: 'Salidas Especiales', group: 'TER', url: '', steps: st('PLP PDP CFG CHK WAI') }
+    ]},
+    { line: 'TRP', name: 'Transportes', main: true, subs: [
+      { code: 'VUE', name: 'Vuelos', star: true, url: 'logitravel.com/vuelos/', steps: st('ESC PLP CHK WAI') },
+      { code: 'TRE', name: 'Trenes', url: 'logitravel.com/trenes/', steps: st('ESC PLP CHK WAI') },
+      { code: 'TRF', name: 'Transfers', url: 'logitravel.com/transfers/', steps: st('ESC PLP CHK WAI') },
+      { code: 'COC', name: 'Alquiler coches', url: 'logitravel.com/alquiler-coches/', steps: st('ESC PLP CHK WAI') },
+      { code: 'FER', name: 'Ferries', url: 'logitravel.com/ferries/', steps: st('ESC PLP CHK WAI') }
+    ]},
+    { line: 'HOM', name: 'Home', main: false, tone: '#5f6b7a', subs: [
+      { code: 'HOM', name: 'Home', url: 'logitravel.com', steps: st('ESC') }
+    ]},
+    { line: 'CHO', name: 'Chollos', main: false, tone: '#c0392b', subs: [
+      { code: 'CHO', name: 'Chollos', url: 'logitravel.com/viajes-chollos/', steps: st('ESC') }
+    ]},
+    { line: 'DIS', name: 'Disney', main: false, tone: '#1e3a8a', subs: [
+      { code: 'DIS', name: 'Disney', url: 'logitravel.com/disney/', steps: st('ESC PLP PDP TRA XTR PRE CHK WAI') }
+    ]},
+    { line: 'EPA', name: 'Escapadas', main: false, tone: '#4d8f1f', subs: [
+      { code: 'EPA', name: 'Escapadas', url: 'logitravel.com/escapadas/', steps: st('ESC PLP PDP XTR PRE CHK WAI') }
+    ]},
+    { line: 'ACT', name: 'Actividades', main: false, tone: '#0e8aa3', subs: [
+      { code: 'ACT', name: 'Actividades', url: 'logitravel.com/actividades', steps: st('ESC PLP PDP CHK WAI') }
+    ]},
+    { line: 'TRV', name: 'Transversales', main: false, tone: '#6d28d9', subs: [
+      { code: 'TRV', name: 'Transversales', url: '', steps: st('ESC PLP PDP CFG TRA XTR PRE CHK WAI') }
+    ]},
+    { line: 'HOT', name: 'Hoteles', main: true, subs: [
+      { code: 'HOT', name: 'Hoteles', url: 'logitravel.com/hoteles/', steps: st('ESC PLP PDP CHK WAI') }
+    ]}
+  ];
+
+  // Partners: funnel heredado de las líneas contratadas (columna "Lineas contratadas por partners" del CSV, normalizada)
+  var PARTNERS = [
+    { code: 'MEL', name: 'Melia', url: 'meliaescapes.melia.com', lines: ['PAQ_V+H'], tone: '#7a5cd6' },
+    { code: 'AIR', name: 'Air Europa', url: 'holidays.aireuropa.com', lines: ['PAQ_V+H'], tone: '#3d5bd9' },
+    { code: 'PAW', name: 'Por Aventura', url: 'holidays.portaventuraworld.com', lines: ['PAQ_V+H', 'PAQ_T+H'], tone: '#b83fb0' },
+    { code: 'BAL', name: 'Balearia', url: 'baleando.balearia.com', lines: ['PAQ_F+H', 'HOT'], tone: '#0f7fa8' },
+    { code: 'ELB', name: 'Elba', url: 'holidays.hoteleselba.com', lines: ['PAQ_V+H'], tone: '#a0522d' }
+  ];
+
+  // Liverpool no es partner sino otro negocio: va aparte y contrata todas las líneas
+  var BUSINESS = { code: 'LIV', name: 'Liverpool', url: 'viajesci.liverpool.com.mx', lines: ['ALL'] };
+
+  function subKey(group, sub) { return group.subs.length === 1 ? group.line : group.line + '_' + sub.code; }
+
+  var STEPS_BY_KEY = {};
+  var NAME_BY_KEY = {};
+  var ALL_KEYS = [];
+  CATALOG.forEach(function (g) {
+    g.subs.forEach(function (sub) {
+      var k = subKey(g, sub);
+      STEPS_BY_KEY[k] = sub.steps;
+      NAME_BY_KEY[k] = sub.name;
+      ALL_KEYS.push(k);
     });
   });
-  document.querySelectorAll('[data-all]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var open = b.getAttribute('data-all') === 'open';
-      document.querySelectorAll('details.sec').forEach(function (d) { d.open = open; });
+
+  function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+
+  function fillHead(id) {
+    var h = '<tr><th class="row-head-wide"></th>';
+    STEPS.forEach(function (c) {
+      h += '<th class="col-th" title="' + esc(DEFINITION[c]) + '"><div class="col-chip"><span class="cc-code">' + c + '</span><span class="cc-name">' + SHORT_LABEL[c] + '</span></div></th>';
+    });
+    document.getElementById(id).innerHTML = h + '</tr>';
+  }
+
+  // o: { color, ink, chip, name, sub, badge, title, steps: {STEP: true}, tips: {STEP: texto}, inherited, biz, gap, optPlp }
+  function addRow(tbody, o) {
+    var tr = document.createElement('tr');
+    if (o.gap) tr.className = 'group-gap';
+
+    var th = document.createElement('th');
+    th.className = 'row-head row-head-wide';
+    th.innerHTML =
+      '<div class="row-head-inner"' + (o.title ? ' title="' + esc(o.title) + '"' : '') + '>' +
+        '<span class="row-head-code" style="background:' + o.color + '; color:' + o.ink + ';">' + esc(o.chip) + '</span>' +
+        '<span class="row-head-text">' +
+          '<span class="row-head-line"><span class="row-head-name">' + esc(o.name) + '</span>' + (o.badge || '') + '</span>' +
+          (o.sub ? '<span class="row-head-sub">' + esc(o.sub) + '</span>' : '') +
+        '</span>' +
+      '</div>';
+    tr.appendChild(th);
+
+    STEPS.forEach(function (code) {
+      var td = document.createElement('td');
+      td.className = 'cell';
+      if (o.steps[code]) {
+        var tip = (o.tips && o.tips[code]) ? DEFINITION[code] + ' · Procede de: ' + o.tips[code] : DEFINITION[code];
+        td.innerHTML =
+          '<div class="step-cell compact' + (o.inherited ? ' inherited' : '') + (o.biz ? ' biz' : '') + '" title="' + esc(tip) + '"' +
+            (o.tone
+              ? ' style="background:color-mix(in srgb, ' + o.tone + ' 13%, #fff); border-color:' + o.tone + '; color:color-mix(in srgb, ' + o.tone + ' 60%, #000);"'
+              : (o.inherited ? '' : ' style="background:' + o.color + '; color:' + o.ink + ';"')) + '>' +
+            (o.optPlp && code === 'PLP' ? '<span class="opt-flag">Opc.</span>' : '') +
+            '<span class="code">' + code + '</span>' +
+            '<span class="label">' + SHORT_LABEL[code] + '</span>' +
+          '</div>';
+      } else {
+        td.innerHTML = '<div class="step-cell compact empty"><span class="label">No aplica</span></div>';
+      }
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  }
+
+  function toSet(list) { var m = {}; list.forEach(function (c) { m[c] = true; }); return m; }
+
+  // PLP opcional (entrada directa a PDP): misma regla para Logi y para las filas de partners
+  function isOptPlp(key) { return key === 'CRU' || key.indexOf('GRV') === 0 || key === 'PAQ_V+H'; }
+
+  fillHead('thead-main'); fillHead('thead-oth'); fillHead('thead-par'); fillHead('thead-biz');
+
+  var bodyMain = document.getElementById('matrix-body');
+  var bodyOth = document.getElementById('matrix-body-oth');
+  var firstMain = true, firstOth = true;
+  CATALOG.forEach(function (g) {
+    var tbody = g.main ? bodyMain : bodyOth;
+    var multi = g.subs.length > 1;
+    g.subs.forEach(function (sub, i) {
+      var key = subKey(g, sub);
+      var isFirst = i === 0;
+      var gap = isFirst && (g.main ? !firstMain : !firstOth);
+      var lineColorKey = g.main ? g.line : 'OTH';
+      addRow(tbody, {
+        color: g.tone || LINE_COLOR[lineColorKey], ink: g.tone ? '#ffffff' : LINE_INK[lineColorKey],
+        chip: key, name: sub.name, sub: multi ? g.name + (sub.group ? ' · Terceros' : '') : '',
+        badge: sub.star ? '<span class="chip">Principal</span>' : '',
+        title: sub.url ? 'https://www.' + sub.url : '',
+        steps: toSet(sub.steps), gap: gap,
+        optPlp: isOptPlp(key)
+      });
+      if (isFirst) { if (g.main) firstMain = false; else firstOth = false; }
     });
   });
-  window.addEventListener('beforeprint', function () {
-    document.querySelectorAll('details.sec').forEach(function (d) { d.open = true; });
-  });
-  document.querySelectorAll('[data-open]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var dlg = document.getElementById(btn.getAttribute('data-open'));
-      if (dlg) { dlg.showModal(); dlg.scrollTop = 0; }
+
+  // Partners: una fila por línea contratada, con el funnel de esa línea
+  var bodyPar = document.getElementById('matrix-body-par');
+  PARTNERS.forEach(function (p, pi) {
+    p.lines.forEach(function (k, i) {
+      addRow(bodyPar, {
+        color: p.tone, ink: '#ffffff', tone: p.tone,
+        chip: p.code + '-', name: p.name, sub: k + ' · ' + NAME_BY_KEY[k],
+        title: p.url ? 'https://' + p.url : '',
+        badge: i === 0 && p.lines.length > 1 ? '<span class="chip">' + p.lines.length + ' líneas</span>' : '',
+        steps: toSet(STEPS_BY_KEY[k]), inherited: true, gap: i === 0 && pi > 0,
+        optPlp: isOptPlp(k)
+      });
     });
-    if (btn.getAttribute('role') === 'button') {
-      btn.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+  });
+
+  // Liverpool: otro negocio, contrata todas las líneas (unión de sus pasos)
+  var bodyBiz = document.getElementById('matrix-body-biz');
+  (function () {
+    var steps = {};
+    ALL_KEYS.forEach(function (k) { STEPS_BY_KEY[k].forEach(function (c) { steps[c] = true; }); });
+    addRow(bodyBiz, {
+      color: LINE_COLOR.BIZ, ink: LINE_INK.BIZ,
+      chip: BUSINESS.code, name: BUSINESS.name, sub: BUSINESS.url,
+      title: 'https://' + BUSINESS.url,
+      badge: '<span class="chip">Todas las líneas</span>',
+      steps: steps, inherited: true, biz: true
+    });
+  })();
+
+  var pill = document.getElementById('pill-lines');
+  if (pill) {
+    var nSubs = ALL_KEYS.length;
+    pill.textContent = CATALOG.length + ' líneas · ' + nSubs + ' sublíneas · ' + PARTNERS.length + ' partners · Liverpool aparte';
+  }
+
+  // Líneas y sublíneas disponibles en el constructor de segmentación (sección 05)
+  // Las sublíneas con `group` (PAQ_CyE y PAQ_SES → «Paquetes terceros») cuelgan de una agrupación PAQ_TER que solo existe aquí
+  var LINEA_GROUPS = CATALOG.map(function (g) {
+    var subs = [];
+    if (g.subs.length > 1) {
+      var emitted = {};
+      g.subs.forEach(function (sub) {
+        if (sub.group && !emitted[sub.group]) {
+          emitted[sub.group] = true;
+          subs.push({ key: g.line + '_' + sub.group, code: sub.group, name: g.groups[sub.group], group: true });
+        }
+        subs.push({ key: subKey(g, sub), code: sub.code, name: sub.name, parent: sub.group ? g.line + '_' + sub.group : null });
       });
     }
+    return { line: g.line, name: g.name, subs: subs };
   });
-  /* Maquetas interactivas (tests 1 y 4): interruptor del test, vista escritorio/móvil y, si lo hay, reinicio */
-  function initSim(id) {
-    var dlg = document.getElementById(id);
-    var stage = dlg.querySelector('.sim-stage');
-    var frames = [].slice.call(dlg.querySelectorAll('[data-sim="frame"]'));
-    var sw = dlg.querySelector('[data-sim="toggle"]');
-    var swText = dlg.querySelector('[data-sim="toggle-text"]');
-    var viewBtns = [].slice.call(dlg.querySelectorAll('[data-sim="view"]'));
-    var TOTAL = (23 * 3600 + 41 * 60 + 8) * 1000;
-    var state, loaded = false;
 
-    function fresh() { state = { test: true, endsAt: Date.now() + TOTAL, confirmed: false }; }
-    function push() {
-      frames.forEach(function (f) {
-        if (f.contentWindow) f.contentWindow.postMessage({ morfeo: 'state', test: state.test, endsAt: state.endsAt, confirmed: state.confirmed }, '*');
+  // opción: [valor, nombre, línea padre (solo sublíneas), código visible, es línea con sublíneas]
+  var LINEA_OPTIONS = [['ALL', 'Todas']];
+  LINEA_GROUPS.forEach(function (g) {
+    if (g.subs.length) {
+      LINEA_OPTIONS.push([g.line, g.name + ' (línea completa)', null, g.line, true]);
+      g.subs.forEach(function (sub) { LINEA_OPTIONS.push([sub.key, sub.name, sub.parent || g.line, sub.code, !!sub.group, !!sub.parent]); });
+    } else {
+      LINEA_OPTIONS.push([g.line, g.name, null, g.line, false]);
+    }
+  });
+
+  // PAQ_V+H,F+H: el prefijo de línea se escribe una sola vez; la línea completa va sin sublínea
+  function formatLinea(sel) {
+    if (sel.indexOf('ALL') !== -1) return 'ALL';
+    var parts = [];
+    LINEA_GROUPS.forEach(function (g) {
+      if (sel.indexOf(g.line) !== -1) { parts.push(g.line); return; }
+      var picked = g.subs.filter(function (sub) { return sel.indexOf(sub.key) !== -1; });
+      picked.forEach(function (sub, i) { parts.push(i === 0 ? sub.key : sub.code); });
+    });
+    return parts.join(',');
+  }
+
+  // "Before" matrix — same layout, but showing the original/fragmented names
+  var bodyRaw = document.getElementById('matrix-body-raw');
+  ORDER.forEach(function (key) {
+    var byCode = {};
+    DATA[key].rows.forEach(function (row) { byCode[row[2]] = row; });
+
+    var tr = document.createElement('tr');
+
+    var thRow = document.createElement('th');
+    thRow.className = 'row-head';
+    thRow.innerHTML =
+      '<div class="row-head-inner" style="background:' + LINE_COLOR[key] + '22;">' +
+        '<span class="row-head-code" style="background:' + LINE_COLOR[key] + '; color:' + LINE_INK[key] + ';">' + key + '</span>' +
+        '<span class="row-head-name">' + DATA[key].label + '</span>' +
+      '</div>';
+    tr.appendChild(thRow);
+
+    CANONICAL.forEach(function (code) {
+      var td = document.createElement('td');
+      td.className = 'cell';
+      var row = byCode[code];
+      if (row) {
+        td.innerHTML =
+          '<div class="step-cell step-cell-raw" style="background:' + LINE_COLOR[key] + '; color:' + LINE_INK[key] + ';">' +
+            '<span class="raw-name">' + row[0] + '</span>' +
+            (row[3] ? '<span class="owner-name">' + row[3] + '</span>' : '') +
+            '<span class="code-mini">' + code + '</span>' +
+          '</div>';
+      } else {
+        td.innerHTML = '<div class="step-cell empty"><span class="label">No aplica</span></div>';
+      }
+      tr.appendChild(td);
+    });
+
+    bodyRaw.appendChild(tr);
+  });
+
+  // Segmentation builder — multiselect por posición, como en el uso real
+  var FIELDS = [
+    { id: 'segmento', label: 'Segmento', options: [
+      ['ALL', 'Todos'], ['NEW', 'Nuevo'], ['REC', 'Recurrente']
+    ], selected: ['ALL'] },
+    { id: 'dispositivo', label: 'Dispositivo', options: [
+      ['ALL', 'Todos'], ['DES', 'Desktop'], ['TAB', 'Tablet'], ['MOB', 'Mobile']
+    ], selected: ['ALL'] },
+    { id: 'linea', label: 'Línea / sublínea', wide: true, options: LINEA_OPTIONS, format: formatLinea, selected: ['ALL'] },
+    { id: 'pagina', label: 'Página', options: [
+      ['ALL', 'Todas'], ['HOM', 'Home'], ['CHO', 'Chollos'], ['ESC', 'Escaparate'], ['PLP', 'Listado'],
+      ['PDP', 'Ficha producto'], ['CFG', 'Configuración'], ['TRA', 'Transporte'], ['XTR', 'Extras'],
+      ['PRE', 'Presupuesto'], ['CHK', 'Checkout'], ['WAI', 'Wait']
+    ], selected: ['PDP'] },
+    { id: 'pais', label: 'País', options: [
+      ['ALL', 'Todos'], ['ES', 'España'], ['PT', 'Portugal'], ['IT', 'Italia'], ['FR', 'Francia'], ['DE', 'Alemania']
+    ], selected: ['ALL'] }
+  ];
+
+  var out = document.getElementById('builder-result');
+  var grid = document.getElementById('builder-grid');
+
+  function fieldText(f, sep) {
+    return f.format ? f.format(f.selected) : f.selected.join(sep);
+  }
+
+  function updateCode() {
+    out.textContent = FIELDS.map(function (f) { return fieldText(f, ','); }).join('|');
+  }
+
+  function closeAllPanels(except) {
+    document.querySelectorAll('.multiselect.open').forEach(function (ms) {
+      if (ms !== except) ms.classList.remove('open');
+    });
+  }
+
+  FIELDS.forEach(function (field) {
+    var wrap = document.createElement('div');
+    wrap.className = 'builder-field';
+
+    var label = document.createElement('label');
+    label.textContent = field.label;
+    wrap.appendChild(label);
+
+    var ms = document.createElement('div');
+    ms.className = 'multiselect' + (field.wide ? ' wide' : '');
+
+    var trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'multiselect-trigger';
+    trigger.innerHTML = '<span class="ms-value"></span><span class="ms-caret">▾</span>';
+
+    var panel = document.createElement('div');
+    panel.className = 'multiselect-panel';
+
+    var byCode = {};
+    field.options.forEach(function (o) { byCode[o[0]] = o; });
+    field.options.forEach(function (opt) {
+      var code = opt[0], name = opt[1], parentLine = opt[2], shown = opt[3] || opt[0];
+      var row = document.createElement('label');
+      row.className = 'ms-option' + (parentLine ? ' sub' : '') + (opt[5] ? ' sub2' : '') + (opt[4] ? ' parent' : '');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = field.selected.indexOf(code) !== -1;
+      cb.addEventListener('change', function () {
+        if (cb.checked) {
+          if (code === 'ALL') {
+            // ALL es excluyente: deselecciona cualquier otro valor
+            field.selected = ['ALL'];
+          } else {
+            field.selected = field.selected.filter(function (c) { return c !== 'ALL'; });
+            // línea completa y sublínea a la vez serían redundantes: elegir una quita la otra
+            var drop = {};
+            for (var p = parentLine; p; p = (byCode[p] || [])[2]) drop[p] = true;
+            (function walk(c) {
+              field.options.forEach(function (o) { if (o[2] === c) { drop[o[0]] = true; walk(o[0]); } });
+            })(code);
+            field.selected = field.selected.filter(function (c) { return !drop[c]; });
+            if (field.selected.indexOf(code) === -1) field.selected.push(code);
+          }
+        } else {
+          field.selected = field.selected.filter(function (c) { return c !== code; });
+        }
+        if (field.selected.length === 0) {
+          field.selected = ['ALL'];
+        }
+        // Repinta todos los checkboxes de este campo para reflejar la exclusividad de ALL
+        field.options.forEach(function (o) {
+          var input = panel.querySelector('input[value="' + o[0] + '"]');
+          if (input) input.checked = field.selected.indexOf(o[0]) !== -1;
+        });
+        renderTrigger();
+        updateCode();
       });
-    }
-    function setView(v) {
-      stage.setAttribute('data-view', v);
-      viewBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-view') === v)); });
-      fit();
-    }
-    function setTest(on) {
-      state.test = on;
-      sw.setAttribute('aria-checked', String(on));
-      swText.textContent = on ? 'Con el test' : 'Sin el test (original)';
-      push();
-    }
-    /* El escritorio se renderiza a 1280 px reales y se escala al ancho disponible */
-    function fit() {
-      var desk = frames[0], phone = frames[1];
-      var box = desk.parentNode;
-      if (box.clientWidth) {
-        var s = Math.min(1, box.clientWidth / 1280);
-        desk.style.width = '1280px';
-        desk.style.height = (box.clientHeight / s) + 'px';
-        desk.style.transform = 'scale(' + s + ')';
-      }
-      var pbox = phone.parentNode, area = pbox.parentNode;
-      if (area.clientHeight) {
-        var ps = Math.min(1, (area.clientHeight - 16) / 716, area.clientWidth / 406);
-        pbox.style.transform = 'scale(' + ps + ')';
-      }
-    }
-    function init() {
-      if (loaded) return;
-      loaded = true;
-      frames.forEach(function (f) { f.src = f.getAttribute('data-src'); });
-      if (window.ResizeObserver) new ResizeObserver(fit).observe(stage);
-    }
+      cb.value = code;
+      row.appendChild(cb);
+      var box = document.createElement('span');
+      box.className = 'ms-box';
+      box.innerHTML = '<svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      row.appendChild(box);
+      var txt = document.createElement('span');
+      txt.className = 'ms-text';
+      txt.innerHTML = '<span class="ms-code">' + shown + '</span> — <span class="ms-name">' + name + '</span>';
+      row.appendChild(txt);
+      panel.appendChild(row);
+    });
 
-    fresh();
-    document.querySelectorAll('[data-open="' + id + '"]').forEach(function (b) { b.addEventListener('click', init); });
-    sw.addEventListener('click', function () { setTest(!state.test); });
-    viewBtns.forEach(function (b) { b.addEventListener('click', function () { setView(b.getAttribute('data-view')); }); });
-    var reset = dlg.querySelector('[data-sim="reset"]');
-    if (reset) reset.addEventListener('click', function () {
-      state.endsAt = Date.now() + TOTAL; state.confirmed = false; push();
-    });
-    window.addEventListener('message', function (e) {
-      if (!e.data || !frames.some(function (f) { return f.contentWindow === e.source; })) return;
-      if (e.data.morfeo === 'ready') push();
-      if (e.data.morfeo === 'confirm') { state.confirmed = true; push(); }
-    });
-    dlg.addEventListener('close', function () {
-      fresh(); setTest(true); setView('desktop');
-      /* se recarga para que la maqueta vuelva a su estado inicial (campo vacío, pantalla cerrada, scroll arriba) */
-      if (loaded) frames.forEach(function (f) { f.src = f.getAttribute('data-src'); });
-    });
-  }
-  initSim('dlg-t1');
-  initSim('dlg-t4');
+    // Los clicks dentro del panel no deben burbujear al listener global que cierra los desplegables
+    panel.addEventListener('click', function (e) { e.stopPropagation(); });
 
-  /* Maqueta del perfil progresivo: interruptor del perfil, tipo de viaje y contador de campos por rellenar */
-  function initViajeros(id) {
-    var dlg = document.getElementById(id);
-    var frame = dlg.querySelector('[data-sim="frame"]');
-    var sw = dlg.querySelector('[data-sim="toggle"]');
-    var swText = dlg.querySelector('[data-sim="toggle-text"]');
-    var tripBtns = [].slice.call(dlg.querySelectorAll('[data-sim="trip"]'));
-    var count = dlg.querySelector('[data-sim="count"]');
-    var DEFAULT = 'familia';
-    var on = true, trip = DEFAULT, loaded = false;
-
-    function send(extra) {
-      if (!frame.contentWindow) return;
-      var m = { morfeo: 'viajeros', test: on, trip: trip };
-      for (var k in extra) m[k] = extra[k];
-      frame.contentWindow.postMessage(m, '*');
+    function renderTrigger() {
+      trigger.querySelector('.ms-value').textContent = fieldText(field, ', ');
     }
-    function paint() {
-      sw.setAttribute('aria-checked', String(on));
-      swText.textContent = on ? 'Con el perfil' : 'Sin el perfil (hoy)';
-      tripBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-trip') === trip)); });
-    }
-    function init() {
-      if (loaded) return;
-      loaded = true;
-      frame.src = frame.getAttribute('data-src');
-    }
-    document.querySelectorAll('[data-open="' + id + '"]').forEach(function (b) { b.addEventListener('click', init); });
-    sw.addEventListener('click', function () { on = !on; paint(); send({}); });
-    tripBtns.forEach(function (b) {
-      b.addEventListener('click', function () { trip = b.getAttribute('data-trip'); paint(); send({}); });
-    });
-    dlg.querySelector('[data-sim="reset"]').addEventListener('click', function () { send({ reset: true }); });
-    window.addEventListener('message', function (e) {
-      if (e.source !== frame.contentWindow || !e.data) return;
-      if (e.data.morfeo === 'ready') send({ reset: true });
-      if (e.data.morfeo === 'viajeros-count') {
-        count.innerHTML = 'Campos por teclear: <strong>' + e.data.n + '</strong> de ' + e.data.total;
-      }
-    });
-    dlg.addEventListener('close', function () {
-      on = true; trip = DEFAULT; paint();
-      if (loaded) frame.src = frame.getAttribute('data-src');
-    });
-    paint();
-  }
-  initViajeros('dlg-l1');
+    renderTrigger();
 
-  /* Maqueta de favoritos: desplegable del contador de la cabecera, abierto por defecto con tres favoritos */
-  function initFavoritos(id) {
-    var dlg = document.getElementById(id);
-    var counter = dlg.querySelector('[data-fav="counter"]');
-    var drop = dlg.querySelector('[data-fav="dropdown"]');
-    var list = dlg.querySelector('[data-fav="list"]');
-    var saved = [
-      { id: '1', title: 'Mediterráneo sorprendente', meta: '8 días desde Barcelona · MSC Euribia', price: 'desde 483 €' },
-      { id: '2', title: 'Caribe Occidental', meta: '8 días desde Miami (EEUU) · MSC World America', price: 'desde 454 €' },
-      { id: '3', title: 'La música del mar', meta: '8 días desde Barcelona · Costa Toscana', price: 'desde 449 €' }
-    ];
-
-    function render() {
-      list.innerHTML = saved.map(function (f, i) {
-        return '<li style="animation-delay:' + (i * 60) + 'ms"><span class="t">' + f.title + '</span><span class="m">' + f.meta + '</span>' +
-          '<div class="row"><span class="p">' + f.price + '</span><button type="button" class="fav-demo-cta" data-fav="cta">Ver fechas y camarotes →</button></div></li>';
-      }).join('');
-    }
-    function setDrop(open) { drop.hidden = !open; counter.setAttribute('aria-expanded', String(open)); }
-
-    counter.addEventListener('click', function () { setDrop(drop.hidden); });
-    list.addEventListener('click', function (e) {
-      var cta = e.target.closest('[data-fav="cta"]');
-      if (!cta) return;
-      cta.textContent = 'Abriendo la ficha…'; /* en la web real: enlace a la ficha del crucero con sus fechas */
-      cta.disabled = true;
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var wasOpen = ms.classList.contains('open');
+      closeAllPanels();
+      ms.classList.toggle('open', !wasOpen);
     });
-    dlg.addEventListener('close', function () { setDrop(true); render(); });
-    render();
-  }
-  initFavoritos('dlg-t5');
 
-  document.querySelectorAll('dialog').forEach(function (dlg) {
-    dlg.querySelector('.close').addEventListener('click', function () { dlg.close(); });
-    dlg.addEventListener('click', function (e) {
-      if (e.target !== dlg) return; /* un botón activado con el teclado llega con coordenadas 0,0: no es un clic en el fondo */
-      var r = dlg.getBoundingClientRect();
-      var inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
-      if (!inside) dlg.close();
-    });
+    ms.appendChild(trigger);
+    ms.appendChild(panel);
+    wrap.appendChild(ms);
+    grid.appendChild(wrap);
   });
+
+  document.addEventListener('click', function () { closeAllPanels(); });
+
+  updateCode();
+
+  document.getElementById('copy-code').addEventListener('click', function () {
+    var text = out.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text);
+    }
+    var btn = this;
+    var original = btn.textContent;
+    btn.textContent = 'Copiado ✓';
+    setTimeout(function () { btn.textContent = original; }, 1400);
+  });
+})();
+</script>
+
+<!-- ---- Local edit mode: only shown when opened from localhost/file, never on the public GitHub Pages URL ---- -->
+<style>
+  #edit-toggle {
+    position: fixed; bottom: 20px; right: 20px; z-index: 1000;
+    background: #161916; color: #fff; border: none; border-radius: 9999px;
+    padding: 12px 18px; font-family: "Roboto", system-ui, sans-serif; font-size: 13.5px; font-weight: 600;
+    cursor: pointer; box-shadow: 0 8px 22px rgba(11,11,11,0.28); display: none;
+  }
+  #edit-toggle.shown { display: inline-flex; align-items: center; gap: 8px; }
+  #edit-save {
+    position: fixed; bottom: 20px; right: 190px; z-index: 1000;
+    background: var(--brand); color: #fff; border: none; border-radius: 9999px;
+    padding: 12px 18px; font-family: "Roboto", system-ui, sans-serif; font-size: 13.5px; font-weight: 600;
+    cursor: pointer; box-shadow: 0 8px 22px rgba(11,11,11,0.28); display: none;
+  }
+  body.edit-mode #edit-save { display: inline-flex; align-items: center; gap: 8px; }
+  body.edit-mode [data-editable] { outline: 1.5px dashed transparent; border-radius: 4px; transition: outline-color .12s, background .12s; cursor: text; }
+  body.edit-mode [data-editable]:hover { outline-color: var(--brand); background: rgba(0,85,145,0.06); }
+  body.edit-mode [data-editable]:focus { outline-color: var(--brand); outline-style: solid; background: rgba(0,85,145,0.08); }
+</style>
+<button id="edit-toggle" type="button">✏️ Editar</button>
+<button id="edit-save" type="button">💾 Copiar HTML</button>
+<script>
+(function () {
+  var isLocal = ['localhost', '127.0.0.1', ''].indexOf(location.hostname) !== -1;
+  if (!isLocal) return; // nunca se activa en la URL pública de GitHub Pages
+
+  var toggleBtn = document.getElementById('edit-toggle');
+  var saveBtn = document.getElementById('edit-save');
+  toggleBtn.classList.add('shown');
+
+  var EDITABLE_SELECTOR = 'h1, h2, h3, h4, p, li, td, th, .kicker, figcaption';
+  var editing = false;
+
+  function setEditable(on) {
+    document.querySelectorAll(EDITABLE_SELECTOR).forEach(function (el) {
+      if (on) {
+        el.setAttribute('contenteditable', 'true');
+        el.setAttribute('data-editable', '');
+      } else {
+        el.removeAttribute('contenteditable');
+        el.removeAttribute('data-editable');
+      }
+    });
+  }
+
+  function copyText(text, done) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(function () {
+        copyTextFallback(text, done);
+      });
+    } else {
+      copyTextFallback(text, done);
+    }
+  }
+
+  function copyTextFallback(text, done) {
+    var area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.left = '-9999px';
+    document.body.appendChild(area);
+    area.select();
+    var copied = false;
+    try { copied = document.execCommand('copy'); } catch (e) {}
+    area.remove();
+    if (copied) done();
+    else alert('No se pudo copiar automáticamente. Selecciona y copia el HTML desde el cuadro de texto.');
+  }
+
+  toggleBtn.addEventListener('click', function () {
+    editing = !editing;
+    document.body.classList.toggle('edit-mode', editing);
+    setEditable(editing);
+    toggleBtn.textContent = editing ? '✖ Salir de edición' : '✏️ Editar';
+  });
+
+  saveBtn.addEventListener('click', function () {
+    // Quita los atributos de edición antes de serializar, para no ensuciar el HTML exportado
+    setEditable(false);
+    document.body.classList.remove('edit-mode');
+    var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    var original = saveBtn.textContent;
+    copyText(html, function () {
+      saveBtn.textContent = 'Copiado ✓ — pégalo en el chat';
+      setTimeout(function () { saveBtn.textContent = original; }, 2200);
+    });
+    // Vuelve a activar edición si seguía activa antes de copiar
+    if (editing) { document.body.classList.add('edit-mode'); setEditable(true); }
+  });
+})();
 </script>
 </body>
 </html>
